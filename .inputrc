@@ -5,7 +5,7 @@ set editing-mode vi
 set completion-ignore-case on
 
 
-
+# Turn off the terminal tab-completion bell/beep 
 set bell-style none
 
 # Super neat to have vim customized shortcut like jj!
