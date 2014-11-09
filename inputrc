@@ -1,0 +1,20 @@
+# Use Vi, not Emacs, style editing
+set editing-mode vi
+
+# Tab auto-complete whether or not you have the case right
+set completion-ignore-case on
+
+
+
+set bell-style none
+
+# Super neat to have vim customized shortcut like jj!
+$if mode=vi
+  set keymap vi-command
+  "gg": beginning-of-history
+  "G": end-of-history
+  set keymap vi-insert
+  "jj": vi-movement-mode
+  "\C-w": backward-kill-word
+  "\C-p": history-search-backward
+$endif
