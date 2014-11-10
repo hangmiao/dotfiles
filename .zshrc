@@ -92,11 +92,8 @@ export PATH="/Users/hahn/.rvm/gems/ruby-1.9.3-p547/bin:/Users/hahn/.rvm/gems/rub
 source ~/.z.sh
 
 # PS1="\u$ "
-alias ll="ls -lahG"
 
 eval "$(rbenv init -)"
-
-set -o vi
 
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
 
@@ -137,5 +134,6 @@ bindkey -M viins 'jj' vi-cmd-mode
 
 
 
+alias ll="ls -lahG"
 alias gd='git diff'
 alias gdc='git diff --cached'
