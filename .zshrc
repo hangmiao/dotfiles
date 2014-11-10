@@ -118,13 +118,17 @@ export LSCOLORS=Exfxcxdxbxegedabagacad
 export GREP_OPTIONS='--color=auto'
 
 
-
+#gives vim style of line editing at the prompt
 bindkey -v
 setopt auto_pushd
 setopt pushd_silent
 setopt pushd_ignore_dups
 setopt ignore_eof
 setopt rm_star_silent
+
+#If a pattern for filename generation has no matches, print an error,
+##instead of leaving it unchanged in the argument list. This also 
+##applies to file expansion of an initial ~ or =.
 unsetopt nomatch
 unsetopt correct_all
 
