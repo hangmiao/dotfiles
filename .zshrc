@@ -136,6 +136,9 @@ bindkey '\e[3~' delete-char
 bindkey '^R' history-incremental-search-backward
 
 alias ll="ls -lahG"
+# Go to previous dir
+alias pd="cd -"
+
 # Git
 alias gs='git status'
 alias ga='git add'
@@ -143,9 +146,7 @@ alias gb='git branch '
 alias gc='git commit'
 alias gd='git diff'
 alias gdc='git diff --cached'
-
-
-
+alias gld="git log --graph --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
 
 # Ctrl + z to do things in zsh
@@ -161,3 +162,8 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+
+
+#Report the status of background jobs immediately, rather than waiting until just before printing a prompt
+setopt notify
