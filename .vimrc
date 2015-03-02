@@ -53,6 +53,7 @@ let mapleader = ","
 
 
 set pastetoggle=<F2>
+
 " Spell check toggle
 map <F6> :setlocal spell! spelllang=en_us<CR>
 
@@ -60,6 +61,7 @@ map <F4> :set list!<CR>
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 highlight SpecialKey term=standout ctermbg=yellow guibg=yellow
 highlight RedundantSpaces term=standout ctermbg=Grey guibg=#ffddcc
+
 
 " Bubble single lines
 nmap <C-k> [e
@@ -83,8 +85,6 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'uguu-org/vim-matrix-screensaver'
 Bundle 'tpope/vim-surround'
 Bundle 'Lokaltog/powerline'
-Bundle "daylerees/colour-schemes", { "rtp": "vim/" }
-" Bundle 'fholgado/minibufexpl.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'rking/ag.vim'
 Bundle 'tpope/vim-unimpaired'
@@ -134,7 +134,7 @@ nnoremap \ :Ag<SPACE>
 
 " CtrlP
 let g:ctrlp_cmd = 'CtrlP'
-nmap <leader>p :CtrlP<cr>
+" nmap <Space>o :CtrlP<cr>
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " Shortcut to opening a virtual split to right of current pane
@@ -164,17 +164,19 @@ let g:EasyMotion_leader_key = '<Leader>'
 "    finish
 "endif
 
-" Source the vimrc file after saving it. This way, you don't have to reload Vim to see the changes.
-if has("autocmd")
- augroup myvimrchooks
-  au!
-  autocmd bufwritepost .vimrc source ~/.vimrc
- augroup END
-endif
+" Source the vimrc file after saving it. So don't have to reload Vim to see the changes.
+" Autocmd that resources your vimrc always use autocmd-nested so Powerline
+" doesn't break.
+augroup MyAutoCmd
+  autocmd!
+  autocmd MyAutoCmd BufWritePost $MYVIMRC nested source $MYVIMRC
+augroup END
 
 
 "Automatically change current directory to that of the file in the buffer
 autocmd BufEnter * cd %:p:h
+" Wipe out all buffers
+nmap <silent> <Leader>da :1,9000bwipeout<cr>
 
 " ------------- FileTypes and Indentation --------------
 augroup myfiletypes
@@ -193,19 +195,23 @@ augroup myfiletypes
     autocmd FileType make set sw=8 ts=8 noexpandtab
 augroup END
 
+
 " :set cursorline
 " :set cursorcolumn
-"
+
 
 
 " Backups {{{
 
 set backup                        " enable backups
-set noswapfile                    " it's 2013, Vim.
+set noswapfile                    " it's 2015, Vim.
 
 set undodir=~/.vim/tmp/undo//     " undo files
 set backupdir=~/.vim/tmp/backup// " backups
 set directory=~/.vim/tmp/swap//   " swap files
+
+" Don't explode when editing crontab files.
+set backupskip=/tmp/*,/private/tmp/*"
 
 " Make those folders automatically if they don't already exist.
 if !isdirectory(expand(&undodir))
@@ -319,7 +325,6 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
 " Quick editing ----------------------------------------------------------- {{{
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>eo :vsplit ~/Dropbox/Org<cr>4j
 nnoremap <leader>et :vsplit ~/.tmux.conf<cr>
 
 " }}}
@@ -328,3 +333,8 @@ nnoremap <leader>et :vsplit ~/.tmux.conf<cr>
 
 " Resize splits when the window is resized
 au VimResized * :wincmd =
+
+" When in command line mode, make ctrl+a, ctrl+e work
+cnoremap <c-a> <home>
+cnoremap <c-e> <end>
+
