@@ -144,3 +144,20 @@ alias gc='git commit'
 alias gd='git diff'
 alias gdc='git diff --cached'
 
+
+
+
+
+# Ctrl + z to do things in zsh
+# and then Ctrl + z back to Vim instead of typing fg<Enter>
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
