@@ -17,6 +17,12 @@ set modelines=0
 set tw=79
 set formatoptions+=t
 
+" Word wrap without line breaks
+:set wrap
+:set linebreak
+:set nolist  " list disables linebreak
+
+
 set nu
 set lisp
 set autoindent
@@ -149,6 +155,7 @@ nnoremap <leader>. :CtrlPTag<cr>
 
 " ------------- Random Stuff ---------------------------
 set cmdheight=1
+set shortmess=a
 hi EasyMotionShade ctermfg=234
 
 " MiniBufExpl Colors
@@ -192,7 +199,15 @@ augroup myfiletypes
     " File type specific behaviour
     autocmd FileType cpp,php,ruby,eruby,yaml,html,xhtml,xml set sw=2 ts=2 expandtab
     autocmd FileType objj,javascript,javascript.ruby set sw=4 ts=4 expandtab
+    autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType make set sw=8 ts=8 noexpandtab
+
+    autocmd FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+    autocmd FileType cpp setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+    autocmd FileType objc setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+
+    " Treat .rss files as XML
+    autocmd BufNewFile,BufRead *.rss setfiletype xml
 augroup END
 
 
