@@ -205,6 +205,7 @@ augroup myfiletypes
     autocmd FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
     autocmd FileType cpp setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
     autocmd FileType objc setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+    autocmd FileType java setlocal shiftwidth=2 tabstop=8 softtabstop=2 expandtab
 
     " Treat .rss files as XML
     autocmd BufNewFile,BufRead *.rss setfiletype xml
@@ -352,4 +353,8 @@ au VimResized * :wincmd =
 " When in command line mode, make ctrl+a, ctrl+e work
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
+
+" Insert the current datestamp
+:nnoremap <F5> "=strftime("%B %d, %Y")<CR>P
+:inoremap <F5> <C-R>=strftime("%c")<CR>
 
