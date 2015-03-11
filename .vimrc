@@ -5,7 +5,8 @@ colorscheme mustang
 " hi Comment ctermfg=LightBlue
 " highlight Comment    ctermfg=119
 " highlight Identifier ctermfg=99AA00
- 
+
+
 filetype off
 filetype plugin indent on
 execute pathogen#infect()
@@ -16,12 +17,14 @@ set modelines=0
 " Automatic word wrapping
 set tw=79
 set formatoptions+=t
+set splitright " By default, split to the right
 
 " Word wrap without line breaks
 :set wrap
 :set linebreak
 :set nolist  " list disables linebreak
 
+set title " Display filename in titlebar
 
 set nu
 set lisp
@@ -72,6 +75,7 @@ highlight RedundantSpaces term=standout ctermbg=Grey guibg=#ffddcc
 " Bubble single lines
 nmap <C-k> [e
 nmap <C-j> ]e
+
 " Bubble multiple lines
 vmap <C-k> [egv
 vmap <C-j> ]egv
@@ -356,5 +360,27 @@ cnoremap <c-e> <end>
 
 " Insert the current datestamp
 :nnoremap <F5> "=strftime("%B %d, %Y")<CR>P
-:inoremap <F5> <C-R>=strftime("%c")<CR>
+:inoremap <F5> <C-R>=strftime("%B %d, %Y")<CR>
+
+":noremap <C-j> <C-w>j
+":noremap <C-k> <C-w>k
+":noremap <C-h> <C-w>h
+":noremap <C-l> <C-w>l
+
+
+
+" Refresh web pages after saving file
+autocmd BufWriteCmd *.html,*.css,*.gtpl,*.sass,*.erb :call Refresh_firefox()
+function! Refresh_firefox()
+  if &modified
+    write
+    silent !echo  'vimYo = content.window.pageYOffset;
+          \ vimXo = content.window.pageXOffset;
+          \ BrowserReload();
+          \ content.window.scrollTo(vimXo,vimYo);
+          \ repl.quit();'  |
+          \ nc -w 1 localhost 4242 2>&1 > /dev/null
+  endif
+endfunction
+
 
