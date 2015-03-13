@@ -383,4 +383,7 @@ function! Refresh_firefox()
   endif
 endfunction
 
+" sudo to save file with temporary privileges
+command! W w !sudo tee % &>/dev/null
+
 
