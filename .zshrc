@@ -142,14 +142,18 @@ alias pd="cd -"
 # Git
 alias gs='git status'
 alias ga='git add'
-alias gb='git branch '
 alias gc='git commit'
 alias gd='git diff'
 alias gdc='git diff --cached'
+
 alias gld="git log --graph --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias gln="git log --graph --pretty=tformat:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar)%Creset %C(blue)<%an>%Creset'"
 
+alias gb='git branch'
+alias gl='git pull'
+alias gp='git push'
 
-# Ctrl + z to do things in zsh
+# Ctrl + z to switch to zsh
 # and then Ctrl + z back to Vim instead of typing fg<Enter>
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
@@ -167,3 +171,7 @@ bindkey '^Z' fancy-ctrl-z
 
 #Report the status of background jobs immediately, rather than waiting until just before printing a prompt
 setopt notify
+
+
+# beeps are annoying
+setopt NO_BEEP
