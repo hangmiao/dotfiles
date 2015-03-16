@@ -1,9 +1,11 @@
 syntax on
 colorscheme mustang  
+colorscheme solarized
+colorscheme brookstream
 
 " set background=dark
 " hi Comment ctermfg=LightBlue
-" highlight Comment    ctermfg=119
+" highlight Comment ctermfg=119
 " highlight Identifier ctermfg=99AA00
 
 
@@ -61,7 +63,7 @@ set noshowmode
 let mapleader = ","
 
 
-set pastetoggle=<F2>
+set pastetoggle=<F3>
 
 " Spell check toggle
 map <F6> :setlocal spell! spelllang=en_us<CR>
@@ -91,16 +93,17 @@ set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 Bundle 'uguu-org/vim-matrix-screensaver'
 Bundle 'tpope/vim-surround'
 Bundle 'Lokaltog/powerline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'rking/ag.vim'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'Chiel92/vim-autoformat'
 
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']   
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']   
 
 
 let g:Powerline_symbols = 'fancy'
@@ -145,6 +148,7 @@ nnoremap \ :Ag<SPACE>
 " CtrlP
 let g:ctrlp_cmd = 'CtrlP'
 " nmap <Space>o :CtrlP<cr>
+nmap <leader>p :CtrlP<cr>
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " Shortcut to opening a virtual split to right of current pane
@@ -370,7 +374,7 @@ cnoremap <c-e> <end>
 
 
 " Refresh web pages after saving file
-autocmd BufWriteCmd *.html,*.css,*.gtpl,*.sass,*.erb :call Refresh_firefox()
+autocmd BufWriteCmd *.html,*.php,*.css,*.gtpl,*.sass,*.erb :call Refresh_firefox()
 function! Refresh_firefox()
   if &modified
     write
@@ -383,7 +387,29 @@ function! Refresh_firefox()
   endif
 endfunction
 
-" sudo to save file with temporary privileges
+" Sudo to save file with temporary privileges
 command! W w !sudo tee % &>/dev/null
+
+" Fix 'ValueError: Still no compile flags, no completions yet.'
+" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+
+
+
+if has("autocmd")
+  augroup fedora
+  autocmd!
+  " In text files, always limit the width of text to 78 characters
+  " autocmd BufRead *.txt set tw=78
+  " When editing a file, always jump to the last cursor position
+  autocmd BufReadPost *
+  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+  \   exe "normal! g'\"" |
+  \ endif
+  " don't write swapfile on most commonly used directories for NFS mounts or USB sticks
+  autocmd BufNewFile,BufReadPre /media/*,/run/media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
+  " start with spec file template
+  autocmd BufNewFile *.spec 0r /usr/share/vim/vimfiles/template.spec
+  augroup END
+endif
 
 
