@@ -7,7 +7,9 @@ colorscheme brookstream
 " hi Comment ctermfg=LightBlue
 " highlight Comment ctermfg=119
 " highlight Identifier ctermfg=99AA00
-
+:hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white " Highlight line to not be an underline
+" :set cursorline
+" :set cursorcolumn
 
 filetype off
 filetype plugin indent on
@@ -220,8 +222,6 @@ augroup myfiletypes
 augroup END
 
 
-" :set cursorline
-" :set cursorcolumn
 
 
 
@@ -411,5 +411,4 @@ if has("autocmd")
   autocmd BufNewFile *.spec 0r /usr/share/vim/vimfiles/template.spec
   augroup END
 endif
-
 
