@@ -135,7 +135,7 @@ bindkey -M viins 'jj' vi-cmd-mode
 bindkey '\e[3~' delete-char
 bindkey '^R' history-incremental-search-backward
 
-alias ll="ls -lahG"
+alias l="ls -lahG"
 # Go to previous dir
 alias pd="cd -"
 
@@ -151,7 +151,13 @@ alias gln="git log --graph --pretty=tformat:'%C(yellow)%h%Creset -%C(red)%d%Cres
 
 alias gb='git branch'
 alias gl='git pull'
-alias gp='git push'
+# alias gp='git push'
+
+# Force Git to overwrite local files on pull
+alias greset='git reset --hard origin/master'
+# Revert to a particular commit that has already been pushed to the remote repo
+alias gforce='git push origin master --force'
+
 
 # Ctrl + z to switch to zsh
 # and then Ctrl + z back to Vim instead of typing fg<Enter>
