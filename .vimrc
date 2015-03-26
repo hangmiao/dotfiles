@@ -65,7 +65,7 @@ set noshowmode
 let mapleader = ","
 
 
-set pastetoggle=<F3>
+set pastetoggle=<F9>
 
 " Spell check toggle
 map <F6> :setlocal spell! spelllang=en_us<CR>
@@ -77,12 +77,12 @@ highlight RedundantSpaces term=standout ctermbg=Grey guibg=#ffddcc
 
 
 " Bubble single lines
-nmap <C-k> [e
-nmap <C-j> ]e
+nnoremap <leader>k [e
+nnoremap <leader>j ]e
 
 " Bubble multiple lines
-vmap <C-k> [egv
-vmap <C-j> ]egv
+vmap <leader>k [egv
+vmap <leader>k ]egv
 
 " ----------- Line Numbering -------------------------
 set rnu   
@@ -136,13 +136,16 @@ vnoremap / /\v
 nnoremap <leader><space> :noh<cr>
 nnoremap <leader>c :call RubySyntax()<cr>
 nnoremap <leader>r :call RubyRun()<cr>
-nnoremap <leader>l :call ShellList()<cr>
+" nnoremap <leader>l :call ShellList()<cr>
 nnoremap <space> :
-nnoremap <leader>q q:
+nnoremap <leader>qq q:
 noremap <tab> %
 vnoremap <tab> %
 map <F7> 15j<CR>
 map <F8> 15k<CR>
+
+nnoremap <leader>h ^
+nnoremap <leader>l g_
 
 "Shortcut for The Silver Searcher, aka Ag
 nnoremap \ :Ag<SPACE>
@@ -374,7 +377,7 @@ cnoremap <c-e> <end>
 
 
 " Refresh web pages after saving file
-autocmd BufWriteCmd *.html,*.php,*.css,*.gtpl,*.sass,*.erb :call Refresh_firefox()
+autocmd BufWriteCmd *.html,*.php,*.js,*.css,*.gtpl,*.sass,*.erb :call Refresh_firefox()
 function! Refresh_firefox()
   if &modified
     write
