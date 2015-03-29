@@ -369,10 +369,10 @@ cnoremap <c-e> <end>
 :nnoremap <F5> "=strftime("%B %d, %Y")<CR>P
 :inoremap <F5> <C-R>=strftime("%B %d, %Y")<CR>
 
-":noremap <C-j> <C-w>j
-":noremap <C-k> <C-w>k
-":noremap <C-h> <C-w>h
-":noremap <C-l> <C-w>l
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-h> <C-w>h
+noremap <C-l> <C-w>l
 
 
 
