@@ -57,9 +57,11 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/Users/hahn/.rvm/gems/ruby-1.9.3-p547/bin:/Users/hahn/.rvm/gems/ruby-1.9.3-p547@global/bin:/Users/hahn/.rvm/rubies/ruby-1.9.3-p547/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/Users/hahn/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/Users/hahn/.rvm/bin"
+# export PATH="/Users/hahn/.rvm/gems/ruby-1.9.3-p547/bin:/Users/hahn/.rvm/gems/ruby-1.9.3-p547@global/bin:/Users/hahn/.rvm/rubies/ruby-1.9.3-p547/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/Users/hahn/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/Users/hahn/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+ 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -93,11 +95,10 @@ source ~/z.sh
 
 # PS1="\u$ "
 
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # if [ -f ~/.git-completion.bash ]; then
 #   source ~/.git-completion.bash
@@ -181,3 +182,10 @@ setopt notify
 
 # beeps are annoying
 setopt NO_BEEP
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# prevent the 'zsh: no matches found' error for Octopress
+alias rake='noglob rake'
+
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app' 
+alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
