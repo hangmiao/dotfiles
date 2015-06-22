@@ -103,6 +103,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'rking/ag.vim'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'Chiel92/vim-autoformat'
+Bundle 'terryma/vim-smooth-scroll'
 
 " let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 " let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']   
@@ -435,5 +436,15 @@ endif
 au BufEnter *.rb syn match error contained "\<binding.pry\>"
 au BufEnter *.rb syn match error contained "\<debugger\>"
 
+" smooth-scroll
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
-
+" search-and-replace now is a breeze!
+" faster than %s/thing/another_thing/gc
+" search things usual way using /something
+" hit vs, replace first match, and hit jj
+" hit n.n.n.n.n. reviewing and replacing all matches
+vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
+    \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+omap s :normal vs<CR>
