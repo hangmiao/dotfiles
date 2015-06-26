@@ -385,6 +385,12 @@ cnoremap <c-e> <end>
 :nnoremap <F5> "=strftime("%B %d, %Y")<CR>P
 :inoremap <F5> <C-R>=strftime("%B %d, %Y")<CR>
 
+
+:ia pry <CR>binding.pry
+" Make pry debugger statements painfully obvious
+au BufEnter *.rb syn match error contained "\<binding.pry\>"
+au BufEnter *.rb syn match error contained "\<debugger\>"
+
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-h> <C-w>h
@@ -432,13 +438,10 @@ if has("autocmd")
 endif
 
 
-" Make pry debugger statements painfully obvious
-au BufEnter *.rb syn match error contained "\<binding.pry\>"
-au BufEnter *.rb syn match error contained "\<debugger\>"
 
 " smooth-scroll
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+" noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+" noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 " search-and-replace now is a breeze!
 " faster than %s/thing/another_thing/gc
