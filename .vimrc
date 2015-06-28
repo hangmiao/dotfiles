@@ -170,20 +170,10 @@ nnoremap <leader>. :CtrlPTag<cr>
 " ------------- Random Stuff ---------------------------
 set cmdheight=1
 set shortmess=a
-hi EasyMotionShade ctermfg=234
 
-" MiniBufExpl Colors
-hi MBENormal               guifg=#808080 guibg=fg
-hi MBEChanged              guifg=#CD5907 guibg=fg
-hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
-hi MBEVisibleChanged       guifg=#F1266F guibg=fg
-hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
-hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
+hi EasyMotionShade ctermfg=234
 let g:EasyMotion_leader_key = '<Leader>'
 
-"if exists("did_load_filetypes")  
-"    finish
-"endif
 
 " Source the vimrc file after saving it. So don't have to reload Vim to see the changes.
 " Autocmd that resources your vimrc always use autocmd-nested so Powerline
@@ -314,10 +304,10 @@ nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
 
 hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
 hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
-hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
-hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
+hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=14
+hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=13
 hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
-hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=26
 
 " }}}
 
@@ -367,8 +357,12 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
 
 " Quick editing ----------------------------------------------------------- {{{
 
+" Edit the vimrc file
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nmap <silent> ,sv :so $MYVIMRC<CR>
+
 nnoremap <leader>et :vsplit ~/.tmux.conf<cr>
+
 
 " }}}
 
@@ -377,9 +371,44 @@ nnoremap <leader>et :vsplit ~/.tmux.conf<cr>
 " Resize splits when the window is resized
 au VimResized * :wincmd =
 
-" When in command line mode, make ctrl+a, ctrl+e work
-cnoremap <c-a> <home>
-cnoremap <c-e> <end>
+" allow command line editing like emacs
+cnoremap <C-A>      <Home>
+cnoremap <C-E>      <End>
+cnoremap <C-B>      <Left>
+cnoremap <C-F>      <Right>
+cnoremap <C-N>      <End>
+cnoremap <C-P>      <Up>
+cnoremap <ESC>b     <S-Left>
+cnoremap <ESC><C-B> <S-Left>
+cnoremap <ESC>f     <S-Right>
+cnoremap <ESC><C-F> <S-Right>
+cnoremap <ESC><C-H> <C-W>
+
+" Maps to make handling windows a bit easier
+"noremap <silent> ,h :wincmd h<CR>
+"noremap <silent> ,j :wincmd j<CR>
+"noremap <silent> ,k :wincmd k<CR>
+"noremap <silent> ,l :wincmd l<CR>
+"noremap <silent> ,sb :wincmd p<CR>
+noremap <silent> <C-F9>  :vertical resize -10<CR>
+noremap <silent> <C-F10> :resize +10<CR>
+noremap <silent> <C-F11> :resize -10<CR>
+noremap <silent> <C-F12> :vertical resize +10<CR>
+noremap <silent> ,s8 :vertical resize 83<CR>
+noremap <silent> ,cj :wincmd j<CR>:close<CR>
+noremap <silent> ,ck :wincmd k<CR>:close<CR>
+noremap <silent> ,ch :wincmd h<CR>:close<CR>
+noremap <silent> ,cl :wincmd l<CR>:close<CR>
+noremap <silent> ,cc :close<CR>
+noremap <silent> ,cw :cclose<CR>
+noremap <silent> ,ml <C-W>L
+noremap <silent> ,mk <C-W>K
+noremap <silent> ,mh <C-W>H
+noremap <silent> ,mj <C-W>J
+noremap <silent> <C-7> <C-W>>
+noremap <silent> <C-8> <C-W>+
+noremap <silent> <C-9> <C-W>+
+noremap <silent> <C-0> <C-W>>
 
 " Insert the current datestamp
 :nnoremap <F5> "=strftime("%B %d, %Y")<CR>P
