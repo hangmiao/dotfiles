@@ -21,7 +21,7 @@ set modelines=0
 " Automatic word wrapping
 set tw=79
 set formatoptions+=t
-set splitright " By default, split to the right
+" set splitright " By default, split to the right
 
 " Word wrap without line breaks
 :set wrap
@@ -104,6 +104,7 @@ Bundle 'rking/ag.vim'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'Chiel92/vim-autoformat'
 Bundle 'terryma/vim-smooth-scroll'
+Bundle 'mileszs/ack.vim'
 
 " let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 " let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']   
@@ -184,8 +185,8 @@ augroup MyAutoCmd
 augroup END
 
 
-"Automatically change current directory to that of the file in the buffer
-autocmd BufEnter * cd %:p:h
+" Automatically change current directory to that of the file in the buffer
+" autocmd BufEnter * cd %:p:h
 " Wipe out all buffers
 nmap <silent> <Leader>da :1,9000bwipeout<cr>
 
@@ -416,6 +417,7 @@ noremap <silent> <C-0> <C-W>>
 
 
 :ia pry <CR>binding.pry
+:ab pry binding.pry
 " Make pry debugger statements painfully obvious
 au BufEnter *.rb syn match error contained "\<binding.pry\>"
 au BufEnter *.rb syn match error contained "\<debugger\>"
@@ -480,3 +482,9 @@ endif
 vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
     \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
 omap s :normal vs<CR>
+
+
+" Ack
+nnoremap <leader>a :Ack
+" find usages
+nmap <a-F7> :Ack -w <c-r><c-w><cr>
