@@ -422,11 +422,30 @@ noremap <silent> <C-0> <C-W>>
 au BufEnter *.rb syn match error contained "\<binding.pry\>"
 au BufEnter *.rb syn match error contained "\<debugger\>"
 
+" Splits {{{
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-h> <C-w>h
 noremap <C-l> <C-w>l
 
+" create 
+nnoremap c<C-j> :bel sp new<cr> 
+nnoremap c<C-k> :abo sp new<cr>
+nnoremap c<C-h> :lefta vsp new<cr>
+nnoremap c<C-l> :rightb vsp new<cr>
+
+" resize
+nnoremap g<C-j> <C-w>j<C-w>_ 
+nnoremap g<C-k> <C-w>k<C-w>_
+nnoremap g<C-h> <C-w>h<C-w>_
+nnoremap g<C-l> <C-w>l<C-w>_
+
+" delete
+nnoremap d<C-j> <C-w>j<C-w>c 
+nnoremap d<C-k> <C-w>k<C-w>c
+nnoremap d<C-h> <C-w>h<C-w>c
+nnoremap d<C-l> <C-w>l<C-w>c
+" }}}
 
 
 " Refresh web pages after saving file
@@ -488,3 +507,5 @@ omap s :normal vs<CR>
 nnoremap <leader>a :Ack
 " find usages
 nmap <a-F7> :Ack -w <c-r><c-w><cr>
+
+
