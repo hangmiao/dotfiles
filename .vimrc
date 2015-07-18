@@ -509,3 +509,6 @@ nnoremap <leader>a :Ack
 nmap <a-F7> :Ack -w <c-r><c-w><cr>
 
 
+" save folding when exit
+autocmd BufWinLeave *.* mkview!
+autocmd BufWinEnter *.* silent loadview
