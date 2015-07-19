@@ -16,6 +16,7 @@ highlight RedundantSpaces term=standout ctermbg=Grey guibg=#ffddcc
 
 " }}}
 " Basic options ------------------------------------------------------------ {{{
+
 syntax on
 filetype off
 filetype plugin indent on
@@ -318,11 +319,10 @@ nnoremap <leader>I :call IndentGuides()<cr>
 " }}}
 
 
-" Search-and-replace now is a breeze!
-" faster than %s/thing/another_thing/gc
-" search things usual way using /something
-" hit vs, replace first match, and hit jj
-" hit n.n.n.n.n. reviewing and replacing all matches
+" Search-and-replace now is a breeze! Faster than %s/thing/another_thing/gc
+" 1. Search things usual way using /something
+" 2. hit vs, replace first match, and hit jj
+" 3. hit n.n.n.n.n. reviewing and replacing all matches
 vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
     \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
 omap s :normal vs<CR>
@@ -392,6 +392,9 @@ nnoremap <leader>. :CtrlPTag<cr>
 nnoremap <leader>a :Ack
 " find usages
 nmap <a-F7> :Ack -w <c-r><c-w><cr>
+
+" Markdown to HTML
+nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
 
 " smooth-scroll
 " noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
