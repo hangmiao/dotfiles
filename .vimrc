@@ -1,20 +1,3 @@
-" Color settings ----------------------------------------------------------- {{{
-colorscheme mustang  
-colorscheme solarized
-colorscheme brookstream
-
-" set background=dark
-" hi Comment ctermfg=LightBlue
-" highlight Comment ctermfg=119
-" highlight Identifier ctermfg=99AA00
-
-:hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white " Highlight line to not be an underline
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-
-highlight SpecialKey term=standout ctermbg=yellow guibg=yellow
-highlight RedundantSpaces term=standout ctermbg=Grey guibg=#ffddcc
-
-" }}}
 " Basic options ------------------------------------------------------------ {{{
 
 syntax on
@@ -146,38 +129,6 @@ cnoremap <ESC><C-B> <S-Left>
 cnoremap <ESC>f     <S-Right>
 cnoremap <ESC><C-F> <S-Right>
 cnoremap <ESC><C-H> <C-W>
-
-" }}}
-" Window handling ---------------------------------------------------------- {{{
-
-" Resize splits when the window is resized
-au VimResized * :wincmd =
-
-" Maps to make handling windows a bit easier
-"noremap <silent> ,h :wincmd h<CR>
-"noremap <silent> ,j :wincmd j<CR>
-"noremap <silent> ,k :wincmd k<CR>
-"noremap <silent> ,l :wincmd l<CR>
-"noremap <silent> ,sb :wincmd p<CR>
-noremap <silent> <C-F9>  :vertical resize -10<CR>
-noremap <silent> <C-F10> :resize +10<CR>
-noremap <silent> <C-F11> :resize -10<CR>
-noremap <silent> <C-F12> :vertical resize +10<CR>
-noremap <silent> ,s8 :vertical resize 83<CR>
-noremap <silent> ,cj :wincmd j<CR>:close<CR>
-noremap <silent> ,ck :wincmd k<CR>:close<CR>
-noremap <silent> ,ch :wincmd h<CR>:close<CR>
-noremap <silent> ,cl :wincmd l<CR>:close<CR>
-noremap <silent> ,cc :close<CR>
-noremap <silent> ,cw :cclose<CR>
-noremap <silent> ,ml <C-W>L
-noremap <silent> ,mk <C-W>K
-noremap <silent> ,mh <C-W>H
-noremap <silent> ,mj <C-W>J
-noremap <silent> <C-7> <C-W>>
-noremap <silent> <C-8> <C-W>+
-noremap <silent> <C-9> <C-W>+
-noremap <silent> <C-0> <C-W>>
 
 " }}}
 " Life savers -------------------------------------------------------------- {{{
@@ -354,6 +305,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'Chiel92/vim-autoformat'
 Bundle 'terryma/vim-smooth-scroll'
 Bundle 'mileszs/ack.vim'
+"Bundle 'ap/vim-buftabline'
 
 " }}}
 " Plugin settings ---------------------------------------------------------- {{{
@@ -399,6 +351,13 @@ nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
 " smooth-scroll
 " noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 " noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+
+" buftabline
+"set showtabline=1
+":hi TabLine ctermfg=11 ctermbg=236 term=NONE " other tabs
+":hi TabLineSel ctermfg=3 ctermbg=240 " current tab
+":hi TabLineFill guifg=LightGreen guibg=DarkGreen ctermfg=235 ctermbg=235
+
 
 " }}}
 " My Functions ------------------------------------------------------------- {{{
@@ -546,5 +505,60 @@ function! MyFoldText() " {{{
 endfunction " }}}
 
 set foldtext=MyFoldText()
+
+" }}}
+" Window handling ---------------------------------------------------------- {{{
+
+" Resize splits when the window is resized
+au VimResized * :wincmd =
+
+" Maps to make handling windows a bit easier
+"noremap <silent> ,h :wincmd h<CR>
+"noremap <silent> ,j :wincmd j<CR>
+"noremap <silent> ,k :wincmd k<CR>
+"noremap <silent> ,l :wincmd l<CR>
+"noremap <silent> ,sb :wincmd p<CR>
+noremap <silent> <C-F9>  :vertical resize -10<CR>
+noremap <silent> <C-F10> :resize +10<CR>
+noremap <silent> <C-F11> :resize -10<CR>
+noremap <silent> <C-F12> :vertical resize +10<CR>
+noremap <silent> ,s8 :vertical resize 83<CR>
+noremap <silent> ,cj :wincmd j<CR>:close<CR>
+noremap <silent> ,ck :wincmd k<CR>:close<CR>
+noremap <silent> ,ch :wincmd h<CR>:close<CR>
+noremap <silent> ,cl :wincmd l<CR>:close<CR>
+noremap <silent> ,cc :close<CR>
+noremap <silent> ,cw :cclose<CR>
+noremap <silent> ,ml <C-W>L
+noremap <silent> ,mk <C-W>K
+noremap <silent> ,mh <C-W>H
+noremap <silent> ,mj <C-W>J
+noremap <silent> <C-7> <C-W>>
+noremap <silent> <C-8> <C-W>+
+noremap <silent> <C-9> <C-W>+
+noremap <silent> <C-0> <C-W>>
+
+" }}}
+" Color settings ----------------------------------------------------------- {{{
+colorscheme mustang  
+colorscheme solarized
+colorscheme brookstream
+
+" set background=dark
+" hi Comment ctermfg=LightBlue
+" highlight Comment ctermfg=119
+" highlight Identifier ctermfg=99AA00
+
+:hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white " Highlight line to not be an underline
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
+highlight SpecialKey term=standout ctermbg=yellow guibg=yellow
+highlight RedundantSpaces term=standout ctermbg=Grey guibg=#ffddcc
+
+
+set fillchars+=vert:│
+"set fillchars=""
+" Split chars bg color
+:hi VertSplit term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 " }}}
