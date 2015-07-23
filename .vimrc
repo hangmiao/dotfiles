@@ -12,8 +12,8 @@ set shortmess=a
 
 " set nowrap
 " Automatic word wrapping
-set tw=79
-set formatoptions+=t
+"set tw=79
+"set formatoptions+=t
 " set splitright " By default, split to the right
 
 " Word wrap without line breaks
@@ -59,6 +59,29 @@ let mapleader = ","
 
 " :set cursorline
 " :set cursorcolumn
+
+" }}}
+" Color settings ----------------------------------------------------------- {{{
+colorscheme mustang  
+colorscheme solarized
+colorscheme brookstream
+
+" set background=dark
+" hi Comment ctermfg=LightBlue
+" highlight Comment ctermfg=119
+" highlight Identifier ctermfg=99AA00
+
+:hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white " Highlight line to not be an underline
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
+highlight SpecialKey term=standout ctermbg=yellow guibg=yellow
+highlight RedundantSpaces term=standout ctermbg=Grey guibg=#ffddcc
+
+
+set fillchars+=vert:│
+"set fillchars=""
+" Split chars bg color
+:hi VertSplit term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 " }}}
 " Toggle Setup ------------------------------------------------------------- {{{
@@ -160,6 +183,7 @@ vmap <leader>k ]egv
 
 " Shorthand to type binding.pry 
 :ab pry binding.pry
+:ab pry- require 'pry-debugger'
 
 " Make pry debugger statements painfully obvious
 au BufEnter *.rb syn match error contained "\<binding.pry\>"
@@ -194,20 +218,24 @@ function! HiInterestingWord(n) " {{{
     normal! `z
 endfunction " }}}
 " Mappings {{{
+
 nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
 nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
 nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
 nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
 nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
 nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
+
 " }}}
 " Default Highlights {{{
+
 hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
 hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
 hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=14
 hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=13
 hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
 hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=26
+
 " }}}
 " MarkChanged {{{
 
@@ -332,6 +360,7 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " The Silver Searcher, aka Ag
 nnoremap \ :Ag<SPACE>
+nnoremap \q :Ag -Q '
 
 " Ctags
 " Check the current folder for tags file and keep going one directory up all
@@ -537,28 +566,5 @@ noremap <silent> <C-7> <C-W>>
 noremap <silent> <C-8> <C-W>+
 noremap <silent> <C-9> <C-W>+
 noremap <silent> <C-0> <C-W>>
-
-" }}}
-" Color settings ----------------------------------------------------------- {{{
-colorscheme mustang  
-colorscheme solarized
-colorscheme brookstream
-
-" set background=dark
-" hi Comment ctermfg=LightBlue
-" highlight Comment ctermfg=119
-" highlight Identifier ctermfg=99AA00
-
-:hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white " Highlight line to not be an underline
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-
-highlight SpecialKey term=standout ctermbg=yellow guibg=yellow
-highlight RedundantSpaces term=standout ctermbg=Grey guibg=#ffddcc
-
-
-set fillchars+=vert:│
-"set fillchars=""
-" Split chars bg color
-:hi VertSplit term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 " }}}
