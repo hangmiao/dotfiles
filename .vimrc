@@ -9,6 +9,8 @@ set modelines=0
 set foldmethod=marker
 set cmdheight=1
 set shortmess=a
+" waiting for another key to be pressed measured in milliseconds.
+set timeoutlen=500
 
 " set nowrap
 " Automatic word wrapping
@@ -62,8 +64,10 @@ let mapleader = ","
 
 " }}}
 " Color settings ----------------------------------------------------------- {{{
+colorscheme gotham
 colorscheme mustang  
 colorscheme solarized
+colorscheme gotham256
 colorscheme brookstream
 
 " set background=dark
@@ -111,6 +115,11 @@ nnoremap <leader>et :vsplit ~/.tmux.conf<cr>
 
 " Sudo to save file with temporary privileges
 command! W w !sudo tee % &>/dev/null
+
+" cd to the directory containing the file in the buffer
+nmap <silent> ,cd :lcd %:h<CR>
+nmap <silent> ,cr :lcd <c-r>=FindGitDirOrRoot()<cr><cr>
+nmap <silent> ,md :!mkdir -p %:p:h<CR>
 
 " }}}
 " Splits ------------------------------------------------------------------- {{{
@@ -405,6 +414,23 @@ function! ShellList()
   !ls -lah
 endfunction
 
+
+
+function! FindGitDirOrRoot()
+  let filedir = expand('%:p:h')
+  if isdirectory(filedir)
+    let cmd = 'bash -c "(cd ' . filedir . '; git rev-parse --show-toplevel 2>/dev/null)"'
+    let gitdir = system(cmd)
+    if strlen(gitdir) == 0
+      return '/'
+    else
+      return gitdir[:-2] " chomp
+    endif
+  else
+    return '/'
+  endif
+endfunction
+
 " }}}
 " My Remappings ------------------------------------------------------------ {{{
 
@@ -568,3 +594,5 @@ noremap <silent> <C-9> <C-W>+
 noremap <silent> <C-0> <C-W>>
 
 " }}}
+
+
