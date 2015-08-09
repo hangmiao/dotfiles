@@ -511,8 +511,10 @@ augroup myfiletypes
     " Set filetypes
     au BufNewFile,BufRead *.js.erb set filetype=javascript.ruby
     au BufNewFile,BufRead *.j setf objj
-    au BufNewFile,BufRead Jakefile setf javascript
-    au BufNewFile,BufRead *.god setf ruby 
+    au BufNewFile,BufRead Jakefile setfiletype javascript
+    au BufNewFile,BufRead *.god setfiletype ruby 
+    au BufNewFile,BufRead *.pill setfiletype ruby 
+ 
 
     " File type specific behaviour
     autocmd FileType cpp,php,ruby,eruby,yaml,html,xhtml,xml set sw=2 ts=2 expandtab
