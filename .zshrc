@@ -2,10 +2,10 @@
 export ZSH=$HOME/.oh-my-zsh
 
 # Tell zsh shell to find z.sh, which is a script handy for jumping to directories.
-. ~/z.sh
-function precmd () {
-  _z --add "$(pwd -P)"
-}
+# . ~/z.sh
+# function precmd () {
+#   _z --add "$(pwd -P)"
+# }
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -15,15 +15,6 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -39,13 +30,11 @@ ZSH_THEME="robbyrussell"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -56,15 +45,6 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-# export PATH="/Users/hahn/.rvm/gems/ruby-1.9.3-p547/bin:/Users/hahn/.rvm/gems/ruby-1.9.3-p547@global/bin:/Users/hahn/.rvm/rubies/ruby-1.9.3-p547/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/Users/hahn/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/Users/hahn/.rvm/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
- 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
  
 # Preferred editor for local and remote sessions
   if [[ -n $SSH_CONNECTION ]]; then
@@ -72,6 +52,9 @@ source $ZSH/oh-my-zsh.sh
   else
     export EDITOR='mvim'
   fi
+
+export EDITOR='vim'
+alias g='gvim --remote-silent'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -87,26 +70,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-#
 
-
-source ~/z.sh
-
-# PS1="\u$ "
-
-# eval "$(rbenv init -)"
-
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
-
-
-# if [ -f ~/.git-completion.bash ]; then
-#   source ~/.git-completion.bash
-#   source ~/.git-prompt.sh
-#   export PS1='\W$(__git_ps1 "(%s)") > '
-# fi
-
-# source ~/.git-prompt.sh
 
 # Tell ls to be colourful
 export CLICOLOR=1
@@ -114,7 +78,6 @@ export LSCOLORS=Exfxcxdxbxegedabagacad
  
 # Tell grep to highlight matches
 export GREP_OPTIONS='--color=auto'
-
 
 # Gives vim style of line editing at the prompt
 bindkey -v
@@ -159,7 +122,6 @@ alias greset='git reset --hard origin/master'
 # Revert to a particular commit that has already been pushed to the remote repo
 alias gforce='git push origin master --force'
 
-
 # Ctrl + z to switch to zsh
 # and then Ctrl + z back to Vim instead of typing fg<Enter>
 fancy-ctrl-z () {
@@ -174,18 +136,31 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
-
-
 #Report the status of background jobs immediately, rather than waiting until just before printing a prompt
 setopt notify
 
-
 # beeps are annoying
 setopt NO_BEEP
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # prevent the 'zsh: no matches found' error for Octopress
 alias rake='noglob rake'
 
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app' 
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+
+
+
+#### Add RVM Crap
+# PATH=$HOME/.rvm/gems/ruby-1.9.3-p448/bin:$PATH # Add RVM to PATH for scripting
+# rvm use ruby-1.9.3-p448 --default
+# rvm get stable --auto-dotfiles
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# echo "Going to load RVM"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
+
+
+source ~/z.sh
+source ~/tmuxinator.zsh
