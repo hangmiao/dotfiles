@@ -403,7 +403,10 @@ nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
 ":hi TabLineSel ctermfg=3 ctermbg=240 " current tab
 ":hi TabLineFill guifg=LightGreen guibg=DarkGreen ctermfg=235 ctermbg=235
 
-
+" FuzzyFinder
+nmap /d :FufFileWithCurrentBufferDir<CR>
+nmap /b :FufBuffer<CR>
+nmap /t :FufTaggedFile<CR>
 
 " }}}
 " My Functions ------------------------------------------------------------- {{{
