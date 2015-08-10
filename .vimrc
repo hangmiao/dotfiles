@@ -342,6 +342,8 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'Chiel92/vim-autoformat'
 Bundle 'terryma/vim-smooth-scroll'
 Bundle 'mileszs/ack.vim'
+Bundle 'vim-scripts/FuzzyFinder'
+Plugin 'vim-scripts/L9'
 "Bundle 'ap/vim-buftabline'
 
 " }}}
@@ -360,6 +362,11 @@ let g:Powerline_stl_path_style = 'short'
 " EasyMotion
 hi EasyMotionShade ctermfg=234
 let g:EasyMotion_leader_key = '<Leader>'
+" forwards <- ,f
+nmap <leader>f <Plug>(easymotion-w)
+" backwards <- ,b
+" go change cursor
+nmap <leader>g <Plug>(easymotion-f)
 
 " CtrlP
 let g:ctrlp_cmd = 'CtrlP'
@@ -395,6 +402,7 @@ nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
 ":hi TabLine ctermfg=11 ctermbg=236 term=NONE " other tabs
 ":hi TabLineSel ctermfg=3 ctermbg=240 " current tab
 ":hi TabLineFill guifg=LightGreen guibg=DarkGreen ctermfg=235 ctermbg=235
+
 
 
 " }}}
