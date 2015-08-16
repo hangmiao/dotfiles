@@ -90,13 +90,6 @@ set fillchars+=vert:│
 " }}}
 " Toggle Setup ------------------------------------------------------------- {{{
 
-map <F4> :set list!<CR>
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
-
-" Insert the current datestamp
-:nnoremap <F5> "=strftime("%B %d, %Y")<CR>P
-:inoremap <F5> <C-R>=strftime("%B %d, %Y")<CR>
-
 " Spell check toggle
 map <F6> :setlocal spell! spelllang=en_us<CR>
 
@@ -104,6 +97,13 @@ map <F7> 15j<CR>
 map <F8> 15k<CR>
 
 set pastetoggle=<F9>
+
+map <F10> :set list!<CR>
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+
+" Insert the current datestamp
+:nnoremap <F11> "=strftime("%B %d, %Y")<CR>P
+:inoremap <F11> <C-R>=strftime("%B %d, %Y")<CR>
 
 " }}}
 " Quick editing ------------------------------------------------------------ {{{
@@ -340,7 +340,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'rking/ag.vim'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'Chiel92/vim-autoformat'
-Bundle 'terryma/vim-smooth-scroll'
+" Bundle 'terryma/vim-smooth-scroll'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-scripts/FuzzyFinder'
 Plugin 'vim-scripts/L9'
@@ -404,9 +404,18 @@ nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
 ":hi TabLineFill guifg=LightGreen guibg=DarkGreen ctermfg=235 ctermbg=235
 
 " FuzzyFinder
-nmap /d :FufFileWithCurrentBufferDir<CR>
-nmap /b :FufBuffer<CR>
-nmap /t :FufTaggedFile<CR>
+nmap ;d :FufFileWithCurrentBufferDir<CR>
+nmap ;f :FufBuffer<CR>
+nmap ;t :FufTaggedFile<CR>
+nnoremap ;l  :FufTag<cr>
+nnoremap ;<Space> :FufBookmarkDir<cr>
+nnoremap ;f :FufFile<cr>
+nnoremap ;h :FufFile $HOME/<cr>
+nnoremap ;j  :FufFile $HOME/.vim/<cr>
+nnoremap ;db :FufFile $HOME/Dropbox/<cr>
+let g:fuf_file_exclude = '\v\~$|\.(DS_Store|o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+let g:fuf_buffer_keyDelete = '<C-d>'
+
 
 " }}}
 " My Functions ------------------------------------------------------------- {{{
@@ -494,6 +503,8 @@ endif
 " Wipe out all buffers
 nmap <silent> <Leader>da :1,9000bwipeout<cr>
 
+
+autocmd VimLeave * :!open -a iTerm2
 
 if has("autocmd")
   augroup fedora
