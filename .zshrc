@@ -44,7 +44,6 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
  
 # Preferred editor for local and remote sessions
   if [[ -n $SSH_CONNECTION ]]; then
@@ -54,7 +53,6 @@ source $ZSH/oh-my-zsh.sh
   fi
 
 export EDITOR='vim'
-alias g='gvim --remote-silent'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -93,17 +91,46 @@ setopt rm_star_silent
 unsetopt nomatch
 unsetopt correct_all
 
+#Report the status of background jobs immediately, rather than waiting until just before printing a prompt
+setopt notify
+
+# beeps are annoying
+setopt NO_BEEP
+
+
+# Key bindings --------------------------------------------------
 # Use jj as escape key in vi mode 
 bindkey -M viins 'jj' vi-cmd-mode
 
 bindkey '\e[3~' delete-char
 bindkey '^R' history-incremental-search-backward
 
+
+# Basic options -------------------------------------------------
 alias l="ls -lahG"
+
+alias dt='du -sh'
+
 # Go to previous dir
 alias pd="cd -"
 
-# Git
+# refresh shell
+alias reload='source ~/.zshrc'
+
+alias g='gvim --remote-silent'
+
+
+# Mac OS X -------------------------------------------------
+
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app' 
+alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+
+# lock computer
+alias lock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
+
+alias o.='open .'
+
+# Git -----------------------------------------------------------
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
@@ -122,6 +149,8 @@ alias greset='git reset --hard origin/master'
 # Revert to a particular commit that has already been pushed to the remote repo
 alias gforce='git push origin master --force'
 
+
+
 # Ctrl + z to switch to zsh
 # and then Ctrl + z back to Vim instead of typing fg<Enter>
 fancy-ctrl-z () {
@@ -136,19 +165,11 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
-#Report the status of background jobs immediately, rather than waiting until just before printing a prompt
-setopt notify
-
-# beeps are annoying
-setopt NO_BEEP
 
 # prevent the 'zsh: no matches found' error for Octopress
 alias rake='noglob rake'
 
-alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app' 
-alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
-
-
+alias be='bundle exec'
 
 #### Add RVM Crap
 # PATH=$HOME/.rvm/gems/ruby-1.9.3-p448/bin:$PATH # Add RVM to PATH for scripting
@@ -164,3 +185,6 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 source ~/z.sh
 source ~/tmuxinator.zsh
+
+
+
