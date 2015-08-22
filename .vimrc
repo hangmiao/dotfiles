@@ -16,7 +16,7 @@ set timeoutlen=500
 " Automatic word wrapping
 "set tw=79
 "set formatoptions+=t
-" set splitright " By default, split to the right
+set splitright " By default, split to the right
 
 " Word wrap without line breaks
 :set wrap
@@ -24,6 +24,7 @@ set timeoutlen=500
 :set nolist  " list disables linebreak
 set title " Display filename in titlebar
 set nu
+set rnu   
 set lisp
 set autoindent
 set smartindent
@@ -55,7 +56,6 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 set noshowmode
-set rnu   
 set numberwidth=2
 let mapleader = ","
 
@@ -332,7 +332,7 @@ set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-easymotion'
-" Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'uguu-org/vim-matrix-screensaver'
 Bundle 'tpope/vim-surround'
 Bundle 'Lokaltog/powerline'
