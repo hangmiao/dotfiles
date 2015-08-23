@@ -343,8 +343,14 @@ Bundle 'Chiel92/vim-autoformat'
 " Bundle 'terryma/vim-smooth-scroll'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-scripts/FuzzyFinder'
-Plugin 'vim-scripts/L9'
+Bundle 'vim-scripts/L9'
 "Bundle 'ap/vim-buftabline'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+"Bundle 'garbas/vim-snipmate'
+Bundle 'SirVer/ultisnips'
+"Bundle 'honza/vim-snippets'
+
 
 " }}}
 " Plugin settings ---------------------------------------------------------- {{{
@@ -416,6 +422,20 @@ nnoremap ;db :FufFile $HOME/Dropbox/<cr>
 let g:fuf_file_exclude = '\v\~$|\.(DS_Store|o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 let g:fuf_buffer_keyDelete = '<C-d>'
 
+" snipMate
+"let g:snipMate = {}
+"let g:snipMate.scope_aliases = {}
+"let g:snipMate.scope_aliases['ruby'] = 'ruby,rails,ruby-rails,ruby-1.9'
+":imap <C-space> <Plug>snipMateNextOrTrigger
+":smap <C-space> <Plug>snipMateNextOrTrigger
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<c-space>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " }}}
 " My Functions ------------------------------------------------------------- {{{
