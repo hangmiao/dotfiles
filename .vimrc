@@ -78,7 +78,7 @@ colorscheme brookstream
 :hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white " Highlight line to not be an underline
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
-highlight SpecialKey term=standout ctermbg=yellow guibg=yellow
+highlight SpecialKey term=standout ctermfg=DarkGrey ctermbg=yellow guibg=yellow
 highlight RedundantSpaces term=standout ctermbg=Grey guibg=#ffddcc
 
 
@@ -193,6 +193,8 @@ vmap <leader>k ]egv
 " Shorthand to type binding.pry 
 :ab pry binding.pry
 :ab pry- require 'pry-debugger'
+:ab p* p '\n\n\n', '*'*128, '\n\n\n'
+
 
 " Make pry debugger statements painfully obvious
 au BufEnter *.rb syn match error contained "\<binding.pry\>"
@@ -344,7 +346,7 @@ Bundle 'Chiel92/vim-autoformat'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-scripts/FuzzyFinder'
 Bundle 'vim-scripts/L9'
-"Bundle 'ap/vim-buftabline'
+Bundle 'ap/vim-buftabline'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 "Bundle 'garbas/vim-snipmate'
@@ -403,11 +405,6 @@ nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
 " noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 " noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
-" buftabline
-"set showtabline=1
-":hi TabLine ctermfg=11 ctermbg=236 term=NONE " other tabs
-":hi TabLineSel ctermfg=3 ctermbg=240 " current tab
-":hi TabLineFill guifg=LightGreen guibg=DarkGreen ctermfg=235 ctermbg=235
 
 " FuzzyFinder
 nmap ;d :FufFileWithCurrentBufferDir<CR>
@@ -422,7 +419,7 @@ nnoremap ;db :FufFile $HOME/Dropbox/<cr>
 let g:fuf_file_exclude = '\v\~$|\.(DS_Store|o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 let g:fuf_buffer_keyDelete = '<C-d>'
 
-" snipMate
+" SnipMate
 "let g:snipMate = {}
 "let g:snipMate.scope_aliases = {}
 "let g:snipMate.scope_aliases['ruby'] = 'ruby,rails,ruby-rails,ruby-1.9'
@@ -436,6 +433,19 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
+
+" Buftabline
+set hidden
+let g:buftabline_show=1
+let g:buftabline_numbers=1
+let g:buftabline_indicators=1
+let g:buftabline_separators=0
+:hi TabLine cterm=NONE ctermfg=10 ctermbg=236 term=NONE " other tabs
+:hi TabLineSel cterm=NONE ctermfg=8 ctermbg=2 term=NONE " current tab
+:hi PmenuSel ctermfg=8 ctermbg=220 term=NONE " Modified tabs
+:hi TabLineFill guifg=LightGreen guibg=DarkGreen ctermfg=233 ctermbg=233 " where there are no labels
+
 
 " }}}
 " My Functions ------------------------------------------------------------- {{{
@@ -638,5 +648,6 @@ noremap <silent> <C-9> <C-W>+
 noremap <silent> <C-0> <C-W>>
 
 " }}}
+
 
 
