@@ -68,6 +68,7 @@ colorscheme gotham
 colorscheme mustang  
 colorscheme solarized
 colorscheme gotham256
+colorscheme navajo-night
 colorscheme brookstream
 
 " set background=dark
@@ -401,6 +402,9 @@ nmap <a-F7> :Ack -w <c-r><c-w><cr>
 " Markdown to HTML
 nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
 
+nmap <leader>sjs :set ft=javascript <cr>
+nmap <leader>srb :set ft=ruby <cr>
+
 " smooth-scroll
 " noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 " noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
@@ -561,7 +565,8 @@ augroup myfiletypes
     autocmd!
 
     " Set filetypes
-    au BufNewFile,BufRead *.js.erb set filetype=javascript.ruby
+    au BufNewFile,BufRead *.js.erb setfiletype=javascript.ruby
+    autocmd BufNewFile,BufRead *.html.erb set filetype=html.ruby
     au BufNewFile,BufRead *.j setf objj
     au BufNewFile,BufRead Jakefile setfiletype javascript
     au BufNewFile,BufRead *.god setfiletype ruby 
