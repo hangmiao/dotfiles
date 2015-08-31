@@ -57,6 +57,7 @@ set backspace=indent,eol,start
 set laststatus=2
 set noshowmode
 set numberwidth=2
+set guioptions+=a " macvim copied clipboard on selection 
 let mapleader = ","
 
 " :set cursorline
