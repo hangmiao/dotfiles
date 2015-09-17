@@ -24,7 +24,7 @@ set splitright " By default, split to the right
 :set nolist  " list disables linebreak
 set title " Display filename in titlebar
 set nu
-set rnu   
+set rnu
 set lisp
 set autoindent
 set smartindent
@@ -34,7 +34,7 @@ set softtabstop=2
 set expandtab
 set cindent
 set shiftwidth=2
-set clipboard+=unnamed 
+set clipboard+=unnamed
 set ignorecase
 set smartcase
 " set gdefault
@@ -57,7 +57,7 @@ set backspace=indent,eol,start
 set laststatus=2
 set noshowmode
 set numberwidth=2
-set guioptions+=a " macvim copied clipboard on selection 
+set guioptions+=a " macvim copied clipboard on selection
 let mapleader = ","
 
 " :set cursorline
@@ -66,7 +66,7 @@ let mapleader = ","
 " }}}
 " Color settings ----------------------------------------------------------- {{{
 colorscheme gotham
-colorscheme mustang  
+colorscheme mustang
 colorscheme solarized
 colorscheme gotham256
 colorscheme navajo-night
@@ -123,6 +123,9 @@ nmap <silent> ,cd :lcd %:h<CR>
 nmap <silent> ,cr :lcd <c-r>=FindGitDirOrRoot()<cr><cr>
 nmap <silent> ,md :!mkdir -p %:p:h<CR>
 
+" get rid of whitespace
+nnoremap <leader>ts :call StripTrailingWhitespace()<cr>
+
 " }}}
 " Splits ------------------------------------------------------------------- {{{
 
@@ -131,20 +134,20 @@ noremap <C-k> <C-w>k
 noremap <C-h> <C-w>h
 noremap <C-l> <C-w>l
 
-" create 
-nnoremap c<C-j> :bel sp new<cr> 
+" create
+nnoremap c<C-j> :bel sp new<cr>
 nnoremap c<C-k> :abo sp new<cr>
 nnoremap c<C-h> :lefta vsp new<cr>
 nnoremap c<C-l> :rightb vsp new<cr>
 
 " resize
-nnoremap g<C-j> <C-w>j<C-w>_ 
+nnoremap g<C-j> <C-w>j<C-w>_
 nnoremap g<C-k> <C-w>k<C-w>_
 nnoremap g<C-h> <C-w>h<C-w>_
 nnoremap g<C-l> <C-w>l<C-w>_
 
 " delete
-nnoremap d<C-j> <C-w>j<C-w>c 
+nnoremap d<C-j> <C-w>j<C-w>c
 nnoremap d<C-k> <C-w>k<C-w>c
 nnoremap d<C-h> <C-w>h<C-w>c
 nnoremap d<C-l> <C-w>l<C-w>c
@@ -192,7 +195,7 @@ vmap <leader>k ]egv
 
 " Pry ---------------------------------------------------------------------- {{{
 
-" Shorthand to type binding.pry 
+" Shorthand to type binding.pry
 :ab pry binding.pry
 :ab pry- require 'pry-debugger'
 :ab p* p '\n\n\n', '*'*128, '\n\n\n'
@@ -363,7 +366,7 @@ Bundle 'SirVer/ultisnips'
 " Fix 'ValueError: Still no compile flags, no completions yet.'
 " let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 " let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']   
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
 " Powerline
 let g:Powerline_symbols = 'fancy'
@@ -391,7 +394,7 @@ nnoremap \q :Ag -Q '
 " Ctags
 " Check the current folder for tags file and keep going one directory up all
 " the way to the root folder. SO you can be in any sub-folder in your project and it'll be able to find the
-" tags files. 
+" tags files.
 set tags=tags;/
 nnoremap <leader>. :CtrlPTag<cr>
 
@@ -486,6 +489,15 @@ function! FindGitDirOrRoot()
   endif
 endfunction
 
+
+
+" Strip trailing whitespace
+function! StripTrailingWhitespace()
+  let save_cursor = getpos(".")
+  %s/\s\+$//e
+  call setpos('.', save_cursor)
+endfunction
+
 " }}}
 " My Remappings ------------------------------------------------------------ {{{
 
@@ -570,9 +582,9 @@ augroup myfiletypes
     autocmd BufNewFile,BufRead *.html.erb set filetype=html.ruby
     au BufNewFile,BufRead *.j setf objj
     au BufNewFile,BufRead Jakefile setfiletype javascript
-    au BufNewFile,BufRead *.god setfiletype ruby 
-    au BufNewFile,BufRead *.pill setfiletype ruby 
- 
+    au BufNewFile,BufRead *.god setfiletype ruby
+    au BufNewFile,BufRead *.pill setfiletype ruby
+
 
     " File type specific behaviour
     autocmd FileType cpp,php,ruby,eruby,yaml,html,xhtml,xml set sw=2 ts=2 expandtab
