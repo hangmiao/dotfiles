@@ -126,6 +126,8 @@ nmap <silent> ,md :!mkdir -p %:p:h<CR>
 " get rid of whitespace
 nnoremap <leader>ts :call StripTrailingWhitespace()<cr>
 
+map <leader>re :call RenameFile()<cr>
+
 " }}}
 " Splits ------------------------------------------------------------------- {{{
 
@@ -491,6 +493,18 @@ endfunction
 
 
 
+function! RenameFile()
+let old_name = expand('%')
+let new_name = input('New file name: ', expand('%'), 'file')
+if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+endif
+endfunction
+
+
+
 " Strip trailing whitespace
 function! StripTrailingWhitespace()
   let save_cursor = getpos(".")
@@ -517,6 +531,17 @@ vnoremap <tab> %
 
 nnoremap <leader>h ^
 nnoremap <leader>l g_
+
+" Don't jump yet
+nnoremap * * <c-o>
+
+" Insert file name
+imap ,fn <c-r>=expand('%:t:r')<cr>
+
+" Underline the current line with '='
+nmap <silent> ,u= :t.\|s/./=/g\|:nohls<cr>
+nmap <silent> ,u- :t.\|s/./-/g\|:nohls<cr>
+nmap <silent> ,u~ :t.\|s/./\\~/g\|:nohls<cr>
 
 " }}}
 " Backups ------------------------------------------------------------------ {{{
