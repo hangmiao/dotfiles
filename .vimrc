@@ -536,7 +536,8 @@ nnoremap <leader>l g_
 nnoremap * * <c-o>
 
 " Insert file name
-imap ,fn <c-r>=expand('%:t:r')<cr>
+imap ,fn <c-r>=expand('%:t')<cr>
+" imap ,fn <c-r>=expand('%:t:r')<cr>
 
 " Underline the current line with '='
 nmap <silent> ,u= :t.\|s/./=/g\|:nohls<cr>
