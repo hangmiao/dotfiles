@@ -10,7 +10,7 @@ set foldmethod=marker
 set cmdheight=1
 set shortmess=a
 " waiting for another key to be pressed measured in milliseconds.
-set timeoutlen=500
+set timeoutlen=300
 
 " set nowrap
 " Automatic word wrapping
@@ -51,17 +51,28 @@ set hidden
 set wildmenu
 set wildmode=list:longest
 set visualbell
-set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
 set noshowmode
 set numberwidth=2
 set guioptions+=a " macvim copied clipboard on selection
+set ttyfast " faster redrawing
+set re=1 " Use the old regex engine to make render rb file faster in terminal
+
+set so=7 " set 7 lines to the cursors - when moving vertical
+set history=1000 " change history to 1000
+set textwidth=120
+set magic " Set magic on, for regex
+" set scrolljump=8
+
 let mapleader = ","
 
 " :set cursorline
 " :set cursorcolumn
+
+" setting path explicitly to make it load faster
+let g:ruby_path="/usr/bin/ruby"
 
 " }}}
 " Color settings ----------------------------------------------------------- {{{
@@ -128,6 +139,17 @@ nmap <silent> ,md :!mkdir -p %:p:h<CR>
 nnoremap <leader>ts :call StripTrailingWhitespace()<cr>
 
 map <leader>re :call RenameFile()<cr>
+
+" scroll the viewport faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
+" moving up and down work as you would expect
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+nnoremap <silent> ^ g^
+nnoremap <silent> $ g$
+
 
 " }}}
 " Splits ------------------------------------------------------------------- {{{
