@@ -65,17 +65,16 @@ let mapleader = ","
 
 " }}}
 " Color settings ----------------------------------------------------------- {{{
-colorscheme gotham
 colorscheme mustang
 colorscheme solarized
-colorscheme gotham256
-colorscheme navajo-night
+colorscheme seoul256
+colorscheme base16-railscasts
 colorscheme brookstream
 
-" set background=dark
+"set background=dark
 " hi Comment ctermfg=LightBlue
-" highlight Comment ctermfg=119
-" highlight Identifier ctermfg=99AA00
+highlight Comment ctermfg=119
+highlight Identifier ctermfg=99AA00
 
 :hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white " Highlight line to not be an underline
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
@@ -83,11 +82,13 @@ highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE gui
 highlight SpecialKey term=standout ctermfg=DarkGrey ctermbg=yellow guibg=yellow
 highlight RedundantSpaces term=standout ctermbg=Grey guibg=#ffddcc
 
+highlight MatchParen term=reverse ctermfg=248 ctermbg=242 guibg=DarkCyan
+
 
 set fillchars+=vert:│
 "set fillchars=""
 " Split chars bg color
-:hi VertSplit term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+hi VertSplit term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 " }}}
 " Toggle Setup ------------------------------------------------------------- {{{
@@ -708,6 +709,5 @@ noremap <silent> <C-9> <C-W>+
 noremap <silent> <C-0> <C-W>>
 
 " }}}
-
 
 
