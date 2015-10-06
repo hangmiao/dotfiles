@@ -121,7 +121,7 @@ alias pd="cd -"
 alias reload='source ~/.zshrc'
 
 alias g='gvim --remote-silent'
-
+alias vi="mvim -v"
 
 # Mac OS X -------------------------------------------------
 
@@ -135,17 +135,30 @@ alias o.='open .'
 
 # Git -----------------------------------------------------------
 alias gs='git status'
+alias gb='git branch'
+alias gl='git pull'
+# alias gp='git push'
+
 alias ga='git add'
 alias gc='git commit'
+alias gca='git commit --amend'
+
 alias gd='git diff'
+alias gdw='git diff --word-diff'
 alias gdc='git diff --cached'
+alias gdcw='git diff --cached --word-diff'
+
+alias gcp='git cherry-pick'
+alias gco='git checkout'
+alias gf='git fetch'
+
+alias gst='git stash'
+alias gstp='git stash pop'
+alias gstl='git stash list'
 
 alias gld="git log --graph --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gln="git log --graph --pretty=tformat:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar)%Creset %C(blue)<%an>%Creset'"
 
-alias gb='git branch'
-alias gl='git pull'
-# alias gp='git push'
 
 # Force Git to overwrite local files on pull
 alias greset='git reset --hard origin/master'
