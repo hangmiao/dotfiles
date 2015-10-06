@@ -85,7 +85,7 @@ colorscheme brookstream
 "set background=dark
 " hi Comment ctermfg=LightBlue
 highlight Comment ctermfg=119
-highlight Identifier ctermfg=99AA00
+"highlight Identifier ctermfg=99AA00
 
 :hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white " Highlight line to not be an underline
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
@@ -126,6 +126,7 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nmap <silent> ,sv :so $MYVIMRC<CR>
 nnoremap <leader>et :vsplit ~/.tmux.conf<cr>
+nnoremap <leader>ez :vsplit ~/.zshrc<cr>
 
 " Sudo to save file with temporary privileges
 command! W w !sudo tee % &>/dev/null
@@ -223,7 +224,7 @@ vmap <leader>k ]egv
 " Shorthand to type binding.pry
 :ab pry binding.pry
 :ab pry- require 'pry-debugger'
-:ab p* p '\n\n\n', '*'*128, '\n\n\n'
+:ab p* p '', '*'*128
 
 
 " Make pry debugger statements painfully obvious
