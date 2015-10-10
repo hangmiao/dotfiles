@@ -414,6 +414,12 @@ let g:ctrlp_cmd = 'CtrlP'
 nmap <leader>p :CtrlP<cr>
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
+" CtrlP ignore patterns
+let g:ctrlp_custom_ignore = {
+            \ 'dir': '\.git$\|node_modules$\|\.hg$\|\.svn$',
+            \ 'file': '\.exe$\|\.so$'
+            \ }
+
 " The Silver Searcher, aka Ag
 nnoremap \ :Ag<SPACE>
 nnoremap \q :Ag -Q '

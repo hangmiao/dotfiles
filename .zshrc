@@ -226,9 +226,3 @@ source ~/tmuxinator.zsh
 # }}}
 
 
-
-
-
-
-
-

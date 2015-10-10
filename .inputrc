@@ -1,5 +1,6 @@
 # Use Vi, not Emacs, style editing
 set editing-mode vi
+set keymap vi
 
 # Tab auto-complete whether or not you have the case right
 set completion-ignore-case on
