@@ -126,13 +126,18 @@ alias pd="cd -"
 alias reload='source ~/.zshrc'
 
 alias g='gvim --remote-silent'
-alias vi="mvim -v"
+#alias vi="mvim -v"
 
 # misc
 # prevent the 'zsh: no matches found' error for Octopress
 alias rake='noglob rake'
 
 alias be='bundle exec'
+
+# IP addresses
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en0"
+alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
 # Mac OS X ----------------------------------------------------------------- {{{
 

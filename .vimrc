@@ -78,8 +78,6 @@ let g:ruby_path="/usr/bin/ruby"
 " Color settings ----------------------------------------------------------- {{{
 colorscheme mustang
 colorscheme solarized
-colorscheme seoul256
-colorscheme base16-railscasts
 colorscheme brookstream
 
 "set background=dark
@@ -100,6 +98,9 @@ set fillchars+=vert:│
 "set fillchars=""
 " Split chars bg color
 hi VertSplit term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
+" highlight conflicts
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " }}}
 " Toggle Setup ------------------------------------------------------------- {{{
