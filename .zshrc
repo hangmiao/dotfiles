@@ -135,6 +135,8 @@ alias o.='open .'
 
 # Git -----------------------------------------------------------
 alias gs='git status'
+alias gsi='git status --ignored'
+alias gco='git checkout'
 alias gb='git branch'
 alias gl='git pull'
 # alias gp='git push'
@@ -149,7 +151,6 @@ alias gdc='git diff --cached'
 alias gdcw='git diff --cached --word-diff'
 
 alias gcp='git cherry-pick'
-alias gco='git checkout'
 alias gf='git fetch'
 
 alias gst='git stash'
