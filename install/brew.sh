@@ -7,6 +7,8 @@ fi
 
 echo "Installing homebrew packages..."
 
+brew tap homebrew/dupes
+
 # cli tools
 brew install ack
 brew install tree
@@ -22,5 +24,8 @@ brew install highlight
 brew install nvm
 brew install z
 brew install markdown
+brew install nmap
+brew install gpg
+brew install htop
 
 exit 0

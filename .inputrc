@@ -1,10 +1,24 @@
 # Use Vi, not Emacs, style editing
 set editing-mode vi
-set keymap vi
 
 # Tab auto-complete whether or not you have the case right
 set completion-ignore-case on
 
+# on menu-complete, first display the common prefix, then cycle through the 
+# options when hitting TAB
+menu-complete-display-prefix on
+
+# Insert the arguments from the last command
+"p": "i !!*\r"
+# Needed because binding 'p' in command mode above wipes its insert mode
+# function, too. This fixes that, and will insert 'p' when you type 'p'.
+"p": self-insert
+
+# Edit options before rerunning previous command, eg: ls a b c -> ls -al a b c
+"\e-": "\C-p\C-a\M-f "
+
+# Two escapes clear command line.
+"\e\e": "\C-a\C-k"
 
 # Turn off the terminal tab-completion bell/beep 
 set bell-style none
@@ -18,4 +32,5 @@ $if mode=vi
   "jj": vi-movement-mode
   "\C-w": backward-kill-word
   "\C-p": history-search-backward
+  "\C-l": clear-screen
 $endif
