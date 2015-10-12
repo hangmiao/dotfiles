@@ -72,15 +72,6 @@ export EDITOR='vim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-# Tell ls to be colourful
-export CLICOLOR=1
-export LSCOLORS="exfxcxdxcxegedabagacad"
-
-# Set colors to match iTerm2 Terminal Colors
-export TERM=xterm-256color
-
-# Tell grep to highlight matches
-export GREP_OPTIONS='--color=auto'
 
 # Gives vim style of line editing at the prompt
 bindkey -v
@@ -225,5 +216,17 @@ source ~/z.sh
 source ~/tmuxinator.zsh
 
 # }}}
+# Color settings ------------------------------------------------------------------- {{{
+ 
+# Tell ls to be colourful
+export CLICOLOR=1
+export LSCOLORS="exfxcxdxcxegedabagacad"
 
+# Set colors to match iTerm2 Terminal Colors
+export TERM=xterm-256color
+
+# Tell grep to highlight matches
+export GREP_OPTIONS='--color=auto'
+
+# }}}
 
