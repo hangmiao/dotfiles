@@ -15,3 +15,6 @@ for file in $linkables ; do
     echo "creating symlink for $file"
     ln -s $file $target
 done
+
+# mux completion
+ln -s $DOTFILES/submodules/tmuxinator/completion/tmuxinator.zsh $HOME/tmuxinator.zsh
