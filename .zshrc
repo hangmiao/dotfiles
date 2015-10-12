@@ -73,8 +73,6 @@ export EDITOR='vim'
 
 
 
-# Gives vim style of line editing at the prompt
-bindkey -v
 
 setopt auto_pushd
 setopt pushd_silent
@@ -93,16 +91,6 @@ setopt notify
 
 # beeps are annoying
 setopt NO_BEEP
-
-# }}}
-# Key bindings ------------------------------------------------------------- {{{
-
-# Use jj as escape key in vi mode 
-bindkey -M viins 'jj' vi-cmd-mode
-
-bindkey '\e[3~' delete-char
-bindkey '^R' history-incremental-search-backward
-
 
 # }}}
 # Alias -------------------------------------------------------------------- {{{
@@ -230,3 +218,17 @@ export GREP_OPTIONS='--color=auto'
 
 # }}}
 
+
+# Key bindings ------------------------------------------------------------- {{{
+
+# Gives vim style of line editing at the prompt
+bindkey -v
+
+# Use jj as escape key in vi mode 
+bindkey -M viins 'jj' vi-cmd-mode
+
+bindkey '\e[3~' delete-char
+bindkey '^R' history-incremental-search-backward
+
+
+# }}}
