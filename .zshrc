@@ -84,6 +84,7 @@ export GREP_OPTIONS='--color=auto'
 
 # Gives vim style of line editing at the prompt
 bindkey -v
+
 setopt auto_pushd
 setopt pushd_silent
 setopt pushd_ignore_dups
@@ -178,7 +179,7 @@ alias gstl='git stash list'
 alias gld="git log --graph --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gln="git log --graph --pretty=tformat:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar)%Creset %C(blue)<%an>%Creset'"
 
-
+alias gr='git reset'
 # Force Git to overwrite local files on pull
 alias greset='git reset --hard origin/master'
 # Revert to a particular commit that has already been pushed to the remote repo
