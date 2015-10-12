@@ -18,3 +18,9 @@ end
 Pry::Commands.command /^$/, "repeat last command" do
   _pry_.run_command Pry.history.to_a.last
 end
+
+Pry.config.commands.import Pry::ExtendedCommands::Experimental
+Pry.config.commands.alias_command "lM", "ls -M"
+
+Pry.config.color = true
+#Pry.config.theme = "solarized"
