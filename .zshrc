@@ -119,6 +119,8 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
+alias tzip='tar -zcvf'
+alias tunzip='tar -zxvf'
 # Mac OS X ----------------------------------------------------------------- {{{
 
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app' 
