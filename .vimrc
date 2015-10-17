@@ -432,6 +432,8 @@ set tags=tags;/
 nnoremap <leader>. :CtrlPTag<cr>
 
 " Ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
+" let g:ackprg = 'ag --vimgrep' " has the same effect of the above but will report every match on the line.
 nnoremap <leader>a :Ack
 " find usages
 nmap <a-F7> :Ack -w <c-r><c-w><cr>
@@ -657,6 +659,7 @@ augroup myfiletypes
     au BufNewFile,BufRead Jakefile setfiletype javascript
     au BufNewFile,BufRead *.god setfiletype ruby
     au BufNewFile,BufRead *.pill setfiletype ruby
+    au BufNewFile,BufRead *.rake setfiletype ruby
 
 
     " File type specific behaviour

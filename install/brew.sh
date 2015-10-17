@@ -28,4 +28,6 @@ brew install nmap
 brew install gpg
 brew install htop
 
+brew install the_silver_searcher
+
 exit 0

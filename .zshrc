@@ -162,7 +162,8 @@ alias gln="git log --graph --pretty=tformat:'%C(yellow)%h%Creset -%C(red)%d%Cres
 
 alias gr='git reset'
 # Force Git to overwrite local files on pull
-alias greset='git reset --hard origin/master'
+alias grm='git reset --hard origin/master'
+alias grp='git reset --hard origin/production'
 # Revert to a particular commit that has already been pushed to the remote repo
 alias gforce='git push origin master --force'
 
