@@ -9,6 +9,12 @@ export ZSH=$HOME/.oh-my-zsh
 #   _z --add "$(pwd -P)"
 # }
 
+# Move next only if `homebrew` is installed
+if command -v brew >/dev/null 2>&1; then
+    # Load z if installed
+    [ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
+fi
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
