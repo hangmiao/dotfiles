@@ -16,7 +16,8 @@ brew install wget
 
 brew install git
 brew install hub
-brew install macvim --override-system-vim
+brew install macvim --with-override-system-vim --with-python
+
 brew install reattach-to-user-namespace
 brew install tmux
 brew install zsh
@@ -29,5 +30,14 @@ brew install gpg
 brew install htop
 
 brew install the_silver_searcher
+
+brew install caskroom/cask/brew-cask
+brew cask install iterm2
+brew cask install firefox
+brew cask install google-chrome
+brew cask install dropbox
+brew cask install spectacle
+brew cask install quicksilver
+#brew cask install the-unarchiver
 
 exit 0

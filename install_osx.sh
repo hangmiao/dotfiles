@@ -31,11 +31,11 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 echo "Disable press-and-hold for keys in favor of key repeat"
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-echo "Set a blazingly fast keyboard repeat rate"
-defaults write NSGlobalDomain KeyRepeat -int 2
+#Set a blazingly fast keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 0.02
 
-echo "Set a shorter Delay until key repeat"
-defaults write NSGlobalDomain InitialKeyRepeat -int 15
+#Set a shorter Delay until key repeat
+defaults write NSGlobalDomain InitialKeyRepeat -int 12
 
 # Disable opening and closing window animations
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
@@ -51,3 +51,14 @@ defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
 echo "Kill affected applications"
 for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
+
+# Change screenshot name
+killall SystemUIServer
+defaults write com.apple.screencapture type -string "png"
+defaults write com.apple.screencapture name ""
+
+# Set the Default Finder View Style to Column
+defaults write com.apple.Finder FXPreferredViewStyle clmv
+killall Finder
+
+
