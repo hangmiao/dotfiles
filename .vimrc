@@ -360,31 +360,38 @@ augroup END
 
 " }}}
 " Vundle Setup ------------------------------------------------------------- {{{
+ 
 
-set rtp+=~/.vim/bundle/vundle/
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'uguu-org/vim-matrix-screensaver'
-Bundle 'tpope/vim-surround'
-Bundle 'Lokaltog/powerline'
-Bundle 'kien/ctrlp.vim'
-Bundle 'rking/ag.vim'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'Chiel92/vim-autoformat'
-" Bundle 'terryma/vim-smooth-scroll'
-Bundle 'mileszs/ack.vim'
-Bundle 'vim-scripts/FuzzyFinder'
-Bundle 'vim-scripts/L9'
-Bundle 'ap/vim-buftabline'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-"Bundle 'garbas/vim-snipmate'
-Bundle 'SirVer/ultisnips'
-"Bundle 'honza/vim-snippets'
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'uguu-org/vim-matrix-screensaver'
+Plugin 'tpope/vim-surround'
+Plugin 'Lokaltog/powerline'
+Plugin 'kien/ctrlp.vim'
+Plugin 'rking/ag.vim'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'Chiel92/vim-autoformat'
+" Plugin 'terryma/vim-smooth-scroll'
+Plugin 'mileszs/ack.vim'
+Plugin 'vim-scripts/FuzzyFinder'
+Plugin 'vim-scripts/L9'
+Plugin 'ap/vim-buftabline'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+"Plugin 'garbas/vim-snipmate'
+Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 " }}}
 " Plugin settings ---------------------------------------------------------- {{{
