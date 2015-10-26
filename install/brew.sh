@@ -39,5 +39,7 @@ brew cask install dropbox
 brew cask install spectacle
 brew cask install quicksilver
 #brew cask install the-unarchiver
+brew cask install sequel-pro
+brew cask install sourcetree
 
 exit 0
