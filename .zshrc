@@ -136,6 +136,7 @@ alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall F
 alias lock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
 
 alias o.='open .'
+alias of='open -a Firefox'
 
 # }}}
 # Git ---------------------------------------------------------------------- {{{
