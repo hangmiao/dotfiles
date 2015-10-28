@@ -28,6 +28,7 @@ brew install markdown
 brew install nmap
 brew install gpg
 brew install htop
+brew install mkvtoolnix
 
 brew install the_silver_searcher
 
