@@ -42,5 +42,6 @@ brew cask install quicksilver
 #brew cask install the-unarchiver
 brew cask install sequel-pro
 brew cask install sourcetree
+brew cask install ldoce5-viewer
 
 exit 0
