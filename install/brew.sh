@@ -29,10 +29,13 @@ brew install nmap
 brew install gpg
 brew install htop
 brew install mkvtoolnix
+brew install boot2docker
+brew install docker-compose
 
 brew install the_silver_searcher
 
 brew install caskroom/cask/brew-cask
+brew cask install dockertoolbox
 brew cask install iterm2
 brew cask install firefox
 brew cask install google-chrome
@@ -42,5 +45,8 @@ brew cask install quicksilver
 #brew cask install the-unarchiver
 brew cask install sequel-pro
 brew cask install sourcetree
+brew cask install virtualbox
+brew cask install macvim
+brew cask install wiznote
 
 exit 0

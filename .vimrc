@@ -20,7 +20,7 @@ set splitright " By default, split to the right
 
 " Word wrap without line breaks
 :set wrap
-:set linebreak
+":set linebreak
 :set nolist  " list disables linebreak
 set title " Display filename in titlebar
 set nu
@@ -62,7 +62,6 @@ set re=1 " Use the old regex engine to make render rb file faster in terminal
 
 set so=7 " set 7 lines to the cursors - when moving vertical
 set history=1000 " change history to 1000
-set textwidth=120
 set magic " Set magic on, for regex
 " set scrolljump=8
 
