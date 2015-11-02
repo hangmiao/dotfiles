@@ -48,5 +48,6 @@ brew cask install sourcetree
 brew cask install virtualbox
 brew cask install macvim
 brew cask install wiznote
+brew cask install ldoce5-viewer
 
 exit 0
