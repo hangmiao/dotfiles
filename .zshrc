@@ -119,6 +119,7 @@ alias g='gvim --remote-silent'
 alias rake='noglob rake'
 
 alias be='bundle exec'
+alias bi='bundle install'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -242,3 +243,48 @@ bindkey '^R' history-incremental-search-backward
 
 
 # }}}
+
+
+
+function backmerge
+{
+  # do `git checkout production && git pull` first and fix conflict if any
+
+  git push origin production
+  isClean git checkout staging # if not clean, abort
+  git pull
+  isConflict git merge production # if there's conflict, abort
+  git push origin staging
+
+  isClean git checkout master
+  git pull
+  isConflict git merge staging
+  git push origin master
+}
+
+function isConflict()
+{
+  $@ # run it first
+
+  # Conflict
+  if [ $(git ls-files -u  | cut -f 2 | sort -u | wc -l) -ne 0 ]
+  then
+    # echo it in red color
+    echo -e "\n\nCannot \e[31m$@\e[0m: Conflict. \nAborted."
+    return 1
+  fi
+}
+
+function isClean()
+{
+  git_status=`$@` # run it first
+
+  # not clean, e.g.
+  # "Please, commit your changes or stash them before you can switch branches."
+  if [ "$git_status" == "" ] 
+  then
+    # echo it in red color
+    echo -e "\n\nCannot \e[31m$@\e[0m: See the above msg. \nAborting."
+    return 1
+  fi
+}
