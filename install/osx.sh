@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+xcode-select --install
+
 # echo "Finder: show all filename extensions"
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 

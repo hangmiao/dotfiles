@@ -8,6 +8,7 @@ fi
 echo "Installing homebrew packages..."
 
 brew tap homebrew/dupes
+brew tap homebrew/services
 
 # cli tools
 brew install ack
@@ -49,5 +50,8 @@ brew cask install virtualbox
 brew cask install macvim
 brew cask install wiznote
 brew cask install ldoce5-viewer
+brew cask install slack
+brew cask install skitch
+brew cask install rcdefaultapp
+brew cask install utc-menu-clock
 
-exit 0
