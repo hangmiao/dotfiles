@@ -30,6 +30,7 @@ brew install nmap
 brew install gpg
 brew install htop
 brew install mkvtoolnix
+brew install rename
 brew install boot2docker
 brew install docker-compose
 
