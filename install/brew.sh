@@ -18,6 +18,8 @@ brew install wget
 brew install git
 brew install hub
 brew install macvim --with-override-system-vim --with-python
+brew link --overwrite macvim
+brew linkapps macvim
 
 brew install reattach-to-user-namespace
 brew install tmux
@@ -33,11 +35,11 @@ brew install mkvtoolnix
 brew install rename
 brew install boot2docker
 brew install docker-compose
-
 brew install the_silver_searcher
 
 brew install caskroom/cask/brew-cask
 brew cask install dockertoolbox
+brew cask install docker-machine
 brew cask install iterm2
 brew cask install firefox
 brew cask install google-chrome
@@ -54,5 +56,6 @@ brew cask install ldoce5-viewer
 brew cask install slack
 brew cask install skitch
 brew cask install rcdefaultapp
+brew cask install seil
 brew cask install utc-menu-clock
 

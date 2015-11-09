@@ -1,5 +1,6 @@
 " Basic options ------------------------------------------------------------ {{{
-
+scriptencoding utf-8
+set encoding=utf-8
 syntax on
 filetype off
 filetype plugin indent on
