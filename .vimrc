@@ -718,6 +718,8 @@ set foldtext=MyFoldText()
 
 " }}}
 " Window handling ---------------------------------------------------------- {{{
+:set mouse=n
+:set ttymouse=xterm2
 
 " Resize splits when the window is resized
 au VimResized * :wincmd =
