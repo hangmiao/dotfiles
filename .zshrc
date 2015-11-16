@@ -178,6 +178,12 @@ alias grp='git reset --hard origin/production'
 # Revert to a particular commit that has already been pushed to the remote repo
 alias gforce='git push origin master --force'
 
+
+# List untracked files
+alias glu='git ls-files --others --exclude-standard'
+# Nice alias for adding untracked files:
+alias gau='!git add $(git ls-files -o --exclude-standard)'
+
 # }}}
 # }}}
 # Life Savers -------------------------------------------------------------- {{{
