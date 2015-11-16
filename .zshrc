@@ -102,6 +102,7 @@ setopt NO_BEEP
 # Alias -------------------------------------------------------------------- {{{
 
 alias l="ls -lahG"
+alias fl="ls -ltra | grep '\->'" # find link
 
 alias dt='du -sh'
 
@@ -120,6 +121,8 @@ alias rake='noglob rake'
 
 alias be='bundle exec'
 alias bi='bundle install'
+#alias rt='RAILS_ENV=test bundle exec rake minitest --trace'
+alias rt='RAILS_ENV=test bundle exec rake test:all'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-DOTFILES=$HOME/Dropbox/Github/dotfiles
+#DOTFILES=$HOME/Dropbox/Github/dotfiles
+DOTFILES=$HOME/Development/Github/dotfiles
 
 echo "creating symlinks"
 

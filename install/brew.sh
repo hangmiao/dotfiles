@@ -17,9 +17,12 @@ brew install wget
 
 brew install git
 brew install hub
-brew install macvim --with-override-system-vim --with-python
-brew link --overwrite macvim
-brew linkapps macvim
+#brew install macvim --with-override-system-vim --with-python
+#brew link --overwrite macvim
+#brew linkapps macvim
+brew install vim --with-python3
+brew link --overwrite vim
+brew linkapps vim
 
 brew install reattach-to-user-namespace
 brew install tmux
@@ -31,6 +34,7 @@ brew install markdown
 brew install nmap
 brew install gpg
 brew install htop
+brew install CMake
 brew install mkvtoolnix
 brew install rename
 brew install boot2docker
@@ -51,6 +55,7 @@ brew cask install sequel-pro
 brew cask install sourcetree
 brew cask install virtualbox
 brew cask install macvim
+brew cask install libreoffice
 brew cask install wiznote
 brew cask install ldoce5-viewer
 brew cask install slack
