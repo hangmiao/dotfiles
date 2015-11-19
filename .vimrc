@@ -82,17 +82,16 @@ colorscheme brookstream
 colorscheme mustang
 
 set background=dark
-" hi Comment ctermfg=LightBlue
-highlight Comment ctermfg=119
+highlight Comment ctermfg=119 guifg=#87ff5f
 "highlight Identifier ctermfg=99AA00
 
 :hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white " Highlight line to not be an underline
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
-highlight SpecialKey term=standout ctermfg=DarkGrey ctermbg=yellow guibg=yellow
+highlight SpecialKey term=standout ctermfg=DarkGrey guifg=DarkGrey ctermbg=yellow guibg=yellow
 highlight RedundantSpaces term=standout ctermbg=Grey guibg=#ffddcc
 
-highlight MatchParen term=reverse ctermfg=248 ctermbg=242 guibg=DarkCyan
+highlight MatchParen term=reverse ctermfg=248 guifg=#a8a8a8 ctermbg=242 guibg=#666666
 
 
 set fillchars+=vert:│
@@ -425,7 +424,7 @@ let g:Powerline_symbols = 'fancy'
 let g:Powerline_stl_path_style = 'short'
 
 " EasyMotion
-hi EasyMotionShade ctermfg=234
+hi EasyMotionShade ctermfg=234 guifg=#1c1c1c
 let g:EasyMotion_leader_key = '<Leader>'
 " forwards <- ,f
 nmap <leader>f <Plug>(easymotion-w)
@@ -509,10 +508,10 @@ let g:buftabline_show=1
 let g:buftabline_numbers=1
 let g:buftabline_indicators=1
 let g:buftabline_separators=0
-:hi TabLine cterm=NONE ctermfg=10 ctermbg=236 term=NONE " other tabs
-:hi TabLineSel cterm=NONE ctermfg=8 ctermbg=2 term=NONE " current tab
-:hi PmenuSel ctermfg=8 ctermbg=220 term=NONE " Modified tabs
-:hi TabLineFill guifg=LightGreen guibg=DarkGreen ctermfg=233 ctermbg=233 " where there are no labels
+:hi TabLine cterm=NONE gui=NONE ctermfg=10 guifg=#00ff00 ctermbg=236 guibg=#303030 term=NONE " other tabs
+:hi TabLineSel cterm=NONE gui=NONE ctermfg=8 guifg=#808080 ctermbg=2 guibg=#008000 term=NONE " current tab
+:hi PmenuSel ctermfg=8 guifg=#808080 ctermbg=220 guibg=#ffdf00 gui=NONE term=NONE " Modified tabs
+:hi TabLineFill guifg=#121212 guibg=#121212 ctermfg=233 ctermbg=233 " where there are no labels
 
 
 " }}}
@@ -776,6 +775,20 @@ if has('gui_running')
     let macvim_skip_colorscheme=1 " respect color settings in .vimrc
     set guifont=Source\ Code\ Pro\ for\ Powerline:h16
     set mouse=a
+
+    " Remove all the UI cruft
+    set go-=T
+    set go-=l
+    set go-=L
+    set go-=r
+    set go-=R
+
+    highlight SpellBad term=underline gui=undercurl guisp=Orange
+
+    " Different cursors for different modes.
+    set guicursor=n-c:block-Cursor-blinkon0
+    set guicursor+=v:block-vCursor-blinkon0
+    set guicursor+=i-ci:ver20-iCursor
 endif
 
 " }}}
