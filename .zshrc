@@ -1,5 +1,5 @@
 # Basic options ------------------------------------------------------------ {{{
- 
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -10,10 +10,10 @@ export ZSH=$HOME/.oh-my-zsh
 # }
 
 # Move next only if `homebrew` is installed
-if command -v brew >/dev/null 2>&1; then
-    # Load z if installed
-    [ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
-fi
+#if command -v brew >/dev/null 2>&1; then
+#    # Load z if installed
+#    [ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
+#fi
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -52,7 +52,7 @@ plugins=(git)
 
 # }}}
 # Better settings ---------------------------------------------------------- {{{
- 
+
 # Preferred editor for local and remote sessions
   if [[ -n $SSH_CONNECTION ]]; then
     export EDITOR='vim'
@@ -87,7 +87,7 @@ setopt ignore_eof
 setopt rm_star_silent
 
 # If a pattern for filename generation has no matches, print an error,
-# instead of leaving it unchanged in the argument list. This also 
+# instead of leaving it unchanged in the argument list. This also
 # applies to file expansion of an initial ~ or =.
 unsetopt nomatch
 unsetopt correct_all
@@ -133,7 +133,7 @@ alias tzip='tar -zcvf'
 alias tunzip='tar -zxvf'
 # Mac OS X ----------------------------------------------------------------- {{{
 
-alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app' 
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 
 # lock computer
@@ -149,8 +149,8 @@ alias gs='git status'
 alias gsi='git status --ignored'
 alias gco='git checkout'
 alias gb='git branch'
-alias gl='git pull'
-# alias gp='git push'
+alias gpl='git pull'
+alias gpu='git push'
 
 alias ga='git add'
 alias gc='git commit'
@@ -214,18 +214,18 @@ export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # echo "Going to load RVM"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 # }}}
 # Source ------------------------------------------------------------------- {{{
- 
+
 source $ZSH/oh-my-zsh.sh
 source ~/z.sh
 source ~/tmuxinator.zsh
 
 # }}}
 # Color settings ------------------------------------------------------------------- {{{
- 
+
 # Tell ls to be colourful
 export CLICOLOR=1
 export LSCOLORS="exfxcxdxcxegedabagacad"
@@ -244,7 +244,7 @@ export GREP_OPTIONS='--color=auto'
 # Gives vim style of line editing at the prompt
 bindkey -v
 
-# Use jj as escape key in vi mode 
+# Use jj as escape key in vi mode
 bindkey -M viins 'jj' vi-cmd-mode
 
 bindkey '\e[3~' delete-char
@@ -290,7 +290,7 @@ function isClean()
 
   # not clean, e.g.
   # "Please, commit your changes or stash them before you can switch branches."
-  if [ "$git_status" == "" ] 
+  if [ "$git_status" == "" ]
   then
     # echo it in red color
     echo -e "\n\nCannot \e[31m$@\e[0m: See the above msg. \nAborting."

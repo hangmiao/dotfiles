@@ -76,11 +76,12 @@ let g:ruby_path="/usr/bin/ruby"
 
 " }}}
 " Color settings ----------------------------------------------------------- {{{
-colorscheme mustang
+colorscheme rdark
 colorscheme solarized
 colorscheme brookstream
+colorscheme mustang
 
-"set background=dark
+set background=dark
 " hi Comment ctermfg=LightBlue
 highlight Comment ctermfg=119
 "highlight Identifier ctermfg=99AA00
@@ -220,6 +221,21 @@ nnoremap <leader>j ]e
 vmap <leader>k [egv
 vmap <leader>k ]egv
 
+" Uppercase (More convenient than using ~ and going back and forth)
+" Note that this will overwrite the contents of the z mark.
+inoremap <C-u> <esc>mzgUiw`za
+
+" Easier linewise reselection of what you just pasted.
+nnoremap <leader>V V`]
+
+" Indent/dedent/autoindent what you just pasted.
+nnoremap <lt>> V`]<
+nnoremap ><lt> V`]>
+nnoremap =- V`]=
+
+" Keep the cursor in place while joining lines
+nnoremap J mzJ`z
+
 " Pry ---------------------------------------------------------------------- {{{
 
 " Shorthand to type binding.pry
@@ -278,6 +294,8 @@ hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=14
 hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=13
 hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
 hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=26
+
+noremap <silent> <leader><space> :noh<cr>:call clearmatches()<cr>
 
 " }}}
 " MarkChanged {{{
@@ -360,7 +378,7 @@ augroup END
 
 " }}}
 " Vundle Setup ------------------------------------------------------------- {{{
- 
+
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -551,6 +569,7 @@ function! StripTrailingWhitespace()
   %s/\s\+$//e
   call setpos('.', save_cursor)
 endfunction
+autocmd BufWritePre * :call StripTrailingWhitespace()
 
 
 " CtrlP auto cache clearing.
@@ -576,7 +595,7 @@ nnoremap <silent> L :bn<CR>
 inoremap jj <ESC>
 nnoremap / /\v
 vnoremap / /\v
-nnoremap <leader><space> :noh<cr>
+"nnoremap <leader><space> :noh<cr>
 nnoremap <leader>c :call RubySyntax()<cr>
 nnoremap <leader>r :call RubyRun()<cr>
 " nnoremap <leader>l :call ShellList()<cr>
@@ -631,9 +650,6 @@ endif
 " autocmd BufEnter * cd %:p:h
 " Wipe out all buffers
 nmap <silent> <Leader>da :1,9000bwipeout<cr>
-
-
-autocmd VimLeave * :!open -a iTerm2
 
 if has("autocmd")
   augroup fedora
@@ -753,3 +769,13 @@ noremap <silent> <C-0> <C-W>>
 " }}}
 
 
+" Environments (GUI/Console) ---------------------------------------------- {{{
+
+if has('gui_running')
+    " GUI Vim
+    let macvim_skip_colorscheme=1 " respect color settings in .vimrc
+    set guifont=Source\ Code\ Pro\ for\ Powerline:h16
+    set mouse=a
+endif
+
+" }}}
