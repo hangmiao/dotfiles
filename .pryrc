@@ -21,6 +21,8 @@ end
 
 Pry.config.commands.import Pry::ExtendedCommands::Experimental
 Pry.config.commands.alias_command "lM", "ls -M"
+Pry.config.commands.alias_command "wh", "whereami 11"
+
 
 Pry.config.color = true
 #Pry.config.theme = "solarized"

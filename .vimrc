@@ -136,6 +136,9 @@ nnoremap c<C-k> :abo sp new<cr>
 nnoremap c<C-h> :lefta vsp new<cr>
 nnoremap c<C-l> :rightb vsp new<cr>
 
+nnoremap <leader>- :bel sp new<cr>
+nnoremap <leader>\ :rightb vsp new<cr>
+
 " resize
 nnoremap g<C-j> <C-w>j<C-w>_
 nnoremap g<C-k> <C-w>k<C-w>_
@@ -597,13 +600,17 @@ noremap <silent> <C-0> <C-W>>
 
 " }}}
 " Color settings ----------------------------------------------------------- {{{
-"colorscheme rdark
 colorscheme solarized
-colorscheme brookstream
+colorscheme base16-railscasts
+colorscheme monokai
+colorscheme colorsbox-material
+colorscheme gruvbox
+colorscheme railscasts
+colorscheme PaperColor
 colorscheme mustang
 
-set background=dark
-highlight Comment ctermfg=119 guifg=#87ff5f
+"set background=dark
+"highlight Comment ctermfg=119 guifg=#87ff5f
 "highlight Identifier ctermfg=99AA00
 
 :hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white " Highlight line to not be an underline
@@ -657,6 +664,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'SirVer/ultisnips'
 "Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
+Plugin 'lilydjwg/colorizer'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -760,8 +768,8 @@ let g:buftabline_show=1
 let g:buftabline_numbers=1
 let g:buftabline_indicators=1
 let g:buftabline_separators=0
-:hi TabLine cterm=NONE gui=NONE ctermfg=10 guifg=#00ff00 ctermbg=236 guibg=#303030 term=NONE " other tabs
-:hi TabLineSel cterm=NONE gui=NONE ctermfg=8 guifg=#808080 ctermbg=2 guibg=#008000 term=NONE " current tab
+:hi TabLine cterm=NONE gui=NONE ctermfg=10 guifg=#009010 ctermbg=236 guibg=#303030 term=NONE " other tabs
+:hi TabLineSel cterm=NONE gui=NONE ctermfg=8 guifg=#121212 ctermbg=2 guibg=#00c040 term=NONE " current tab
 :hi PmenuSel ctermfg=8 guifg=#808080 ctermbg=220 guibg=#ffdf00 gui=NONE term=NONE " Modified tabs
 :hi TabLineFill guifg=#121212 guibg=#121212 ctermfg=233 ctermbg=233 " where there are no labels
 
@@ -789,13 +797,13 @@ if has('gui_running')
     set mouse=a
 
     " Remove all the UI cruft
-    set go-=T
+    set guioptions-=T " Removes top toolbar
+    set guioptions-=r " Removes right hand scroll bar
+    set go-=L " Removes left hand scroll bar
     set go-=l
-    set go-=L
-    set go-=r
     set go-=R
 
-    highlight SpellBad term=underline gui=undercurl guisp=Orange
+    "highlight SpellBad term=underline gui=undercurl guisp=Orange
 
     " Different cursors for different modes.
     set guicursor=n-c:block-Cursor-blinkon0
