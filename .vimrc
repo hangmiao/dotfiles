@@ -75,34 +75,6 @@ let mapleader = ","
 let g:ruby_path="/usr/bin/ruby"
 
 " }}}
-" Color settings ----------------------------------------------------------- {{{
-colorscheme rdark
-colorscheme solarized
-colorscheme brookstream
-colorscheme mustang
-
-set background=dark
-highlight Comment ctermfg=119 guifg=#87ff5f
-"highlight Identifier ctermfg=99AA00
-
-:hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white " Highlight line to not be an underline
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-
-highlight SpecialKey term=standout ctermfg=DarkGrey guifg=DarkGrey ctermbg=yellow guibg=yellow
-highlight RedundantSpaces term=standout ctermbg=Grey guibg=#ffddcc
-
-highlight MatchParen term=reverse ctermfg=248 guifg=#a8a8a8 ctermbg=242 guibg=#666666
-
-
-set fillchars+=vert:│
-"set fillchars=""
-" Split chars bg color
-hi VertSplit term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-
-" highlight conflicts
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-" }}}
 " Toggle Setup ------------------------------------------------------------- {{{
 
 " Spell check toggle
@@ -124,10 +96,10 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 " Quick editing ------------------------------------------------------------ {{{
 
 " Edit the vimrc file
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ev :e $MYVIMRC<cr>
 nmap <silent> ,sv :so $MYVIMRC<CR>
-nnoremap <leader>et :vsplit ~/.tmux.conf<cr>
-nnoremap <leader>ez :vsplit ~/.zshrc<cr>
+nnoremap <leader>et :e ~/.tmux.conf<cr>
+nnoremap <leader>ez :e ~/.zshrc<cr>
 
 " Sudo to save file with temporary privileges
 command! W w !sudo tee % &>/dev/null
@@ -136,9 +108,6 @@ command! W w !sudo tee % &>/dev/null
 nmap <silent> ,cd :lcd %:h<CR>
 nmap <silent> ,cr :lcd <c-r>=FindGitDirOrRoot()<cr><cr>
 nmap <silent> ,md :!mkdir -p %:p:h<CR>
-
-" get rid of whitespace
-nnoremap <leader>ts :call StripTrailingWhitespace()<cr>
 
 map <leader>re :call RenameFile()<cr>
 
@@ -374,145 +343,6 @@ augroup MyAutoCmd
   autocmd!
   autocmd MyAutoCmd BufWritePost $MYVIMRC nested source $MYVIMRC
 augroup END
-
-" }}}
-" Vundle Setup ------------------------------------------------------------- {{{
-
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'uguu-org/vim-matrix-screensaver'
-Plugin 'tpope/vim-surround'
-Plugin 'Lokaltog/powerline'
-Plugin 'kien/ctrlp.vim'
-Plugin 'rking/ag.vim'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'Chiel92/vim-autoformat'
-" Plugin 'terryma/vim-smooth-scroll'
-Plugin 'mileszs/ack.vim'
-Plugin 'vim-scripts/FuzzyFinder'
-Plugin 'vim-scripts/L9'
-Plugin 'ap/vim-buftabline'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-"Plugin 'garbas/vim-snipmate'
-Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-
-" }}}
-" Plugin settings ---------------------------------------------------------- {{{
-
-" YCM
-" Fix 'ValueError: Still no compile flags, no completions yet.'
-" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-
-" Powerline
-let g:Powerline_symbols = 'fancy'
-let g:Powerline_stl_path_style = 'short'
-
-" EasyMotion
-hi EasyMotionShade ctermfg=234 guifg=#1c1c1c
-let g:EasyMotion_leader_key = '<Leader>'
-" forwards <- ,f
-nmap <leader>f <Plug>(easymotion-w)
-" backwards <- ,b
-" go change cursor
-nmap <leader>g <Plug>(easymotion-f)
-
-" CtrlP
-let g:ctrlp_cmd = 'CtrlP'
-" nmap <Space>o :CtrlP<cr>
-nmap <leader>p :CtrlP<cr>
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-
-" CtrlP ignore patterns
-let g:ctrlp_custom_ignore = {
-            \ 'dir': '\.git$\|node_modules$\|\.hg$\|\.svn$',
-            \ 'file': '\.exe$\|\.so$'
-            \ }
-
-" The Silver Searcher, aka Ag
-nnoremap \ :Ag<SPACE>
-nnoremap \q :Ag -Q '
-
-" Ctags
-" Check the current folder for tags file and keep going one directory up all
-" the way to the root folder. SO you can be in any sub-folder in your project and it'll be able to find the
-" tags files.
-set tags=tags;/
-nnoremap <leader>. :CtrlPTag<cr>
-
-" Ack
-let g:ackprg = 'ag --nogroup --nocolor --column'
-" let g:ackprg = 'ag --vimgrep' " has the same effect of the above but will report every match on the line.
-nnoremap <leader>a :Ack
-" find usages
-nmap <a-F7> :Ack -w <c-r><c-w><cr>
-
-" Markdown to HTML
-nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
-
-nmap <leader>sjs :set ft=javascript <cr>
-nmap <leader>srb :set ft=ruby <cr>
-
-" smooth-scroll
-" noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-" noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
-
-
-" FuzzyFinder
-nmap ;d :FufFileWithCurrentBufferDir<CR>
-nmap ;f :FufBuffer<CR>
-nmap ;t :FufTaggedFile<CR>
-nnoremap ;l  :FufTag<cr>
-nnoremap ;<Space> :FufBookmarkDir<cr>
-nnoremap ;f :FufFile<cr>
-nnoremap ;h :FufFile $HOME/<cr>
-nnoremap ;j  :FufFile $HOME/.vim/<cr>
-nnoremap ;db :FufFile $HOME/Dropbox/<cr>
-let g:fuf_file_exclude = '\v\~$|\.(DS_Store|o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-let g:fuf_buffer_keyDelete = '<C-d>'
-
-" SnipMate
-"let g:snipMate = {}
-"let g:snipMate.scope_aliases = {}
-"let g:snipMate.scope_aliases['ruby'] = 'ruby,rails,ruby-rails,ruby-1.9'
-":imap <C-space> <Plug>snipMateNextOrTrigger
-":smap <C-space> <Plug>snipMateNextOrTrigger
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger="<c-space>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-
-" Buftabline
-set hidden
-let g:buftabline_show=1
-let g:buftabline_numbers=1
-let g:buftabline_indicators=1
-let g:buftabline_separators=0
-:hi TabLine cterm=NONE gui=NONE ctermfg=10 guifg=#00ff00 ctermbg=236 guibg=#303030 term=NONE " other tabs
-:hi TabLineSel cterm=NONE gui=NONE ctermfg=8 guifg=#808080 ctermbg=2 guibg=#008000 term=NONE " current tab
-:hi PmenuSel ctermfg=8 guifg=#808080 ctermbg=220 guibg=#ffdf00 gui=NONE term=NONE " Modified tabs
-:hi TabLineFill guifg=#121212 guibg=#121212 ctermfg=233 ctermbg=233 " where there are no labels
-
 
 " }}}
 " My Functions ------------------------------------------------------------- {{{
@@ -766,8 +596,190 @@ noremap <silent> <C-9> <C-W>+
 noremap <silent> <C-0> <C-W>>
 
 " }}}
+" Color settings ----------------------------------------------------------- {{{
+"colorscheme rdark
+colorscheme solarized
+colorscheme brookstream
+colorscheme mustang
+
+set background=dark
+highlight Comment ctermfg=119 guifg=#87ff5f
+"highlight Identifier ctermfg=99AA00
+
+:hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white " Highlight line to not be an underline
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
+highlight SpecialKey term=standout ctermfg=DarkGrey guifg=DarkGrey ctermbg=yellow guibg=yellow
+highlight RedundantSpaces term=standout ctermbg=Grey guibg=#ffddcc
+
+highlight MatchParen term=reverse ctermfg=248 guifg=#a8a8a8 ctermbg=242 guibg=#666666
 
 
+set enc=utf-8
+set fillchars+=vert:│
+"set fillchars=""
+
+
+" Split chars bg color
+hi VertSplit term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
+" highlight conflicts
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+" }}}
+" Vundle Setup ------------------------------------------------------------- {{{
+
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'uguu-org/vim-matrix-screensaver'
+Plugin 'tpope/vim-surround'
+Plugin 'Lokaltog/powerline'
+Plugin 'kien/ctrlp.vim'
+Plugin 'rking/ag.vim'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'Chiel92/vim-autoformat'
+" Plugin 'terryma/vim-smooth-scroll'
+Plugin 'mileszs/ack.vim'
+Plugin 'vim-scripts/FuzzyFinder'
+Plugin 'vim-scripts/L9'
+Plugin 'ap/vim-buftabline'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+"Plugin 'garbas/vim-snipmate'
+Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
+Plugin 'scrooloose/nerdtree'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" }}}
+" Plugin settings ---------------------------------------------------------- {{{
+
+" YCM
+" Fix 'ValueError: Still no compile flags, no completions yet.'
+" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
+" Powerline
+let g:Powerline_symbols = 'fancy'
+let g:Powerline_stl_path_style = 'short'
+
+" EasyMotion
+hi EasyMotionShade ctermfg=234 guifg=#1c1c1c
+let g:EasyMotion_leader_key = '<Leader>'
+" forwards <- ,f
+nmap <leader>f <Plug>(easymotion-w)
+" backwards <- ,b
+" go change cursor
+nmap <leader>g <Plug>(easymotion-f)
+
+" CtrlP
+let g:ctrlp_cmd = 'CtrlP'
+" nmap <Space>o :CtrlP<cr>
+nmap <leader>p :CtrlP<cr>
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+" CtrlP ignore patterns
+let g:ctrlp_custom_ignore = {
+            \ 'dir': '\.git$\|node_modules$\|\.hg$\|\.svn$',
+            \ 'file': '\.exe$\|\.so$'
+            \ }
+
+" The Silver Searcher, aka Ag
+nnoremap \ :Ag<SPACE>
+nnoremap \q :Ag -Q '
+
+" Ctags
+" Check the current folder for tags file and keep going one directory up all
+" the way to the root folder. SO you can be in any sub-folder in your project and it'll be able to find the
+" tags files.
+set tags=tags;/
+nnoremap <leader>. :CtrlPTag<cr>
+
+" Ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
+" let g:ackprg = 'ag --vimgrep' " has the same effect of the above but will report every match on the line.
+nnoremap <leader>a :Ack
+" find usages
+nmap <a-F7> :Ack -w <c-r><c-w><cr>
+
+" Markdown to HTML
+nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
+
+nmap <leader>sjs :set ft=javascript <cr>
+nmap <leader>srb :set ft=ruby <cr>
+
+" smooth-scroll
+" noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+" noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+
+
+" FuzzyFinder
+nmap ;d :FufFileWithCurrentBufferDir<CR>
+nmap ;f :FufBuffer<CR>
+nmap ;t :FufTaggedFile<CR>
+nnoremap ;l  :FufTag<cr>
+nnoremap ;<Space> :FufBookmarkDir<cr>
+nnoremap ;f :FufFile<cr>
+nnoremap ;h :FufFile $HOME/<cr>
+nnoremap ;j  :FufFile $HOME/.vim/<cr>
+nnoremap ;db :FufFile $HOME/Dropbox/<cr>
+let g:fuf_file_exclude = '\v\~$|\.(DS_Store|o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+let g:fuf_buffer_keyDelete = '<C-d>'
+
+" SnipMate
+"let g:snipMate = {}
+"let g:snipMate.scope_aliases = {}
+"let g:snipMate.scope_aliases['ruby'] = 'ruby,rails,ruby-rails,ruby-1.9'
+":imap <C-space> <Plug>snipMateNextOrTrigger
+":smap <C-space> <Plug>snipMateNextOrTrigger
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<c-space>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+
+" Buftabline
+set hidden
+let g:buftabline_show=1
+let g:buftabline_numbers=1
+let g:buftabline_indicators=1
+let g:buftabline_separators=0
+:hi TabLine cterm=NONE gui=NONE ctermfg=10 guifg=#00ff00 ctermbg=236 guibg=#303030 term=NONE " other tabs
+:hi TabLineSel cterm=NONE gui=NONE ctermfg=8 guifg=#808080 ctermbg=2 guibg=#008000 term=NONE " current tab
+:hi PmenuSel ctermfg=8 guifg=#808080 ctermbg=220 guibg=#ffdf00 gui=NONE term=NONE " Modified tabs
+:hi TabLineFill guifg=#121212 guibg=#121212 ctermfg=233 ctermbg=233 " where there are no labels
+
+
+
+" Toggle NERD Tree
+nmap <leader>n :NERDTreeToggle<CR>
+
+" Show the bookmarks table on startup
+let NERDTreeShowBookmarks=1
+
+" Don't display these kinds of files
+let NERDTreeIgnore=[ '\.ncb$', '\.suo$', '\.vcproj\.RIMNET', '\.obj$',
+                   \ '\.ilk$', '^BuildLog.htm$', '\.pdb$', '\.idb$',
+                   \ '\.embed\.manifest$', '\.embed\.manifest.res$',
+                   \ '\.intermediate\.manifest$', '^mt.dep$' ]
+
+" }}}
 " Environments (GUI/Console) ---------------------------------------------- {{{
 
 if has('gui_running')
@@ -792,3 +804,4 @@ if has('gui_running')
 endif
 
 " }}}
+
