@@ -221,96 +221,6 @@ au BufEnter *.rb syn match error contained "\<debugger\>"
 
 " }}}
 
-" Highlight Word {{{
-
-" Show different colors of words highlighted simultaneously using <leader>N where N is
-" a number from 1-6.
-function! HiInterestingWord(n) " {{{
-    " Save our location.
-    normal! mz
-
-    " Yank the current word into the z register.
-    normal! "zyiw
-
-    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
-    let mid = 86750 + a:n
-
-    " Clear existing matches, but don't worry if they don't exist.
-    silent! call matchdelete(mid)
-
-    " Construct a literal pattern that has to match at boundaries.
-    let pat = '\V\<' . escape(@z, '\') . '\>'
-
-    " Actually match the words.
-    call matchadd("InterestingWord" . a:n, pat, 1, mid)
-
-    " Move back to our original location.
-    normal! `z
-endfunction " }}}
-" Mappings {{{
-
-nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
-nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
-nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
-nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
-nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
-nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
-
-" }}}
-" Default Highlights {{{
-
-hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
-hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
-hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=14
-hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=13
-hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
-hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=26
-
-noremap <silent> <leader><space> :noh<cr>:call clearmatches()<cr>
-
-" }}}
-" MarkChanged {{{
-
-sign define line_changed text=+ texthl=DiffAdded
-
-function! MarkChanged(s, e)
-    for i in range(a:s, a:e)
-        exe ":sign place " . i . " line=" . i . " name=line_changed file=" . expand("%:p")
-    endfor
-endfunction
-
-function! MarkUnchanged(s, e)
-    for i in range(a:s, a:e)
-        call cursor(i, 0)
-        silent! sign unplace
-    endfor
-endfunction
-
-command! -range MarkChanged call MarkChanged(<line1>, <line2>)
-command! -range MarkUnchanged call MarkUnchanged(<line1>, <line2>)
-
-" nnoremap <leader>m :MarkChanged<cr>
-" vnoremap <leader>m :MarkChanged<cr>
-" nnoremap <leader>M :MarkUnchanged<cr>
-" vnoremap <leader>M :MarkUnchanged<cr>
-
-" }}}
-" MS to UTC {{{
-
-function! MS2UTC(ms)
-    let seconds = strpart(a:ms, 0, strlen(a:ms) - 3)
-    return substitute(system("date -ur " . seconds), "\n\n*", "", "")
-endfunction
-
-function! MS2UTCWord()
-    return MS2UTC(expand("<cword>"))
-endfunction
-
-nnoremap <leader>U :echo MS2UTCWord()<cr>
-
-" }}}
-
-" }}}
 
 " Indent Guides {{{
 
@@ -633,6 +543,97 @@ hi VertSplit term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=D
 " highlight conflicts
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
+
+" Highlight Word {{{
+
+" Show different colors of words highlighted simultaneously using <leader>N where N is
+" a number from 1-6.
+function! HiInterestingWord(n) " {{{
+    " Save our location.
+    normal! mz
+
+    " Yank the current word into the z register.
+    normal! "zyiw
+
+    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
+    let mid = 86750 + a:n
+
+    " Clear existing matches, but don't worry if they don't exist.
+    silent! call matchdelete(mid)
+
+    " Construct a literal pattern that has to match at boundaries.
+    let pat = '\V\<' . escape(@z, '\') . '\>'
+
+    " Actually match the words.
+    call matchadd("InterestingWord" . a:n, pat, 1, mid)
+
+    " Move back to our original location.
+    normal! `z
+endfunction " }}}
+" Mappings {{{
+
+nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
+nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
+nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
+nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
+nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
+nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
+
+" }}}
+" Default Highlights {{{
+
+hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
+hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
+hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#20B2AA ctermbg=14
+hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#9370DB ctermbg=13
+hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#FF6666 ctermbg=211
+hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#0070ff ctermbg=26
+
+noremap <silent> <leader><space> :noh<cr>:call clearmatches()<cr>
+
+" }}}
+" MarkChanged {{{
+
+sign define line_changed text=+ texthl=DiffAdded
+
+function! MarkChanged(s, e)
+    for i in range(a:s, a:e)
+        exe ":sign place " . i . " line=" . i . " name=line_changed file=" . expand("%:p")
+    endfor
+endfunction
+
+function! MarkUnchanged(s, e)
+    for i in range(a:s, a:e)
+        call cursor(i, 0)
+        silent! sign unplace
+    endfor
+endfunction
+
+command! -range MarkChanged call MarkChanged(<line1>, <line2>)
+command! -range MarkUnchanged call MarkUnchanged(<line1>, <line2>)
+
+" nnoremap <leader>m :MarkChanged<cr>
+" vnoremap <leader>m :MarkChanged<cr>
+" nnoremap <leader>M :MarkUnchanged<cr>
+" vnoremap <leader>M :MarkUnchanged<cr>
+
+" }}}
+" MS to UTC {{{
+
+function! MS2UTC(ms)
+    let seconds = strpart(a:ms, 0, strlen(a:ms) - 3)
+    return substitute(system("date -ur " . seconds), "\n\n*", "", "")
+endfunction
+
+function! MS2UTCWord()
+    return MS2UTC(expand("<cword>"))
+endfunction
+
+nnoremap <leader>U :echo MS2UTCWord()<cr>
+
+" }}}
+
+" }}}
 " }}}
 " Vundle Setup ------------------------------------------------------------- {{{
 
@@ -653,7 +654,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'Chiel92/vim-autoformat'
-" Plugin 'terryma/vim-smooth-scroll'
+"Plugin 'terryma/vim-smooth-scroll'
 Plugin 'mileszs/ack.vim'
 Plugin 'vim-scripts/FuzzyFinder'
 Plugin 'vim-scripts/L9'
@@ -664,7 +665,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'SirVer/ultisnips'
 "Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
-Plugin 'lilydjwg/colorizer'
+"Plugin 'lilydjwg/colorizer'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
