@@ -1,6 +1,7 @@
 " Basic options ------------------------------------------------------------ {{{
 scriptencoding utf-8
 set encoding=utf-8
+
 syntax on
 filetype off
 filetype plugin indent on
@@ -13,14 +14,13 @@ set shortmess=a
 " waiting for another key to be pressed measured in milliseconds.
 set timeoutlen=300
 
-" set nowrap
-" Automatic word wrapping
 "set tw=79
 "set formatoptions+=t
 set splitright " By default, split to the right
 
 " Word wrap without line breaks
 :set wrap
+" set nowrap
 ":set linebreak
 :set nolist  " list disables linebreak
 set title " Display filename in titlebar
@@ -66,6 +66,9 @@ set history=1000 " change history to 1000
 set magic " Set magic on, for regex
 " set scrolljump=8
 
+" Fix line wrapping
+set ww=<,>,[,],h,l
+
 let mapleader = ","
 
 " :set cursorline
@@ -86,7 +89,8 @@ map <F8> 15k<CR>
 set pastetoggle=<F9>
 
 map <F10> :set list!<CR>
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+"set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+set listchars=tab:▸\ ,eol:¬,extends:»,precedes:«
 
 " Insert the current datestamp
 :nnoremap <F11> "=strftime("%B %d, %Y")<CR>P
@@ -707,7 +711,7 @@ let g:ctrlp_custom_ignore = {
 
 " The Silver Searcher, aka Ag
 nnoremap \ :Ag<SPACE>
-nnoremap \q :Ag -Q '
+nnoremap \q :Ag -Q ''<Left>
 
 " Ctags
 " Check the current folder for tags file and keep going one directory up all
@@ -717,11 +721,20 @@ set tags=tags;/
 nnoremap <leader>. :CtrlPTag<cr>
 
 " Ack
-let g:ackprg = 'ag --nogroup --nocolor --column'
-" let g:ackprg = 'ag --vimgrep' " has the same effect of the above but will report every match on the line.
-nnoremap <leader>a :Ack
 " find usages
 nmap <a-F7> :Ack -w <c-r><c-w><cr>
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
+" let g:ackprg = 'ag --vimgrep'
+
+" Open a new tab and search for something.
+nmap <leader>a :tab split<CR>:Ack ""<Left>
+
+" Immediately search for the word under the cursor in a new tab.
+nmap <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
+
+
+
 
 " Markdown to HTML
 nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
@@ -813,4 +826,5 @@ if has('gui_running')
 endif
 
 " }}}
+
 
