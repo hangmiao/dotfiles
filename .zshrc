@@ -115,6 +115,8 @@ alias reload='source ~/.zshrc'
 alias g='gvim --remote-silent'
 #alias vi="mvim -v"
 
+alias rw='resque-web ~/resque-web_init.rb'
+
 # misc
 # prevent the 'zsh: no matches found' error for Octopress
 alias rake='noglob rake'
