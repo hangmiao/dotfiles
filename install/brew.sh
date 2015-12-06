@@ -62,6 +62,7 @@ brew cask install ldoce5-viewer
 brew cask install slack
 brew cask install skitch
 brew cask install rcdefaultapp
+brew cask install transmission
 brew cask install seil
 brew cask install utc-menu-clock
 
