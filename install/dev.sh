@@ -25,6 +25,7 @@ rvm --default use 2.2.2
 
 gem install bundler chef knife-ec2
 gem install resque-cleaner, resque-scheduler, resque-sliders
+gem install pry-doc
 
 source ~/.zshrc
 gem install rails -v 4.2.4

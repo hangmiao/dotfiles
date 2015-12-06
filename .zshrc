@@ -1,54 +1,161 @@
 # Basic options ------------------------------------------------------------ {{{
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
 
-# Tell zsh shell to find z.sh, which is a script handy for jumping to directories.
-# . ~/z.sh
-# function precmd () {
-#   _z --add "$(pwd -P)"
-# }
+# Locale settings (utf-8)
+export LC_CTYPE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=LC_CTYPE=en_US.UTF-8
+export LC_NUMERIC=en_US.UTF-8
+export LC_TIME=en_US.UTF-8
+export LC_COLLATE=en_US.UTF-8
+export LC_MONETARY=en_US.UTF-8
+export LC_MESSAGES=en_US.UTF-8
+export LC_PAPER=en_US.UTF-8
+export LC_NAME=en_US.UTF-8
+export LC_ADDRESS=en_US.UTF-8
+export LC_TELEPHONE=en_US.UTF-8
+export LC_MEASUREMENT=en_US.UTF-8
+export LC_IDENTIFICATION=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
-# Move next only if `homebrew` is installed
-#if command -v brew >/dev/null 2>&1; then
-#    # Load z if installed
-#    [ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
-#fi
+# }}}
+# Source ------------------------------------------------------------------- {{{
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+source ~/z.sh
+#source ~/tmuxinator.zsh
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+# }}}
+# Set up zprezto  ---------------------------------------------------------- {{{
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+setopt AUTO_CD                # cd if no matching command
+setopt AUTO_PARAM_SLASH       # adds slash at end of tabbed dirs
+setopt CHECK_JOBS             # check bg jobs on exit
+setopt CORRECT                # corrects spelling
+setopt CORRECT_ALL            # corrects spelling
+setopt EXTENDED_GLOB          # globs #, ~ and ^
+setopt EXTENDED_HISTORY       # saves timestamps on history
+setopt GLOB_DOTS              # find dotfiles easier
+setopt HASH_CMDS              # save cmd location to skip PATH lookup
+setopt HIST_EXPIRE_DUPS_FIRST # expire duped history first
+setopt HIST_NO_STORE          # don't save 'history' cmd in history
+setopt INC_APPEND_HISTORY     # append history as command are entered
+setopt LIST_ROWS_FIRST        # completion options left-to-right, top-to-bottom
+setopt LIST_TYPES             # show file types in list
+setopt MARK_DIRS              # adds slash to end of completed dirs
+setopt NUMERIC_GLOB_SORT      # sort numerically first, before alpha
+setopt PROMPT_SUBST           # sub values in prompt
+setopt RM_STAR_WAIT           # pause 10s before confirming rm *
+setopt SHARE_HISTORY          # share history between open shells
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+# Add homebrew to the completion path
+fpath=("/usr/local/bin/" $fpath)
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# Now we can pipe to multiple outputs!
+setopt MULTIOS
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# This makes cd=pushd
+setopt AUTO_PUSHD
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# This will use named dirs when possible
+setopt AUTO_NAME_DIRS
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+# If we have a glob this will expand it
+setopt GLOB_COMPLETE
+setopt PUSHD_MINUS
+
+# No more annoying pushd messages...
+# setopt PUSHD_SILENT
+
+# blank pushd goes to home
+setopt PUSHD_TO_HOME
+
+# this will ignore multiple directories for the stack.  Useful?  I dunno.
+setopt PUSHD_IGNORE_DUPS
+
+# use magic (this is default, but it can't hurt!)
+setopt ZLE
+
+setopt NO_HUP
+
+setopt IGNORE_EOF
+
+# If I could disable Ctrl-s completely I would!
+setopt NO_FLOW_CONTROL
+
+# Keep echo "station" > station from clobbering station
+setopt NO_CLOBBER
+
+# Case insensitive globbing
+setopt NO_CASE_GLOB
+
+# hows about arrays be awesome?  (that is, frew${cool}frew has frew surrounding all the variables, not just first and last
+setopt RC_EXPAND_PARAM
+
+# Who doesn't want home and end to work?
+bindkey '\e[1~' beginning-of-line
+bindkey '\e[4~' end-of-line
+
+# Incremental search is elite!
+bindkey -M vicmd "/" history-incremental-search-backward
+bindkey -M vicmd "?" history-incremental-search-forward
+
+# Search based on what you typed in already
+bindkey -M vicmd "//" history-beginning-search-backward
+bindkey -M vicmd "??" history-beginning-search-forward
+
+bindkey "\eOP" run-help
+
+# In the middle of typing something but wanna check something else
+# <ESC>q<ESC>q
+bindkey -M vicmd "q" push-line
+
+# it's like, space AND completion.  Gnarlbot.
+bindkey -M viins ' ' magic-space
+
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*'   force-list always
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+## Completion for processes
+[ "$USER" = "root" ] && SWITCH='-A' || SWITCH="-u ${USER}"
+zstyle ':completion:*:processes-names' command \
+    "ps c $SWITCH -o command | uniq"
+zstyle ':completion:*:processes' command \
+    "ps c $SWITCH -o pid -o command | uniq"
+unset SWITCH
+
+# Extract Archives
+ex () {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xjf $1    ;;
+            *.tar.gz)    tar xzf $1    ;;
+            *.bz2)       bunzip2 $1    ;;
+            *.rar)       rar x $1      ;;
+            *.gz)        gunzip $1     ;;
+            *.tar)       tar xf $1     ;;
+            *.tbz2)      tar xjf $1    ;;
+            *.tgz)       tar xzf $1    ;;
+            *.zip)       unzip $1      ;;
+            *.Z)         uncompress $1 ;;
+            *.7z)        7z x $1       ;;
+            *)           echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+
 
 # }}}
 # Better settings ---------------------------------------------------------- {{{
@@ -62,47 +169,14 @@ plugins=(git)
 
 export EDITOR='vim'
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-
-
-
-setopt auto_pushd
-setopt pushd_silent
-setopt pushd_ignore_dups
-setopt ignore_eof
-setopt rm_star_silent
-
-# If a pattern for filename generation has no matches, print an error,
-# instead of leaving it unchanged in the argument list. This also
-# applies to file expansion of an initial ~ or =.
-unsetopt nomatch
-unsetopt correct_all
-
-#Report the status of background jobs immediately, rather than waiting until just before printing a prompt
-setopt notify
-
-# beeps are annoying
-setopt NO_BEEP
-
 # }}}
 # Alias -------------------------------------------------------------------- {{{
 
 alias l="ls -lahG"
 alias fl="ls -ltra | grep '\->'" # find link
+
+alias -g ...='../..'
+alias -g ....='../../..'
 
 alias dt='du -sh'
 
@@ -110,12 +184,12 @@ alias dt='du -sh'
 alias pd="cd -"
 
 # refresh shell
-alias reload='source ~/.zshrc'
+alias reload='source ~/.zshrc && source ~/.zpreztorc'
 
 alias g='gvim --remote-silent'
 #alias vi="mvim -v"
 
-alias rw='resque-web ~/resque-web_init.rb'
+alias rw='resque-web ~/resque-web_init.rb -L'
 
 # misc
 # prevent the 'zsh: no matches found' error for Octopress
@@ -212,18 +286,11 @@ bindkey '^Z' fancy-ctrl-z
 # rvm use ruby-1.9.3-p448 --default
 # rvm get stable --auto-dotfiles
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
-export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export PATH=$PATH:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # echo "Going to load RVM"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-
-# }}}
-# Source ------------------------------------------------------------------- {{{
-
-source $ZSH/oh-my-zsh.sh
-source ~/z.sh
-source ~/tmuxinator.zsh
 
 # }}}
 # Color settings ------------------------------------------------------------------- {{{
@@ -239,8 +306,6 @@ export TERM=xterm-256color
 export GREP_OPTIONS='--color=auto'
 
 # }}}
-
-
 # Key bindings ------------------------------------------------------------- {{{
 
 # Gives vim style of line editing at the prompt
@@ -254,7 +319,6 @@ bindkey '^R' history-incremental-search-backward
 
 
 # }}}
-
 
 
 function backmerge
@@ -301,20 +365,3 @@ function isClean()
 }
 
 
-# Locale settings (utf-8)
-export LC_CTYPE=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LANGUAGE=LC_CTYPE=en_US.UTF-8
-export LC_NUMERIC=en_US.UTF-8
-export LC_TIME=en_US.UTF-8
-export LC_COLLATE=en_US.UTF-8
-export LC_MONETARY=en_US.UTF-8
-export LC_MESSAGES=en_US.UTF-8
-export LC_PAPER=en_US.UTF-8
-export LC_NAME=en_US.UTF-8
-export LC_ADDRESS=en_US.UTF-8
-export LC_TELEPHONE=en_US.UTF-8
-export LC_MEASUREMENT=en_US.UTF-8
-export LC_IDENTIFICATION=en_US.UTF-8
-export LC_ALL=en_US.UTF-8

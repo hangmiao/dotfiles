@@ -1,0 +1,47 @@
+function prompt_hahn_precmd {
+  git-info
+
+  # Format PWD.
+  prompt_hahn_pwd
+}
+
+function prompt_hahn_setup {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+  prompt_opts=(cr percent subst)
+
+  # Load required functions.
+  autoload -Uz add-zsh-hook
+
+  # Add hook for calling git-info before each command.
+  add-zsh-hook precmd prompt_hahn_precmd
+
+  function prompt_hahn_pwd {
+    local pwd="${PWD/#$HOME/~ }"
+
+    if [[ "$pwd" == (#m)[/~] ]]; then
+      _prompt_hahn_pwd="$MATCH"
+      unset MATCH
+    else
+      #_prompt_hahn_pwd="${${${${(@j:/:M)${(@s:/:)pwd}##.#?}:h}%/}//\%/%%}/${${pwd:t}//\%/%%}"
+      _prompt_hahn_pwd="${${pwd:t}//\%/%%}"
+    fi
+  }
+
+
+  # Set git-info parameters.
+  zstyle ':prezto:module:git:info' verbose 'yes'
+  zstyle ':prezto:module:git:info:branch' format '%F{magenta}%b%f'
+  #zstyle ':prezto:module:git:info:clean' format ' %F{green}✔%f'
+  #zstyle ':prezto:module:git:info:clean' format ' %F{green}✓%f'
+  zstyle ':prezto:module:git:info:dirty' format ' %F{yellow}✗%f'
+  zstyle ':prezto:module:git:info:keys' format \
+    'prompt' ' %F{blue}(%F{magenta}git: %f$(coalesce "%b" "%p" "%c")%s%F{blue})${git_info[rprompt]}%f' \
+    'rprompt' '%C%D'
+
+  # Define prompts.
+  PROMPT='%F{cyan}${_prompt_hahn_pwd}%f%${(e)git_info[prompt]} %F{blue}> '
+  RPROMPT=''
+}
+
+prompt_hahn_setup "$@"

@@ -104,6 +104,7 @@ nnoremap <leader>ev :e $MYVIMRC<cr>
 nmap <silent> ,sv :so $MYVIMRC<CR>
 nnoremap <leader>et :e ~/.tmux.conf<cr>
 nnoremap <leader>ez :e ~/.zshrc<cr>
+nnoremap <leader>es :e ~/daily.txt<cr>
 
 " Sudo to save file with temporary privileges
 command! W w !sudo tee % &>/dev/null
@@ -274,6 +275,11 @@ function! RubyRun()
   !ruby %
 endfunction
 
+function! RailsRun()
+  :w
+  !RAILS_ENV=development ruby %
+endfunction
+
 function! ShellList()
   !ls -lah
 endfunction
@@ -344,6 +350,7 @@ vnoremap / /\v
 "nnoremap <leader><space> :noh<cr>
 nnoremap <leader>c :call RubySyntax()<cr>
 nnoremap <leader>r :call RubyRun()<cr>
+nnoremap <leader>l :call RailsRun()<cr>
 " nnoremap <leader>l :call ShellList()<cr>
 nnoremap <space> :
 nnoremap <leader>qq q:
@@ -515,15 +522,15 @@ noremap <silent> <C-0> <C-W>>
 " }}}
 " Color settings ----------------------------------------------------------- {{{
 colorscheme solarized
-colorscheme base16-railscasts
 colorscheme monokai
-colorscheme colorsbox-material
 colorscheme gruvbox
-colorscheme railscasts
 colorscheme PaperColor
+colorscheme colorsbox-material
+colorscheme busybee
 colorscheme mustang
 
-"set background=dark
+
+" set background=dark
 "highlight Comment ctermfg=119 guifg=#87ff5f
 "highlight Identifier ctermfg=99AA00
 
@@ -534,6 +541,7 @@ highlight SpecialKey term=standout ctermfg=DarkGrey guifg=DarkGrey ctermbg=yello
 highlight RedundantSpaces term=standout ctermbg=Grey guibg=#ffddcc
 
 highlight MatchParen term=reverse ctermfg=248 guifg=#a8a8a8 ctermbg=242 guibg=#666666
+highlight Folded term=standout ctermfg=black ctermbg=4 guifg=#a0a8b0 guibg=#384048
 
 
 set enc=utf-8
@@ -737,7 +745,7 @@ nmap <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
 
 
 " Markdown to HTML
-nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
+nmap <leader>md :%!~/.vim/plugin/Markdown.pl --html4tags <cr>
 
 nmap <leader>sjs :set ft=javascript <cr>
 nmap <leader>srb :set ft=ruby <cr>
@@ -807,7 +815,7 @@ let NERDTreeIgnore=[ '\.ncb$', '\.suo$', '\.vcproj\.RIMNET', '\.obj$',
 if has('gui_running')
     " GUI Vim
     let macvim_skip_colorscheme=1 " respect color settings in .vimrc
-    set guifont=Source\ Code\ Pro\ for\ Powerline:h16
+    set guifont=Source\ Code\ Pro\ for\ Powerline:h18
     set mouse=a
 
     " Remove all the UI cruft
