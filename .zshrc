@@ -4,7 +4,6 @@
 # Locale settings (utf-8)
 export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
-export LANG=en_US.UTF-8
 export LANGUAGE=LC_CTYPE=en_US.UTF-8
 export LC_NUMERIC=en_US.UTF-8
 export LC_TIME=en_US.UTF-8
@@ -28,7 +27,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 source ~/z.sh
-#source ~/tmuxinator.zsh
+source ~/tmuxinator.zsh
 
 # }}}
 # Set up zprezto  ---------------------------------------------------------- {{{
@@ -50,7 +49,7 @@ setopt LIST_TYPES             # show file types in list
 setopt MARK_DIRS              # adds slash to end of completed dirs
 setopt NUMERIC_GLOB_SORT      # sort numerically first, before alpha
 setopt PROMPT_SUBST           # sub values in prompt
-setopt RM_STAR_WAIT           # pause 10s before confirming rm *
+# setopt RM_STAR_WAIT           # pause 10s before confirming rm *
 setopt SHARE_HISTORY          # share history between open shells
 
 # Add homebrew to the completion path
@@ -156,6 +155,7 @@ ex () {
 }
 
 
+unalias rm
 
 # }}}
 # Better settings ---------------------------------------------------------- {{{
@@ -260,6 +260,7 @@ alias glu='git ls-files --others --exclude-standard'
 # Nice alias for adding untracked files:
 alias gau='!git add $(git ls-files -o --exclude-standard)'
 
+
 # }}}
 # }}}
 # Life Savers -------------------------------------------------------------- {{{
@@ -363,5 +364,4 @@ function isClean()
     return 1
   fi
 }
-
 

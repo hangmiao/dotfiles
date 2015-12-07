@@ -83,8 +83,11 @@ let g:ruby_path="/usr/bin/ruby"
 " Spell check toggle
 map <F6> :setlocal spell! spelllang=en_us<CR>
 
-map <F7> 15j<CR>
-map <F8> 15k<CR>
+map <F7> 20j<CR>
+map <F8> 20k<CR>
+
+map <s-F7> 6j<CR> " Shift + F7
+map <s-F8> 6k<CR>
 
 set pastetoggle=<F9>
 
@@ -678,6 +681,8 @@ Plugin 'SirVer/ultisnips'
 "Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
 "Plugin 'lilydjwg/colorizer'
+"Plugin 'bling/vim-airline'
+"Plugin 'edkolev/tmuxline.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
