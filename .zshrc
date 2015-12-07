@@ -294,7 +294,12 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 # }}}
-# Color settings ------------------------------------------------------------------- {{{
+# Docker  ------------------------------------------------------------------ {{{
+
+eval $(docker-machine env default)
+
+# }}}
+# Color settings ----------------------------------------------------------- {{{
 
 # Tell ls to be colourful
 export CLICOLOR=1
@@ -346,7 +351,7 @@ function isConflict()
   if [ $(git ls-files -u  | cut -f 2 | sort -u | wc -l) -ne 0 ]
   then
     # echo it in red color
-    echo -e "\n\nCannot \e[31m$@\e[0m: Conflict. \nAborted."
+    echo -e "\n\nCannot \e[31m$@\e[0m: Conflict. \nAborting.\n\n\n"
     return 1
   fi
 }
@@ -360,7 +365,7 @@ function isClean()
   if [ "$git_status" == "" ]
   then
     # echo it in red color
-    echo -e "\n\nCannot \e[31m$@\e[0m: See the above msg. \nAborting."
+    echo -e "\n\nCannot \e[31m$@\e[0m: See the above msg. \nAborting.\n\n\n"
     return 1
   fi
 }
