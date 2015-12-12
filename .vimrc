@@ -96,8 +96,7 @@ map <F10> :set list!<CR>
 set listchars=tab:▸\ ,eol:¬,extends:»,precedes:«
 
 " Insert the current datestamp
-:nnoremap <F11> "=strftime("%B %d, %Y")<CR>P
-:inoremap <F11> <C-R>=strftime("%B %d, %Y")<CR>
+:nnoremap <leader>d "=strftime("%B %d, %Y")<CR>P
 
 " }}}
 " Quick editing ------------------------------------------------------------ {{{
