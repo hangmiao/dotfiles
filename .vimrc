@@ -129,6 +129,10 @@ nnoremap <silent> ^ g^
 nnoremap <silent> $ g$
 
 
+
+" Close a buffer
+nnoremap <leader>x :bd<cr>
+
 " }}}
 " Splits ------------------------------------------------------------------- {{{
 

@@ -357,12 +357,9 @@ function isConflict()
 }
 
 function isClean()
-{
-  git_status=`$@` # run it first
-
-  # not clean, e.g.
-  # "Please, commit your changes or stash them before you can switch branches."
-  if [ "$git_status" == "" ]
+{ # line 1
+  current_git_status=`$@` # run it first
+  if [[ "$current_git_status" == "" ]]
   then
     # echo it in red color
     echo -e "\n\nCannot \e[31m$@\e[0m: See the above msg. \nAborting.\n\n\n"
