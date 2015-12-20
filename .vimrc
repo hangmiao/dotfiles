@@ -12,7 +12,7 @@ set foldmethod=marker
 set cmdheight=1
 set shortmess=a
 " waiting for another key to be pressed measured in milliseconds.
-set timeoutlen=300
+" set timeoutlen=300
 
 "set tw=79
 "set formatoptions+=t
@@ -132,6 +132,13 @@ nnoremap <silent> $ g$
 
 " Close a buffer
 nnoremap <leader>x :bd<cr>
+
+" Tabs
+nnoremap <leader>( :tabprev<cr>
+nnoremap <leader>) :tabnext<cr>
+
+vnoremap <C-c> "+ygv"*y
+nnoremap <leader>t :tabnew<cr>
 
 " }}}
 " Splits ------------------------------------------------------------------- {{{
