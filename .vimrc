@@ -132,10 +132,11 @@ nnoremap <silent> $ g$
 
 " Close a buffer
 nnoremap <leader>x :bd<cr>
+nnoremap <leader>X :bd!<cr>
 
 " Tabs
-nnoremap <leader>( :tabprev<cr>
-nnoremap <leader>) :tabnext<cr>
+nnoremap <leader>[ :tabprev<cr>
+nnoremap <leader>] :tabnext<cr>
 
 vnoremap <C-c> "+ygv"*y
 nnoremap <leader>t :tabnew<cr>
@@ -547,7 +548,7 @@ colorscheme mustang
 "highlight Comment ctermfg=119 guifg=#87ff5f
 "highlight Identifier ctermfg=99AA00
 
-:hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white " Highlight line to not be an underline
+:hi CursorLine cterm=NONE ctermbg=214 ctermfg=black " Highlight line to not be an underline
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 highlight SpecialKey term=standout ctermfg=DarkGrey guifg=DarkGrey ctermbg=yellow guibg=yellow
@@ -692,7 +693,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'scrooloose/nerdtree'
 "Plugin 'lilydjwg/colorizer'
 "Plugin 'bling/vim-airline'
-"Plugin 'edkolev/tmuxline.vim'
+Plugin 'erikw/tmux-powerline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -710,6 +711,7 @@ filetype plugin indent on    " required
 " Powerline
 let g:Powerline_symbols = 'fancy'
 let g:Powerline_stl_path_style = 'short'
+
 
 " EasyMotion
 hi EasyMotionShade ctermfg=234 guifg=#1c1c1c
