@@ -141,6 +141,13 @@ nnoremap <leader>] :tabnext<cr>
 vnoremap <C-c> "+ygv"*y
 nnoremap <leader>t :tabnew<cr>
 
+
+" Substitute
+" %s in normal mode
+" selected texts in visual mode
+nnoremap <leader>s :%s///g<left><left><left>
+vnoremap <leader>s :s///g<left><left><left>
+
 " }}}
 " Splits ------------------------------------------------------------------- {{{
 
