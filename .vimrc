@@ -718,6 +718,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'uguu-org/vim-matrix-screensaver'
 Plugin 'tpope/vim-surround'
 Plugin 'Lokaltog/powerline'
+Plugin 'hangmiao/tmux-powerline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-unimpaired'
@@ -735,7 +736,6 @@ Plugin 'SirVer/ultisnips'
 Plugin 'scrooloose/nerdtree'
 "Plugin 'lilydjwg/colorizer'
 "Plugin 'bling/vim-airline'
-Plugin 'erikw/tmux-powerline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
