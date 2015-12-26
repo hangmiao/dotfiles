@@ -135,8 +135,9 @@ nnoremap <leader>x :bd<cr>
 nnoremap <leader>X :bd!<cr>
 
 " Tabs
-nnoremap <leader>[ :tabprev<cr>
-nnoremap <leader>] :tabnext<cr>
+" e.g. Ctrl + [
+nnoremap <C-[> :tabprev<cr>
+nnoremap <C-]> :tabnext<cr>
 
 vnoremap <C-c> "+ygv"*y
 nnoremap <leader>t :tabnew<cr>
