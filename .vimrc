@@ -136,8 +136,13 @@ nnoremap <leader>X :bd!<cr>
 
 " Tabs
 " e.g. Ctrl + [
-nnoremap <C-[> :tabprev<cr>
-nnoremap <C-]> :tabnext<cr>
+" nnoremap <C-[> :tabprev<cr>
+" nnoremap <C-]> :tabnext<cr>
+nnoremap <C-[> gT
+nnoremap <C-]> gt
+
+" noremap <A-[> gT
+" noremap <A-]> gt
 
 vnoremap <C-c> "+ygv"*y
 nnoremap <leader>t :tabnew<cr>
@@ -718,8 +723,11 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'uguu-org/vim-matrix-screensaver'
 Plugin 'tpope/vim-surround'
+
 Plugin 'Lokaltog/powerline'
 Plugin 'hangmiao/tmux-powerline'
+Plugin 'christoomey/vim-tmux-navigator'
+
 Plugin 'kien/ctrlp.vim'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-unimpaired'
@@ -868,6 +876,7 @@ let NERDTreeIgnore=[ '\.ncb$', '\.suo$', '\.vcproj\.RIMNET', '\.obj$',
                    \ '\.ilk$', '^BuildLog.htm$', '\.pdb$', '\.idb$',
                    \ '\.embed\.manifest$', '\.embed\.manifest.res$',
                    \ '\.intermediate\.manifest$', '^mt.dep$' ]
+
 
 " }}}
 " Environments (GUI/Console) ---------------------------------------------- {{{
