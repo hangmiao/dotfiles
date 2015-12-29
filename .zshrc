@@ -284,6 +284,15 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
+
+
+
+# e.g. Run 'recent 7' to find files modified in the past 7 days.
+recent() {
+  find ~ -type f -regex ".*\.txt" -mtime -$1 -not -path "*Charlie*" -exec vim "{}" +
+}
+
+
 # }}}
 # RVM  --------------------------------------------------------------------- {{{
 
@@ -374,4 +383,8 @@ function isClean()
     return 1
   fi
 }
+
+
+
+
 
