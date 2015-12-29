@@ -169,6 +169,7 @@ unalias rm
 
 export EDITOR='vim'
 
+
 # }}}
 # Alias -------------------------------------------------------------------- {{{
 
@@ -207,6 +208,10 @@ alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
 alias tzip='tar -zcvf'
 alias tunzip='tar -zxvf'
+
+
+alias ducks='find ~ -xdev -type f -size +1000M'
+
 # Mac OS X ----------------------------------------------------------------- {{{
 
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
@@ -323,6 +328,9 @@ bindkey -M viins 'jj' vi-cmd-mode
 bindkey '\e[3~' delete-char
 bindkey '^R' history-incremental-search-backward
 
+export VISUAL=vim
+autoload edit-command-line; zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
 
 # }}}
 
