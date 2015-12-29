@@ -66,3 +66,5 @@ brew cask install transmission
 brew cask install seil
 brew cask install utc-menu-clock
 
+brew tap caskroom/versions
+brew cask install sublime-text3
