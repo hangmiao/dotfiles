@@ -161,6 +161,7 @@ onoremap ar a[
 vnoremap ir i[
 vnoremap ar a[
 
+nnoremap <leader>w 0f=w
 
 " }}}
 " Splits ------------------------------------------------------------------- {{{

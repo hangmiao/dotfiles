@@ -289,7 +289,7 @@ bindkey '^Z' fancy-ctrl-z
 
 # e.g. Run 'recent 7' to find files modified in the past 7 days.
 recent() {
-  find ~ -type f -regex ".*\.txt" -mtime -$1 -not -path "*Charlie*" -exec vim "{}" +
+  find ~ -type f -regex ".*\.txt" -mtime -$1 -exec vim "{}" +
 }
 
 
