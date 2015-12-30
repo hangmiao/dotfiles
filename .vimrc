@@ -163,6 +163,12 @@ vnoremap ar a[
 
 nnoremap <leader>w 0f=w
 
+
+" Automatically jump to end of text pasted
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
+
 " }}}
 " Splits ------------------------------------------------------------------- {{{
 
@@ -724,7 +730,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'uguu-org/vim-matrix-screensaver'
 Plugin 'tpope/vim-surround'
-
+Plugin 'tomtom/tcomment_vim'
 Plugin 'Lokaltog/powerline'
 Plugin 'hangmiao/tmux-powerline'
 Plugin 'christoomey/vim-tmux-navigator'

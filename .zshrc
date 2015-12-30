@@ -212,6 +212,9 @@ alias tunzip='tar -zxvf'
 
 alias ducks='find ~ -xdev -type f -size +1000M'
 
+
+alias m='/Applications/Movist.app/Contents/MacOS/Movist'
+
 # Mac OS X ----------------------------------------------------------------- {{{
 
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
