@@ -313,7 +313,8 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # }}}
 # Docker  ------------------------------------------------------------------ {{{
 
-eval $(docker-machine env default)
+# docker-machine start default
+# eval $(docker-machine env default)
 
 # }}}
 # Color settings ----------------------------------------------------------- {{{
