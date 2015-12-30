@@ -138,8 +138,8 @@ nnoremap <leader>X :bd!<cr>
 " e.g. Ctrl + [
 " nnoremap <C-[> :tabprev<cr>
 " nnoremap <C-]> :tabnext<cr>
-nnoremap <C-[> gT
-nnoremap <C-]> gt
+" nnoremap <C-[> gT
+" nnoremap <C-]> gt
 
 " noremap <A-[> gT
 " noremap <A-]> gt
