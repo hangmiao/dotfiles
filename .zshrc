@@ -344,6 +344,7 @@ bindkey -M vicmd v edit-command-line
 # }}}
 
 
+
 function backmerge
 {
   # do `git checkout production && git pull` first and fix conflict if any
@@ -365,11 +366,12 @@ function isConflict()
   $@ # run it first
 
   # Conflict
-  if [ $(git ls-files -u  | cut -f 2 | sort -u | wc -l) -ne 0 ]
+  if [[ $(git ls-files -u  | cut -f 2 | sort -u | wc -l) -ne 0 ]]
   then
     # echo it in red color
     echo -e "\n\nCannot \e[31m$@\e[0m: Conflict. \nAborting.\n\n\n"
     return 1
+    #exit 1
   fi
 }
 
@@ -381,6 +383,7 @@ function isClean()
     # echo it in red color
     echo -e "\n\nCannot \e[31m$@\e[0m: See the above msg. \nAborting.\n\n\n"
     return 1
+    #exit 1
   fi
 }
 
