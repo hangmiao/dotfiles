@@ -13,6 +13,9 @@ set cmdheight=1
 set shortmess=a
 " waiting for another key to be pressed measured in milliseconds.
 " set timeoutlen=300
+" No delay for escape key press
+set ttimeoutlen=0
+
 
 "set tw=79
 "set formatoptions+=t
@@ -891,7 +894,7 @@ let NERDTreeIgnore=[ '\.ncb$', '\.suo$', '\.vcproj\.RIMNET', '\.obj$',
 if has('gui_running')
     " GUI Vim
     let macvim_skip_colorscheme=1 " respect color settings in .vimrc
-    set guifont=Source\ Code\ Pro\ for\ Powerline:h18
+    set guifont=Source\ Code\ Pro\ for\ Powerline:h16
     set mouse=a
 
     " Remove all the UI cruft
