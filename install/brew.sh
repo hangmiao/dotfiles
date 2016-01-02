@@ -40,6 +40,7 @@ brew install rename
 brew install boot2docker
 brew install docker-compose
 brew install the_silver_searcher
+brew install w3m
 
 brew install caskroom/cask/brew-cask
 brew cask install dockertoolbox
