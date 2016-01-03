@@ -1,7 +1,5 @@
-# Basic options ------------------------------------------------------------ {{{
+# Locale options ------------------------------------------------------------ {{{
 
-
-# Locale settings (utf-8)
 export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=LC_CTYPE=en_US.UTF-8
@@ -346,8 +344,7 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 # }}}
-
-
+# Custom stuff ------------------------------------------------------------- {{{
 
 function backmerge
 {
@@ -391,7 +388,9 @@ function isClean()
   fi
 }
 
+# }}}
 
 
 
+# w3m -cols 99999 -dump http://en.wikipedia.org/wiki/$(date +%B_%d) | less | sed -n '/Events/, /Births/ p' | sed -n 's/^.*• //p' | gshuf -n 1
 
