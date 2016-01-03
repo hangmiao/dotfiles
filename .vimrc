@@ -157,7 +157,6 @@ nnoremap <leader>t :tabnew<cr>
 nnoremap <leader>s :%s///g<left><left><left>
 vnoremap <leader>s :s///g<left><left><left>
 
-
 " Shortcut for []
 onoremap ir i[
 onoremap ar a[
@@ -165,7 +164,8 @@ vnoremap ir i[
 vnoremap ar a[
 
 nnoremap <leader>w 0f=w
-
+" Del text in current line but WITHOUT <CR>
+nnoremap <leader>v 0v$hd
 
 " Automatically jump to end of text pasted
 vnoremap <silent> y y`]
