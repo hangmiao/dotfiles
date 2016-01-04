@@ -94,11 +94,11 @@ setopt NO_CASE_GLOB
 # hows about arrays be awesome?  (that is, frew${cool}frew has frew surrounding all the variables, not just first and last
 setopt RC_EXPAND_PARAM
 
-# Who doesn't want home and end to work?
+# Make home and end the way they should be.
 bindkey '\e[1~' beginning-of-line
 bindkey '\e[4~' end-of-line
 
-# Incremental search is elite!
+# Incremental search
 bindkey -M vicmd "/" history-incremental-search-backward
 bindkey -M vicmd "?" history-incremental-search-forward
 
@@ -109,7 +109,7 @@ bindkey -M vicmd "??" history-beginning-search-forward
 bindkey "\eOP" run-help
 
 # In the middle of typing something but wanna check something else
-# <ESC>q<ESC>q
+# <ESC>q
 bindkey -M vicmd "q" push-line
 
 # it's like, space AND completion.  Gnarlbot.
@@ -151,7 +151,6 @@ ex () {
         echo "'$1' is not a valid file"
     fi
 }
-
 
 unalias rm
 
@@ -338,6 +337,7 @@ bindkey -M viins 'jj' vi-cmd-mode
 
 bindkey '\e[3~' delete-char
 bindkey '^R' history-incremental-search-backward
+bindkey '^e' vi-end-of-line
 
 export VISUAL=vim
 autoload edit-command-line; zle -N edit-command-line
@@ -394,3 +394,21 @@ function isClean()
 
 # w3m -cols 99999 -dump http://en.wikipedia.org/wiki/$(date +%B_%d) | less | sed -n '/Events/, /Births/ p' | sed -n 's/^.*• //p' | gshuf -n 1
 
+
+function switchToMac
+{
+ cd ~/Development/Github/Notes/config
+ rm database.yml
+ ln -s database_mac.yml database.yml
+ ..
+ rails s --port 9000
+}
+
+function switchToDocker
+{
+ cd ~/Development/Github/Notes/config
+ rm database.yml
+ ln -s database_docker.yml database.yml
+ ..
+ docker-compose run web rm /myapp/tmp/pids/server.pid; docker-compose up
+}
