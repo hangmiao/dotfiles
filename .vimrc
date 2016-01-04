@@ -98,8 +98,6 @@ map <F10> :set list!<CR>
 "set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set listchars=tab:▸\ ,eol:¬,extends:»,precedes:«
 
-" Insert the current datestamp
-:nnoremap <leader>d "=strftime("%B %d, %Y")<CR>P
 
 " }}}
 " Quick editing ------------------------------------------------------------ {{{
@@ -132,6 +130,10 @@ nnoremap <silent> ^ g^
 nnoremap <silent> $ g$
 
 
+" Automatically jump to end of text pasted
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
 
 " Close a buffer
 nnoremap <leader>x :bd<cr>
@@ -167,10 +169,9 @@ nnoremap <leader>w 0f=w
 " Del text in current line but WITHOUT <CR>
 nnoremap <leader>v 0v$hd
 
-" Automatically jump to end of text pasted
-vnoremap <silent> y y`]
-vnoremap <silent> p p`]
-nnoremap <silent> p p`]
+" Insert the current datestamp
+:nnoremap <leader>d i<SPACE><ESC>"=strftime("%B %d, %Y")<CR>p
+:inoremap <leader>d <SPACE><SPACE><ESC>"=strftime("%B %d, %Y")<CR>P
 
 " }}}
 " Splits ------------------------------------------------------------------- {{{
