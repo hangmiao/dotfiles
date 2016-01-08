@@ -139,6 +139,9 @@ nnoremap <silent> p p`]
 nnoremap <leader>x :bd<cr>
 nnoremap <leader>X :bd!<cr>
 
+" Reload current buffer
+nnoremap <leader>e :e!<cr>
+
 " Tabs
 " e.g. Ctrl + [
 " nnoremap <C-[> :tabprev<cr>
@@ -815,7 +818,8 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " let g:ackprg = 'ag --vimgrep'
 
 " Open a new tab and search for something.
-nmap <leader>a :tab split<CR>:Ack ""<Left>
+" nmap <leader>a :tab split<CR>:Ack ""<Left>
+nmap <leader>a :e split<CR>:Ack ""<Left>
 
 " Immediately search for the word under the cursor in a new tab.
 nmap <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
@@ -842,8 +846,9 @@ nnoremap ;l  :FufTag<cr>
 nnoremap ;<Space> :FufBookmarkDir<cr>
 nnoremap ;f :FufFile<cr>
 nnoremap ;h :FufFile $HOME/<cr>
-nnoremap ;j  :FufFile $HOME/.vim/<cr>
+nnoremap ;j :FufFile $HOME/.vim/<cr>
 nnoremap ;db :FufFile $HOME/Dropbox/<cr>
+nnoremap ;m :FufFile $HOME/.tmuxinator/<cr>
 let g:fuf_file_exclude = '\v\~$|\.(DS_Store|o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 let g:fuf_buffer_keyDelete = '<C-d>'
 
