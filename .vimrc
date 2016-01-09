@@ -120,8 +120,8 @@ nmap <silent> ,md :!mkdir -p %:p:h<CR>
 map <leader>re :call RenameFile()<cr>
 
 " scroll the viewport faster
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
+nnoremap <C-e> 10<C-e>
+nnoremap <C-y> 10<C-y>
 
 " moving up and down work as you would expect
 nnoremap <silent> j gj
@@ -140,7 +140,7 @@ nnoremap <leader>x :bd<cr>
 nnoremap <leader>X :bd!<cr>
 
 " Reload current buffer
-nnoremap <leader>e :e!<cr>
+nnoremap <leader>b :e!<cr>
 
 " Tabs
 " e.g. Ctrl + [
@@ -152,8 +152,11 @@ nnoremap <leader>e :e!<cr>
 " noremap <A-[> gT
 " noremap <A-]> gt
 
-vnoremap <C-c> "+ygv"*y
 nnoremap <leader>t :tabnew<cr>
+nnoremap <leader>w :tabclose<cr>
+
+
+vnoremap <C-c> "+ygv"*y
 
 
 " Substitute
@@ -168,7 +171,8 @@ onoremap ar a[
 vnoremap ir i[
 vnoremap ar a[
 
-nnoremap <leader>w 0f=w
+nnoremap gw 0f=w
+
 " Del text in current line but WITHOUT <CR>
 nnoremap <leader>v 0v$hd
 
@@ -412,7 +416,7 @@ nnoremap <leader>r :call RubyRun()<cr>
 nnoremap <leader>l :call RailsRun()<cr>
 " nnoremap <leader>l :call ShellList()<cr>
 nnoremap <space> :
-nnoremap <leader>qq q:
+nnoremap <leader>q q:
 noremap <tab> %
 vnoremap <tab> %
 
@@ -916,6 +920,8 @@ if has('gui_running')
     set guicursor=n-c:block-Cursor-blinkon0
     set guicursor+=v:block-vCursor-blinkon0
     set guicursor+=i-ci:ver20-iCursor
+
+    " nnoremap <D-e> :tabnew<cr>
 endif
 
 " }}}
