@@ -61,13 +61,14 @@ set laststatus=2
 set noshowmode
 set numberwidth=2
 set guioptions+=a " macvim copied clipboard on selection
-set ttyfast " faster redrawing
 set re=1 " Use the old regex engine to make render rb file faster in terminal
 
 set so=7 " set 7 lines to the cursors - when moving vertical
 set history=1000 " change history to 1000
 set magic " Set magic on, for regex
 " set scrolljump=8
+set ttyfast            " smoother changes
+set ttyscroll=0        " turn off scrolling
 
 " Fix line wrapping
 set ww=<,>,[,],h,l
@@ -76,6 +77,7 @@ let mapleader = ","
 
 " :set cursorline
 " :set cursorcolumn
+set lazyredraw
 
 " setting path explicitly to make it load faster
 let g:ruby_path="/usr/bin/ruby"
@@ -763,10 +765,17 @@ Plugin 'SirVer/ultisnips'
 Plugin 'scrooloose/nerdtree'
 "Plugin 'lilydjwg/colorizer'
 "Plugin 'bling/vim-airline'
+Plugin 'Townk/vim-autoclose'
+" Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-endwise'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+filetype on           " Enable filetype detection
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
 
 " }}}
 " Plugin settings ---------------------------------------------------------- {{{
@@ -896,6 +905,8 @@ let NERDTreeIgnore=[ '\.ncb$', '\.suo$', '\.vcproj\.RIMNET', '\.obj$',
                    \ '\.ilk$', '^BuildLog.htm$', '\.pdb$', '\.idb$',
                    \ '\.embed\.manifest$', '\.embed\.manifest.res$',
                    \ '\.intermediate\.manifest$', '^mt.dep$' ]
+
+
 
 
 " }}}
