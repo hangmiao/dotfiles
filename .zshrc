@@ -206,6 +206,9 @@ alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias tzip='tar -zcvf'
 alias tunzip='tar -zxvf'
 
+alias al='alias'
+# e.g. run `ap 'gr'` (note the single quote)
+alias ap="alias | grep $1"
 
 alias ducks='find ~ -xdev -type f -size +1000M'
 

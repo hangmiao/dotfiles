@@ -24,6 +24,9 @@ brew install vim --with-python3
 brew link --overwrite vim
 brew linkapps vim
 
+brew tap neovim/neovim
+brew install --HEAD neovim
+
 brew install reattach-to-user-namespace
 brew install tmux
 brew install zsh

@@ -738,7 +738,6 @@ set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'uguu-org/vim-matrix-screensaver'
@@ -747,27 +746,27 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'Lokaltog/powerline'
 Plugin 'hangmiao/tmux-powerline'
 Plugin 'christoomey/vim-tmux-navigator'
-
 Plugin 'kien/ctrlp.vim'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'Chiel92/vim-autoformat'
-"Plugin 'terryma/vim-smooth-scroll'
 Plugin 'mileszs/ack.vim'
 Plugin 'vim-scripts/FuzzyFinder'
 Plugin 'vim-scripts/L9'
 Plugin 'ap/vim-buftabline'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
-"Plugin 'garbas/vim-snipmate'
 Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
-"Plugin 'lilydjwg/colorizer'
-"Plugin 'bling/vim-airline'
-Plugin 'Townk/vim-autoclose'
-" Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-endwise'
+
+"Plugin 'terryma/vim-smooth-scroll'
+"Plugin 'garbas/vim-snipmate'
+"Plugin 'honza/vim-snippets'
+"Plugin 'bling/vim-airline'
+"Plugin 'lilydjwg/colorizer'
+" Plugin 'Townk/vim-autoclose'
+" Plugin 'vim-ruby/vim-ruby'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
