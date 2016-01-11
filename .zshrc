@@ -161,10 +161,10 @@ unalias rm
   if [[ -n $SSH_CONNECTION ]]; then
     export EDITOR='vim'
   else
-    export EDITOR='mvim'
+    export EDITOR='nvim'
   fi
 
-export EDITOR='vim'
+export EDITOR='nvim'
 
 
 # }}}

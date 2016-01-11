@@ -144,14 +144,14 @@ nnoremap <leader>x :bd<cr>
 nnoremap <leader>X :bd!<cr>
 
 " Reload current buffer
-nnoremap <leader>b :e!<cr>
+nnoremap <leader>; :e!<cr>
 
 " Tabs
 " e.g. Ctrl + [
 " nnoremap <C-[> :tabprev<cr>
 " nnoremap <C-]> :tabnext<cr>
-" nnoremap <C-[> gT
-" nnoremap <C-]> gt
+nnoremap <C-9> gT
+nnoremap <C-0> gt
 
 " noremap <A-[> gT
 " noremap <A-]> gt
@@ -1246,9 +1246,10 @@ let g:airline#extensions#tabline#show_tab_nr = 1
 
 " let g:airline_theme='oceanicnext'
 let g:airline_theme = 'powerlineish'
-let g:airline_detect_modified=1
+let g:airline_detect_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline_extensions = ['branch', 'tabline']
 
 " make sure to escape the spaces in the name properly
 set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h16
