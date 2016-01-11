@@ -170,6 +170,9 @@ export EDITOR='vim'
 # }}}
 # Alias -------------------------------------------------------------------- {{{
 
+alias vim='nvim'
+alias vi='nvim'
+
 alias l="ls -lahG"
 alias fl="ls -ltra | grep '\->'" # find link
 
@@ -303,7 +306,7 @@ recent() {
 # PATH=$HOME/.rvm/gems/ruby-1.9.3-p448/bin:$PATH # Add RVM to PATH for scripting
 # rvm use ruby-1.9.3-p448 --default
 # rvm get stable --auto-dotfiles
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/bin/python3:$PATH"
 export PATH=$PATH:/usr/sbin:/usr/bin:/sbin:/bin:~/bin:/usr/games
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 

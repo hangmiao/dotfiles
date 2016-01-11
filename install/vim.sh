@@ -23,6 +23,13 @@ cd ~/.vim/bundle/YouCompleteMe
 # ctrlp.vim:
 # 1. Clone the plugin into a separate directory:
 cd ~/.vim
-# 2. 
+# 2.
 git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim
+
+
+
+# Switch to NeoVim
+mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
+ln -s ~/.vim $XDG_CONFIG_HOME/nvim
+ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
 

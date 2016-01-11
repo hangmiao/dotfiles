@@ -319,8 +319,8 @@ omap s :normal vs<CR>
 " Autocmd that resources your vimrc always use autocmd-nested so Powerline
 " doesn't break.
 augroup MyAutoCmd
-  autocmd!
-  autocmd MyAutoCmd BufWritePost $MYVIMRC nested source $MYVIMRC
+  " autocmd!
+  " autocmd MyAutoCmd BufWritePost $MYVIMRC nested source $MYVIMRC
 augroup END
 
 " }}}
@@ -800,14 +800,16 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
   NeoBundle 'terryma/vim-multiple-cursors'
   NeoBundle 'ctrlpvim/ctrlp.vim'
   NeoBundle 'christoomey/vim-tmux-navigator'
-  " NeoBundle 'bling/vim-airline'
+  NeoBundle 'bling/vim-airline'
   NeoBundle 'tpope/vim-surround'
   NeoBundle 'tomtom/tcomment_vim'
   NeoBundle 'mattn/emmet-vim'
   NeoBundle 'Chiel92/vim-autoformat'
   NeoBundle 'Shougo/neocomplete.vim'
+  " NeoBundle 'ervandew/supertab'
   NeoBundle 'Quramy/tsuquyomi'
- NeoBundle 'bling/vim-airline'
+
+
 
   NeoBundle 'rking/ag.vim'
   NeoBundle 'mileszs/ack.vim'
@@ -815,7 +817,6 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
   NeoBundle 'Shougo/neosnippet'
   NeoBundle 'Shougo/neosnippet-snippets'
   NeoBundle 'matthewsimo/angular-vim-snippets'
-" because fuck it, Icons are awesome
   NeoBundle 'ryanoasis/vim-webdevicons'
   NeoBundle 'guns/xterm-color-table.vim'
   NeoBundle 'sjl/clam.vim'
@@ -841,7 +842,7 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'uguu-org/vim-matrix-screensaver'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'Lokaltog/powerline'
+" NeoBundle 'Lokaltog/powerline'
 NeoBundle 'hangmiao/tmux-powerline'
 NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'ctrlpvim/ctrlp.vim'
@@ -857,6 +858,7 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'vim-scripts/L9'
+NeoBundle 'dmedvinsky/uritality.vim'
 
 "NeoBundle 'terryma/vim-smooth-scroll'
 "NeoBundle 'garbas/vim-snipmate'
@@ -1112,20 +1114,95 @@ set display+=lastline
   let g:vimjs#chromeapis = 0
   autocmd FileType typescript inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
   let g:typescript_indent_disable = 1
-
-"  let g:neocomplete#enable_at_startup = 1
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType typescript setlocal omnifunc=tsuquyomi#complete
-  let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-  if !exists('g:neocomplete#force_omni_input_patterns')
-      let g:neocomplete#force_omni_input_patterns = {}
-  endif
-  let g:neocomplete#force_omni_input_patterns.typescript = '\h\w*\|[^. \t]\.\w*'
-
   autocmd FileType typescript setlocal completeopt-=preview
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SuperTab
+" SuperTab doesn't provide auto pop up at the moment. Switching to Neocomplete.
+ " SuperTab option for context aware completion
+"  let g:SuperTabDefaultCompletionType = "context"
+"  let g:SuperTabClosePreviewOnPopupClose = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" neocomplete
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+
+"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Emmet customization
 " Enable Emmet in all modes
@@ -1214,3 +1291,4 @@ set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicon
   map <Leader>E :lprev<CR>
 
 " }}}
+

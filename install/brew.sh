@@ -20,12 +20,14 @@ brew install hub
 #brew install macvim --with-override-system-vim --with-python
 #brew link --overwrite macvim
 #brew linkapps macvim
-brew install vim --with-python3
+brew install vim --with-python3 --with-cscope --with-lua
 brew link --overwrite vim
 brew linkapps vim
+brew linkapps macvim
 
 brew tap neovim/neovim
 brew install --HEAD neovim
+
 
 brew install reattach-to-user-namespace
 brew install tmux
