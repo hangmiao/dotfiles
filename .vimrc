@@ -178,6 +178,14 @@ nnoremap <leader>v 0v$hd
 :nnoremap <leader>d i<SPACE><ESC>"=strftime("%B %d, %Y")<CR>p
 :inoremap <leader>d <SPACE><SPACE><ESC>"=strftime("%B %d, %Y")<CR>P
 
+
+" Close the current buffer and move to the previous one
+  nmap <leader>x :bp <BAR> bd #<CR>
+" Move to the next buffer
+  nmap <leader>, :bnext<CR>
+" Move to the previous buffer
+  nmap <leader>. :bprevious<CR>
+
 " }}}
 " Splits ------------------------------------------------------------------- {{{
 
@@ -796,13 +804,10 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
 " untils
   NeoBundle 'matze/vim-move'
   NeoBundle 'editorconfig/editorconfig-vim'
-  NeoBundle 'scrooloose/nerdtree'
   NeoBundle 'terryma/vim-multiple-cursors'
   NeoBundle 'ctrlpvim/ctrlp.vim'
   NeoBundle 'christoomey/vim-tmux-navigator'
   NeoBundle 'bling/vim-airline'
-  NeoBundle 'tpope/vim-surround'
-  NeoBundle 'tomtom/tcomment_vim'
   NeoBundle 'mattn/emmet-vim'
   NeoBundle 'Chiel92/vim-autoformat'
   NeoBundle 'Shougo/neocomplete.vim'
@@ -811,8 +816,6 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
 
 
 
-  NeoBundle 'rking/ag.vim'
-  NeoBundle 'mileszs/ack.vim'
   " NeoBundle 'ashisha/image.vim'
   NeoBundle 'Shougo/neosnippet'
   NeoBundle 'Shougo/neosnippet-snippets'
@@ -863,9 +866,7 @@ NeoBundle 'dmedvinsky/uritality.vim'
 "NeoBundle 'terryma/vim-smooth-scroll'
 "NeoBundle 'garbas/vim-snipmate'
 "NeoBundle 'honza/vim-snippets'
-"NeoBundle 'bling/vim-airline'
 "NeoBundle 'lilydjwg/colorizer'
-" NeoBundle 'Townk/vim-autoclose'
 " NeoBundle 'vim-ruby/vim-ruby'
 
 " All of your Plugins must be added before the following line
@@ -1019,6 +1020,18 @@ let NERDTreeIgnore=[ '\.ncb$', '\.suo$', '\.vcproj\.RIMNET', '\.obj$',
 
 
 
+" Git gitgutter column colors
+call gitgutter#highlight#define_highlights()
+highlight clear SignColumn
+highlight GitGutterAdd ctermfg=green
+highlight GitGutterChange ctermfg=yellow
+highlight GitGutterDelete ctermfg=red
+highlight GitGutterChangeDelete ctermfg=yellow
+
+" SuperTab
+" SuperTab doesn't provide auto pop up at the moment. Switching to Neocomplete.
+"  let g:SuperTabDefaultCompletionType = "context"
+"  let g:SuperTabClosePreviewOnPopupClose = 1
 
 " }}}
 " Environments (GUI/Console) ----------------------------------------------- {{{
@@ -1059,8 +1072,7 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
-" Git gitgutter column colors
-call gitgutter#highlight#define_highlights()
+
 
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
@@ -1117,13 +1129,6 @@ set display+=lastline
   autocmd FileType typescript setlocal completeopt-=preview
 
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SuperTab
-" SuperTab doesn't provide auto pop up at the moment. Switching to Neocomplete.
- " SuperTab option for context aware completion
-"  let g:SuperTabDefaultCompletionType = "context"
-"  let g:SuperTabClosePreviewOnPopupClose = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neocomplete
@@ -1243,19 +1248,11 @@ let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline_theme = 'powerlineish'
 let g:airline_detect_modified=1
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 " make sure to escape the spaces in the name properly
 set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h16
 
-" Tabline part of vim-airline
-" Close the current buffer and move to the previous one
-" This replicates the idea of closing a tab
-  nmap <leader>x :bp <BAR> bd #<CR>
-" Move to the next buffer
-  nmap <leader>, :bnext<CR>
-" Move to the previous buffer
-  nmap <leader>. :bprevious<CR>
-  let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 
   " Syntastic
@@ -1291,4 +1288,3 @@ set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicon
   map <Leader>E :lprev<CR>
 
 " }}}
-
