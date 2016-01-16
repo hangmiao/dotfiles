@@ -193,6 +193,10 @@ nnoremap <leader>v 0v$hd
 
 nnoremap <leader>G :Gblame<CR>
 
+" Automatically change current directory to that of the file in the buffer
+" autocmd BufEnter * cd %:p:h
+" Wipe out all buffers
+nmap <silent> <Leader>da :1,9000bwipeout<cr>
 
 " }}}
 " Splits ------------------------------------------------------------------- {{{
@@ -483,11 +487,6 @@ endif
 
 " }}}
 " Random Stuff ------------------------------------------------------------- {{{
-
-" Automatically change current directory to that of the file in the buffer
-" autocmd BufEnter * cd %:p:h
-" Wipe out all buffers
-nmap <silent> <Leader>da :1,9000bwipeout<cr>
 
 if has("autocmd")
   augroup fedora
@@ -1020,6 +1019,22 @@ let g:buftabline_separators=0
 
 
 
+
+" Git gitgutter column colors
+call gitgutter#highlight#define_highlights()
+highlight clear SignColumn
+highlight GitGutterAdd ctermfg=green
+highlight GitGutterChange ctermfg=yellow
+highlight GitGutterDelete ctermfg=red
+highlight GitGutterChangeDelete ctermfg=yellow
+
+" SuperTab
+" SuperTab doesn't provide auto pop up at the moment. Switching to Neocomplete.
+"  let g:SuperTabDefaultCompletionType = "context"
+"  let g:SuperTabClosePreviewOnPopupClose = 1
+
+
+" NERD Tree ------------------------- {{{
 " Toggle NERD Tree
 nmap <leader>n :NERDTreeToggle<CR>
 
@@ -1054,28 +1069,11 @@ let NERDTreeIgnore=[ '\.ncb$', '\.suo$', '\.vcproj\.RIMNET', '\.obj$',
 
 
 
-
-" Git gitgutter column colors
-call gitgutter#highlight#define_highlights()
-highlight clear SignColumn
-highlight GitGutterAdd ctermfg=green
-highlight GitGutterChange ctermfg=yellow
-highlight GitGutterDelete ctermfg=red
-highlight GitGutterChangeDelete ctermfg=yellow
-
-" SuperTab
-" SuperTab doesn't provide auto pop up at the moment. Switching to Neocomplete.
-"  let g:SuperTabDefaultCompletionType = "context"
-"  let g:SuperTabClosePreviewOnPopupClose = 1
-
-
+" }}}
 " Startify -------------------------- {{{
 
-let g:startify_session_dir = "~/.vim/sessions"
-let g:startify_bookmarks = [ {'v': '~/.vimrc'}, '~/.zshrc' ]
-
-let g:startify_custom_header =
-  \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
+" let g:startify_custom_header =
+"   \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
 
 let g:startify_custom_indices = ['f', 'g', 'h']
 
@@ -1090,9 +1088,9 @@ let g:startify_session_persistence    = 1
 let g:startify_session_delete_buffers = 1
 
 let g:startify_list_order = [
-  \ ['   LRU:'],
+  \ ['   MRU:'],
   \ 'files',
-  \ ['   LRU within this dir:'],
+  \ ['   MRU within this dir:'],
   \ 'dir',
   \ ['   Sessions:'],
   \ 'sessions',
@@ -1106,14 +1104,16 @@ let g:startify_skiplist = [
             \ '/data/repo/neovim/runtime/doc',
             \ ]
 
+let g:startify_session_dir = "~/.vim/sessions"
+
 let g:startify_bookmarks = [
             \ { 'v': '~/.vim/vimrc' },
+            \ '~/.zshrc',
             \ { 't': '/tmp' },
-            \ '/data/vim/golfing',
             \ ]
 
-let g:startify_custom_footer =
-      \ ['', " NeoVim", '']
+" let g:startify_custom_footer =
+"       \ ['', " NeoVim", '']
 
 hi StartifyBracket ctermfg=240
 hi StartifyFile    ctermfg=147
@@ -1291,10 +1291,6 @@ set display+=lastline
   autocmd FileType typescript setlocal completeopt-=preview
 
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Emmet customization
 " Enable Emmet in all modes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
