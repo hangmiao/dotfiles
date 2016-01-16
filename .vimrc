@@ -408,6 +408,13 @@ if has("autocmd")
 endif
 
 
+function! FormatSqlStr()
+  :%s//\r&/g
+  :%s/\\n,//g
+  :%s/\\n//g
+  :set ft=sql
+endfunction
+
 " }}}
 " My Remappings ------------------------------------------------------------ {{{
 
@@ -421,6 +428,7 @@ nnoremap <leader>c :call RubySyntax()<cr>
 nnoremap <leader>r :call RubyRun()<cr>
 nnoremap <leader>l :call RailsRun()<cr>
 " nnoremap <leader>l :call ShellList()<cr>
+nnoremap <leader>fs :call FormatSqlStr()<cr>
 nnoremap <space> :
 nnoremap <leader>q q:
 noremap <tab> %
@@ -902,6 +910,17 @@ filetype plugin on    " Enable filetype-specific plugins
 " let g:Powerline_symbols = 'fancy'
 " let g:Powerline_stl_path_style = 'short'
 
+" Vim-airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_tab_nr = 1
+" let g:airline_theme='oceanicnext'
+let g:airline_theme = 'powerlineish'
+let g:airline_detect_modified = 1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline_extensions = ['branch', 'tabline']
+
 
 " EasyMotion
 hi EasyMotionShade ctermfg=234 guifg=#1c1c1c
@@ -1032,32 +1051,6 @@ highlight GitGutterChangeDelete ctermfg=yellow
 " SuperTab doesn't provide auto pop up at the moment. Switching to Neocomplete.
 "  let g:SuperTabDefaultCompletionType = "context"
 "  let g:SuperTabClosePreviewOnPopupClose = 1
-
-" }}}
-" Environments (GUI/Console) ----------------------------------------------- {{{
-
-if has('gui_running')
-    " GUI Vim
-    let macvim_skip_colorscheme=1 " respect color settings in .vimrc
-    set guifont=Source\ Code\ Pro\ for\ Powerline:h16
-    set mouse=a
-
-    " Remove all the UI cruft
-    set guioptions-=T " Removes top toolbar
-    set guioptions-=r " Removes right hand scroll bar
-    set go-=L " Removes left hand scroll bar
-    set go-=l
-    set go-=R
-
-    "highlight SpellBad term=underline gui=undercurl guisp=Orange
-
-    " Different cursors for different modes.
-    set guicursor=n-c:block-Cursor-blinkon0
-    set guicursor+=v:block-vCursor-blinkon0
-    set guicursor+=i-ci:ver20-iCursor
-
-    " nnoremap <D-e> :tabnew<cr>
-endif
 
 " }}}
 " NeoVim  ------------------------------------------------------------------ {{{
@@ -1238,23 +1231,6 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
    autocmd FileType html,css,ejs EmmetInstall
 
 
-" vim-airline
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#show_tab_nr = 1
-
-" let g:airline_theme='oceanicnext'
-let g:airline_theme = 'powerlineish'
-let g:airline_detect_modified = 1
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline_extensions = ['branch', 'tabline']
-
-" make sure to escape the spaces in the name properly
-set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h16
-
-
 
   " Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1287,5 +1263,36 @@ set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicon
   let g:syntastic_mode_map = { 'passive_filetypes': ['sass', 'scss','html'] }
   map <Leader>e :lnext<CR>
   map <Leader>E :lprev<CR>
+
+" }}}
+" Environments (GUI/Console) ----------------------------------------------- {{{
+
+if has('gui_running')
+    " GUI Vim
+    let macvim_skip_colorscheme=1 " respect color settings in .vimrc
+    set guifont=Source\ Code\ Pro\ for\ Powerline:h16
+
+    " make sure to escape the spaces in the name properly
+    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h16
+    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types:h16
+
+    set mouse=a
+
+    " Remove all the UI cruft
+    set guioptions-=T " Removes top toolbar
+    set guioptions-=r " Removes right hand scroll bar
+    set go-=L " Removes left hand scroll bar
+    set go-=l
+    set go-=R
+
+    "highlight SpellBad term=underline gui=undercurl guisp=Orange
+
+    " Different cursors for different modes.
+    set guicursor=n-c:block-Cursor-blinkon0
+    set guicursor+=v:block-vCursor-blinkon0
+    set guicursor+=i-ci:ver20-iCursor
+
+    " nnoremap <D-e> :tabnew<cr>
+endif
 
 " }}}
