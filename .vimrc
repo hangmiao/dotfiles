@@ -186,6 +186,8 @@ nnoremap <leader>v 0v$hd
 " Move to the previous buffer
   nmap <leader>. :bprevious<CR>
 
+nnoremap <leader>G :Gblame<CR>
+
 " }}}
 " Splits ------------------------------------------------------------------- {{{
 
@@ -277,8 +279,8 @@ nnoremap J mzJ`z
 nnoremap <silent> <leader>M :set opfunc=<SID>AckMotion<CR>g@
 xnoremap <silent> <leader>M :<C-U>call <SID>AckMotion(visualmode())<CR>
 
-nnoremap <bs> :Ack! '\b<c-r><c-w>\b'<cr>
-xnoremap <silent> <bs> :<C-U>call <SID>AckMotion(visualmode())<CR>
+" nnoremap <bs> :Ack! '\b<c-r><c-w>\b'<cr>
+" xnoremap <silent> <bs> :<C-U>call <SID>AckMotion(visualmode())<CR>
 
 function! s:CopyMotionForType(type)
     if a:type ==# 'v'
@@ -746,12 +748,13 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " If vundle is not installed, do it first
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-   let bundleExists = 1
-  if (!isdirectory(expand("$HOME/.vim/bundle/neobundle.vim")))
-     call system(expand("mkdir -p $HOME/.vim/bundle"))
-     call system(expand("git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim"))
-     let bundleExists = 0
-  endif
+  let bundleExists = 1
+
+  " if (!isdirectory(expand("$HOME/.vim/bundle/neobundle.vim")))
+  "    call system(expand("mkdir -p $HOME/.vim/bundle"))
+  "    call system(expand("git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim"))
+  "    let bundleExists = 0
+  " endif
 
   if 0 | endif
 
@@ -797,11 +800,9 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
 
 
 " colorscheme & syntax highlighting
-  " NeoBundle 'gosukiwi/vim-atom-dark'
   NeoBundle 'mhartington/oceanic-next'
   NeoBundle 'kien/rainbow_parentheses.vim'
   NeoBundle 'chrisbra/Colorizer'
-  " NeoBundle 'Yggdroot/indentLine'
   NeoBundle 'Raimondi/delimitMate'
   NeoBundle 'valloric/MatchTagAlways'
  " Git helpers
@@ -813,18 +814,9 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
   NeoBundle 'matze/vim-move'
   NeoBundle 'editorconfig/editorconfig-vim'
   NeoBundle 'terryma/vim-multiple-cursors'
-  NeoBundle 'ctrlpvim/ctrlp.vim'
-  NeoBundle 'christoomey/vim-tmux-navigator'
   NeoBundle 'bling/vim-airline'
   NeoBundle 'mattn/emmet-vim'
-  NeoBundle 'Chiel92/vim-autoformat'
   NeoBundle 'Shougo/neocomplete.vim'
-  " NeoBundle 'ervandew/supertab'
-  NeoBundle 'Quramy/tsuquyomi'
-
-
-
-  " NeoBundle 'ashisha/image.vim'
   NeoBundle 'Shougo/neosnippet'
   NeoBundle 'Shougo/neosnippet-snippets'
   NeoBundle 'matthewsimo/angular-vim-snippets'
@@ -833,8 +825,11 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
   NeoBundle 'sjl/clam.vim'
   NeoBundle 'fmoralesc/vim-tutor-mode'
 
-
-
+  " NeoBundle 'gosukiwi/vim-atom-dark'
+  " NeoBundle 'Yggdroot/indentLine'
+  " NeoBundle 'ervandew/supertab'
+  " NeoBundle 'Quramy/tsuquyomi'
+  " NeoBundle 'ashisha/image.vim'
 
 
 " set the runtime path to include Vundle and initialize
@@ -849,11 +844,9 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
 
 NeoBundle 'VundleVim/Vundle.vim'
 NeoBundle 'Lokaltog/vim-easymotion'
-" NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'uguu-org/vim-matrix-screensaver'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tomtom/tcomment_vim'
-" NeoBundle 'Lokaltog/powerline'
 NeoBundle 'hangmiao/tmux-powerline'
 NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'ctrlpvim/ctrlp.vim'
@@ -870,11 +863,14 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'vim-scripts/L9'
 NeoBundle 'dmedvinsky/uritality.vim'
+NeoBundle 'gorodinskiy/vim-coloresque'
 
-"NeoBundle 'terryma/vim-smooth-scroll'
-"NeoBundle 'garbas/vim-snipmate'
-"NeoBundle 'honza/vim-snippets'
-"NeoBundle 'lilydjwg/colorizer'
+" NeoBundle 'Valloric/YouCompleteMe'
+" NeoBundle 'Lokaltog/powerline'
+" NeoBundle 'terryma/vim-smooth-scroll'
+" NeoBundle 'garbas/vim-snipmate'
+" NeoBundle 'honza/vim-snippets'
+" NeoBundle 'lilydjwg/colorizer'
 " NeoBundle 'vim-ruby/vim-ruby'
 
 " All of your Plugins must be added before the following line
@@ -952,11 +948,11 @@ nnoremap \q :Ag -Q ''<Left>
 " the way to the root folder. SO you can be in any sub-folder in your project and it'll be able to find the
 " tags files.
 set tags=tags;/
-nnoremap <leader>. :CtrlPTag<cr>
+nnoremap <leader>T :CtrlPTag<cr>
 
 " Ack
 " find usages
-nmap <a-F7> :Ack -w <c-r><c-w><cr>
+nmap <a-F11> :Ack -w <c-r><c-w><cr>
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
 " let g:ackprg = 'ag --vimgrep'
@@ -989,10 +985,10 @@ nmap ;t :FufTaggedFile<CR>
 nnoremap ;l  :FufTag<cr>
 nnoremap ;<Space> :FufBookmarkDir<cr>
 nnoremap ;f :FufFile<cr>
-nnoremap ;h :FufFile $HOME/<cr>
-nnoremap ;j :FufFile $HOME/.vim/<cr>
-nnoremap ;db :FufFile $HOME/Dropbox/<cr>
-nnoremap ;m :FufFile $HOME/.tmuxinator/<cr>
+nnoremap ;h :FufFile ~/<cr>
+nnoremap ;j :FufFile ~/.vim/<cr>
+nnoremap ;db :FufFile ~/Dropbox/<cr>
+nnoremap ;m :FufFile ~/.tmuxinator/<cr>
 let g:fuf_file_exclude = '\v\~$|\.(DS_Store|o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 let g:fuf_buffer_keyDelete = '<C-d>'
 
@@ -1037,54 +1033,6 @@ let NERDTreeIgnore=[ '\.ncb$', '\.suo$', '\.vcproj\.RIMNET', '\.obj$',
                    \ '\.embed\.manifest$', '\.embed\.manifest.res$',
                    \ '\.intermediate\.manifest$', '^mt.dep$' ]
 
-
-
-" Git gitgutter column colors
-call gitgutter#highlight#define_highlights()
-highlight clear SignColumn
-highlight GitGutterAdd ctermfg=green
-highlight GitGutterChange ctermfg=yellow
-highlight GitGutterDelete ctermfg=red
-highlight GitGutterChangeDelete ctermfg=yellow
-
-" SuperTab
-" SuperTab doesn't provide auto pop up at the moment. Switching to Neocomplete.
-"  let g:SuperTabDefaultCompletionType = "context"
-"  let g:SuperTabClosePreviewOnPopupClose = 1
-
-" }}}
-" NeoVim  ------------------------------------------------------------------ {{{
-" Switching to NeoVim
-
-" Fix Cursor in TMUX
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-
-
-
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
-set virtualedit=
-set display+=lastline
-
-
-" Snipppets
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable snipMate compatibility feature.
-  let g:neosnippet#enable_snipmate_compatibility = 1
-  imap <C-s>     <Plug>(neosnippet_expand_or_jump)
-  smap <C-s>     <Plug>(neosnippet_expand_or_jump)
-  xmap <C-s>     <Plug>(neosnippet_expand_target)
-" Tell Neosnippet about the other snippets
-  let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/neosnippets, ~/Github/ionic-snippets, ~/.vim/bundle/angular-vim-snippets/snippets'
-
-
 " NERDTress File highlighting
   function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
@@ -1105,26 +1053,23 @@ set display+=lastline
   call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
   call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
-  " Make files look nice
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  autocmd FileType css,scss,sass :ColorHighlight
-  noremap <c-f> :Autoformat<CR>
-
-
-" Typescript & Javscript omni complete
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  let g:vimjs#casesensistive = 1
-
-  let g:vimjs#smartcomplete = 0
-  let g:vimjs#chromeapis = 0
-  autocmd FileType typescript inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-  let g:typescript_indent_disable = 1
-  autocmd FileType typescript setlocal completeopt-=preview
 
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" neocomplete
+" Git gitgutter column colors
+call gitgutter#highlight#define_highlights()
+highlight clear SignColumn
+highlight GitGutterAdd ctermfg=green
+highlight GitGutterChange ctermfg=yellow
+highlight GitGutterDelete ctermfg=red
+highlight GitGutterChangeDelete ctermfg=yellow
+
+" SuperTab
+" SuperTab doesn't provide auto pop up at the moment. Switching to Neocomplete.
+"  let g:SuperTabDefaultCompletionType = "context"
+"  let g:SuperTabClosePreviewOnPopupClose = 1
+
+" neocomplete ----------------------- {{{
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
@@ -1165,11 +1110,14 @@ function! s:my_cr_function()
   " For no inserting <CR> key.
   "return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
+
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
@@ -1200,6 +1148,95 @@ endif
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+" }}}
+" Syntastic ------------------------- {{{
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_javascript_checkers = ['jscs', 'eslint']
+let g:syntastic_check_on_open = 0
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '!'
+let g:syntastic_style_error_symbol = '✗'
+let g:syntastic_style_warning_symbol = '!'
+
+noremap <leader>st :SyntasticToggleMode<CR>
+
+function! JscsFix()
+    let l:winview = winsaveview()
+    % ! jscs -x
+    call winrestview(l:winview)
+endfunction
+command JscsFix :call JscsFix()
+
+noremap <leader>j :JscsFix<CR>
+ " autocmd BufWritePre *.js,*.jsx JscsFix
+
+let g:syntastic_mode_map = { 'passive_filetypes': ['sass', 'scss','html'] }
+map <Leader>e :lnext<CR>
+map <Leader>E :lprev<CR>
+
+" }}}
+
+" }}}
+" NeoVim  ------------------------------------------------------------------ {{{
+" Switching to NeoVim
+
+" Fix Cursor in TMUX
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+
+
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+set virtualedit=
+set display+=lastline
+
+
+" Snipppets
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable snipMate compatibility feature.
+  let g:neosnippet#enable_snipmate_compatibility = 1
+  imap <C-s>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-s>     <Plug>(neosnippet_expand_or_jump)
+  xmap <C-s>     <Plug>(neosnippet_expand_target)
+" Tell Neosnippet about the other snippets
+  let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/neosnippets, ~/.vim/bundle/angular-vim-snippets/snippets'
+
+
+
+  " Make files look nice
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  autocmd FileType css,scss,sass :ColorHighlight
+  noremap <c-f> :Autoformat<CR>
+
+
+" Typescript & Javscript omni complete
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  let g:vimjs#casesensistive = 1
+
+  let g:vimjs#smartcomplete = 0
+  let g:vimjs#chromeapis = 0
+  autocmd FileType typescript inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  let g:typescript_indent_disable = 1
+  autocmd FileType typescript setlocal completeopt-=preview
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Emmet customization
@@ -1232,37 +1269,6 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 
 
-  " Syntastic
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-  let g:syntastic_javascript_checkers = ['jscs', 'eslint']
-  let g:syntastic_check_on_open = 0
-  " let g:syntastic_always_populate_loc_list = 1
-  " let g:syntastic_auto_loc_list = 1
-
-  let g:syntastic_aggregate_errors = 1
-  let g:syntastic_error_symbol = '✗'
-  let g:syntastic_warning_symbol = '!'
-  let g:syntastic_style_error_symbol = '✗'
-  let g:syntastic_style_warning_symbol = '!'
-
-  noremap <leader>st :SyntasticToggleMode<CR>
-
-  function! JscsFix()
-      let l:winview = winsaveview()
-      % ! jscs -x
-      call winrestview(l:winview)
-  endfunction
-  command JscsFix :call JscsFix()
-
-  noremap <leader>j :JscsFix<CR>
-   " autocmd BufWritePre *.js,*.jsx JscsFix
-
-  let g:syntastic_mode_map = { 'passive_filetypes': ['sass', 'scss','html'] }
-  map <Leader>e :lnext<CR>
-  map <Leader>E :lprev<CR>
 
 " }}}
 " Environments (GUI/Console) ----------------------------------------------- {{{
@@ -1274,7 +1280,6 @@ if has('gui_running')
 
     " make sure to escape the spaces in the name properly
     set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h16
-    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types:h16
 
     set mouse=a
 

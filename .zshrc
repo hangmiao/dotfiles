@@ -395,8 +395,7 @@ function isClean()
 }
 
 # }}}
-
-
+# More Custom stuff -------------------------------------------------------- {{{
 
 # w3m -cols 99999 -dump http://en.wikipedia.org/wiki/$(date +%B_%d) | less | sed -n '/Events/, /Births/ p' | sed -n 's/^.*• //p' | gshuf -n 1
 
@@ -418,3 +417,6 @@ function switchToDocker
  ..
  docker-compose run web rm /myapp/tmp/pids/server.pid; docker-compose up
 }
+
+
+# }}}
