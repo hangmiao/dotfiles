@@ -85,10 +85,7 @@ let g:ruby_path="/usr/bin/ruby"
 " set encoding=utf-8
 
 " }}}
-" Toggle Setup ------------------------------------------------------------- {{{
-
-" Spell check toggle
-map <F6> :setlocal spell! spelllang=en_us<CR>
+" Better settings ---------------------------------------------------------- {{{
 
 map <F7> 20j<CR>
 map <F8> 20k<CR>
@@ -96,12 +93,20 @@ map <F8> 20k<CR>
 map <s-F7> 6j<CR> " Shift + F7
 map <s-F8> 6k<CR>
 
+" This is much better for 13' laptop.
+cnoremap h tab help<SPACE>
+
+" }}}
+" Toggle Setup ------------------------------------------------------------- {{{
+
+" Spell check toggle
+map <F6> :setlocal spell! spelllang=en_us<CR>
+
 set pastetoggle=<F9>
 
 map <F10> :set list!<CR>
 "set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set listchars=tab:▸\ ,eol:¬,extends:»,precedes:«
-
 
 " }}}
 " Quick editing ------------------------------------------------------------ {{{
@@ -180,13 +185,14 @@ nnoremap <leader>v 0v$hd
 
 
 " Close the current buffer and move to the previous one
-  nmap <leader>x :bp <BAR> bd #<CR>
+  " nmap <leader>x :bp <BAR> bd #<CR>
 " Move to the next buffer
   nmap <leader>, :bnext<CR>
 " Move to the previous buffer
   nmap <leader>. :bprevious<CR>
 
 nnoremap <leader>G :Gblame<CR>
+
 
 " }}}
 " Splits ------------------------------------------------------------------- {{{
@@ -864,6 +870,7 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'vim-scripts/L9'
 NeoBundle 'dmedvinsky/uritality.vim'
 NeoBundle 'gorodinskiy/vim-coloresque'
+NeoBundle 'mhinz/vim-startify'
 
 " NeoBundle 'Valloric/YouCompleteMe'
 " NeoBundle 'Lokaltog/powerline'
@@ -895,16 +902,6 @@ filetype plugin on    " Enable filetype-specific plugins
 
 " }}}
 " Plugin settings ---------------------------------------------------------- {{{
-
-" YCM
-" Fix 'ValueError: Still no compile flags, no completions yet.'
-" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-
-" Powerline
-" let g:Powerline_symbols = 'fancy'
-" let g:Powerline_stl_path_style = 'short'
 
 " Vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -939,20 +936,11 @@ let g:ctrlp_custom_ignore = {
             \ 'file': '\.exe$\|\.so$'
             \ }
 
+
+
 " The Silver Searcher, aka Ag
 nnoremap \ :Ag<SPACE>
 nnoremap \q :Ag -Q ''<Left>
-
-" Ctags
-" Check the current folder for tags file and keep going one directory up all
-" the way to the root folder. SO you can be in any sub-folder in your project and it'll be able to find the
-" tags files.
-set tags=tags;/
-nnoremap <leader>T :CtrlPTag<cr>
-
-" Ack
-" find usages
-nmap <a-F11> :Ack -w <c-r><c-w><cr>
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
 " let g:ackprg = 'ag --vimgrep'
@@ -964,6 +952,19 @@ nmap <leader>a :e split<CR>:Ack ""<Left>
 " Immediately search for the word under the cursor in a new tab.
 nmap <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
 
+" Ack
+" find usages
+nmap <a-F11> :Ack -w <c-r><c-w><cr>
+
+
+
+" Ctags
+" Check the current folder for tags file and keep going one directory up all
+" the way to the root folder. SO you can be in any sub-folder in your project and it'll be able to find the
+" tags files.
+set tags=tags;/
+nnoremap <leader>T :CtrlPTag<cr>
+
 
 
 
@@ -973,9 +974,6 @@ nmap <leader>md :%!~/.vim/plugin/Markdown.pl --html4tags <cr>
 nmap <leader>sjs :set ft=javascript <cr>
 nmap <leader>srb :set ft=ruby <cr>
 
-" smooth-scroll
-" noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-" noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 
 " FuzzyFinder
@@ -991,6 +989,7 @@ nnoremap ;db :FufFile ~/Dropbox/<cr>
 nnoremap ;m :FufFile ~/.tmuxinator/<cr>
 let g:fuf_file_exclude = '\v\~$|\.(DS_Store|o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 let g:fuf_buffer_keyDelete = '<C-d>'
+
 
 " SnipMate
 "let g:snipMate = {}
@@ -1069,7 +1068,64 @@ highlight GitGutterChangeDelete ctermfg=yellow
 "  let g:SuperTabDefaultCompletionType = "context"
 "  let g:SuperTabClosePreviewOnPopupClose = 1
 
-" neocomplete ----------------------- {{{
+
+" Startify -------------------------- {{{
+
+let g:startify_session_dir = "~/.vim/sessions"
+let g:startify_bookmarks = [ {'v': '~/.vimrc'}, '~/.zshrc' ]
+
+let g:startify_custom_header =
+  \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
+
+let g:startify_custom_indices = ['f', 'g', 'h']
+
+autocmd User Startified setlocal cursorline
+
+let g:startify_enable_special         = 0
+let g:startify_files_number           = 8
+let g:startify_relative_path          = 1
+let g:startify_change_to_dir          = 1
+let g:startify_session_autoload       = 1
+let g:startify_session_persistence    = 1
+let g:startify_session_delete_buffers = 1
+
+let g:startify_list_order = [
+  \ ['   LRU:'],
+  \ 'files',
+  \ ['   LRU within this dir:'],
+  \ 'dir',
+  \ ['   Sessions:'],
+  \ 'sessions',
+  \ ['   Bookmarks:'],
+  \ 'bookmarks',
+  \ ]
+
+let g:startify_skiplist = [
+            \ 'COMMIT_EDITMSG',
+            \ 'bundle/.*/doc',
+            \ '/data/repo/neovim/runtime/doc',
+            \ ]
+
+let g:startify_bookmarks = [
+            \ { 'v': '~/.vim/vimrc' },
+            \ { 't': '/tmp' },
+            \ '/data/vim/golfing',
+            \ ]
+
+let g:startify_custom_footer =
+      \ ['', " NeoVim", '']
+
+hi StartifyBracket ctermfg=240
+hi StartifyFile    ctermfg=147
+hi StartifyFooter  ctermfg=240
+hi StartifyHeader  ctermfg=114
+hi StartifyNumber  ctermfg=215
+hi StartifyPath    ctermfg=245
+hi StartifySlash   ctermfg=240
+hi StartifySpecial ctermfg=240
+
+" }}}
+" Neocomplete ----------------------- {{{
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1

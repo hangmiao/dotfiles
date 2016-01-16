@@ -47,6 +47,8 @@ brew install docker-compose
 brew install the_silver_searcher
 brew install coreutils
 brew install w3m
+brew install cowsay
+brew install fortune
 
 brew install caskroom/cask/brew-cask
 brew cask install dockertoolbox
