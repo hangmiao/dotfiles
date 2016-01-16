@@ -78,6 +78,7 @@ set lazyredraw
 
 " setting path explicitly to make it load faster
 let g:ruby_path="/usr/bin/ruby"
+let g:python_host_prog = '/usr/local/bin/python3'
 
 " Non-compatible
 " set ttyscroll=0        " turn off scrolling
@@ -94,7 +95,7 @@ map <s-F7> 6j<CR> " Shift + F7
 map <s-F8> 6k<CR>
 
 " This is much better for 13' laptop.
-cnoremap h tab help<SPACE>
+" cnoremap h tab help<SPACE>
 
 " }}}
 " Toggle Setup ------------------------------------------------------------- {{{
@@ -1135,7 +1136,7 @@ let g:deoplete#enable_at_startup = 1
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
@@ -1329,9 +1330,8 @@ set display+=lastline
 if has('gui_running')
     " GUI Vim
     let macvim_skip_colorscheme=1 " respect color settings in .vimrc
-    set guifont=Source\ Code\ Pro\ for\ Powerline:h16
 
-    " make sure to escape the spaces in the name properly
+    set guifont=Source\ Code\ Pro\ for\ Powerline:h16
     set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h16
 
     set mouse=a
@@ -1350,6 +1350,7 @@ if has('gui_running')
     set guicursor+=v:block-vCursor-blinkon0
     set guicursor+=i-ci:ver20-iCursor
 
+    let g:deoplete#enable_at_startup = 0
     " nnoremap <D-e> :tabnew<cr>
 endif
 
