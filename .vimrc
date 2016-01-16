@@ -1115,14 +1115,15 @@ let g:startify_bookmarks = [
 " let g:startify_custom_footer =
 "       \ ['', " NeoVim", '']
 
-hi StartifyBracket ctermfg=240
-hi StartifyFile    ctermfg=147
-hi StartifyFooter  ctermfg=240
-hi StartifyHeader  ctermfg=114
-hi StartifyNumber  ctermfg=215
-hi StartifyPath    ctermfg=245
-hi StartifySlash   ctermfg=240
-hi StartifySpecial ctermfg=240
+hi StartifyBracket ctermfg=240 guifg=#585858
+hi StartifyFile    ctermfg=147 guifg=#afafff
+hi StartifyFooter  ctermfg=240 guifg=#585858
+hi StartifyHeader  ctermfg=114 guifg=#87d787
+hi StartifyNumber  ctermfg=215 guifg=#ffaf5f
+hi StartifyPath    ctermfg=245 guifg=#8a8a8a
+hi StartifySlash   ctermfg=240 guifg=#585858
+hi StartifySpecial ctermfg=240 guifg=#585858
+
 
 " }}}
 " Neocomplete ----------------------- {{{
