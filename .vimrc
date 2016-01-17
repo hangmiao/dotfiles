@@ -447,7 +447,7 @@ nnoremap <leader>c :call RubySyntax()<cr>
 nnoremap <leader>r :call RubyRun()<cr>
 nnoremap <leader>l :call RailsRun()<cr>
 " nnoremap <leader>l :call ShellList()<cr>
-nnoremap <leader>fs :call FormatSqlStr()<cr>
+nnoremap <leader>S :call FormatSqlStr()<cr>
 nnoremap <space> :
 nnoremap <leader>q q:
 noremap <tab> %
@@ -1252,17 +1252,18 @@ nnoremap <leader>T :CtrlPTag<cr>
 
 
 " FuzzyFinder
-nmap ;d :FufFileWithCurrentBufferDir<CR>
-nmap ;f :FufBuffer<CR>
-nmap ;t :FufTaggedFile<CR>
-nnoremap ;l  :FufTag<cr>
-nnoremap ;<Space> :FufBookmarkDir<cr>
-nnoremap ;f :FufFile<cr>
-nnoremap ;h :FufFile ~/<cr>
-nnoremap ;j :FufFile ~/.vim/<cr>
-nnoremap ;db :FufFile ~/Dropbox/<cr>
-nnoremap ;m :FufFile ~/.tmuxinator/<cr>
-let g:fuf_file_exclude = '\v\~$|\.(DS_Store|o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+nmap "d :FufFileWithCurrentBufferDir<CR>
+nmap "f :FufBuffer<CR>
+nmap "t :FufTaggedFile<CR>
+nnoremap "l  :FufTag<cr>
+nnoremap "<Space> :FufBookmarkDir<cr>
+nnoremap "f :FufFile<cr>
+nnoremap "h :FufFile ~/<cr>
+nnoremap "j :FufFile ~/.vim/<cr>
+nnoremap "db :FufFile ~/Dropbox/<cr>
+nnoremap "m :FufFile ~/.tmuxinator/<cr>
+nnoremap "g :FufFile ~/Development/Github/<cr>
+" let g:fuf_file_exclude = '\v\~$|\.(DS_Store|o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 let g:fuf_buffer_keyDelete = '<C-d>'
 
 
