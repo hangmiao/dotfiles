@@ -95,7 +95,7 @@ map <s-F7> 6j<CR> " Shift + F7
 map <s-F8> 6k<CR>
 
 " This is much better for 13' laptop.
-" cnoremap h tab help<SPACE>
+cnoremap h<SPACE> tab help<SPACE>
 
 " }}}
 " Toggle Setup ------------------------------------------------------------- {{{
@@ -121,6 +121,12 @@ nnoremap <leader>es :e ~/daily.txt<cr>
 
 " Sudo to save file with temporary privileges
 command! W w !sudo tee % &>/dev/null
+
+" Markdown to HTML
+nmap <leader>md :%!~/.vim/plugin/Markdown.pl --html4tags <cr>
+
+nmap <leader>sjs :set ft=javascript <cr>
+nmap <leader>srb :set ft=ruby <cr>
 
 " cd to the directory containing the file in the buffer
 nmap <silent> ,cd :lcd %:h<CR>
@@ -506,6 +512,9 @@ if has("autocmd")
   augroup END
 endif
 
+" Highlight every other line
+ map <leader><Tab> :set hls<CR>/\n.*\n/<CR>
+
 " }}}
 " FileTypes ---------------------------------------------------------------- {{{
 
@@ -751,11 +760,8 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
 " Vundle Setup ------------------------------------------------------------- {{{
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " If vundle is not installed, do it first
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   let bundleExists = 1
-
   " if (!isdirectory(expand("$HOME/.vim/bundle/neobundle.vim")))
   "    call system(expand("mkdir -p $HOME/.vim/bundle"))
   "    call system(expand("git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim"))
@@ -779,19 +785,20 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
 " Let NeoBundle manage NeoBundle
 " Required:
   NeoBundleFetch 'Shougo/neobundle.vim'
+
  " syntax
   NeoBundle 'wavded/vim-stylus'
   NeoBundle 'tpope/vim-markdown'
   NeoBundle 'scrooloose/syntastic'
   NeoBundle 'tmux-plugins/vim-tmux'
   NeoBundle 'digitaltoad/vim-jade'
-  " NeoBundle 'othree/yajs.vim'
   NeoBundle 'pangloss/vim-javascript'
   NeoBundle 'mxw/vim-jsx'
   NeoBundle '1995eaton/vim-better-javascript-completion'
   NeoBundle 'nikvdp/ejs-syntax',{'autoload':{'filetypes':['ejs']}}
   NeoBundle 'elzr/vim-json'
   NeoBundle 'othree/javascript-libraries-syntax.vim'
+
 " Typescript
   NeoBundle 'leafgarland/typescript-vim'
   NeoBundle 'Shougo/vimproc.vim', {
@@ -803,7 +810,6 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
        \     'unix' : 'gmake',
        \    },
        \ }
-
 
 " colorscheme & syntax highlighting
   NeoBundle 'mhartington/oceanic-next'
@@ -836,6 +842,7 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
   " NeoBundle 'ervandew/supertab'
   " NeoBundle 'Quramy/tsuquyomi'
   " NeoBundle 'ashisha/image.vim'
+  " NeoBundle 'othree/yajs.vim'
 
 
 " set the runtime path to include Vundle and initialize
@@ -871,6 +878,9 @@ NeoBundle 'vim-scripts/L9'
 NeoBundle 'dmedvinsky/uritality.vim'
 NeoBundle 'gorodinskiy/vim-coloresque'
 NeoBundle 'mhinz/vim-startify'
+NeoBundle 'ryanoasis/vim-devicons'
+NeoBundle 'maksimr/vim-jsbeautify'
+NeoBundle 'beautify-web/js-beautify'
 
 " NeoBundle 'Valloric/YouCompleteMe'
 " NeoBundle 'Lokaltog/powerline'
@@ -894,7 +904,7 @@ call neobundle#end()
 
 
 
-filetype plugin indent on    " required
+" filetype plugin indent on    " required
 
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
@@ -903,40 +913,7 @@ filetype plugin on    " Enable filetype-specific plugins
 " }}}
 " Plugin settings ---------------------------------------------------------- {{{
 
-" Vim-airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#show_tab_nr = 1
-" let g:airline_theme='oceanicnext'
-let g:airline_theme = 'powerlineish'
-let g:airline_detect_modified = 1
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline_extensions = ['branch', 'tabline']
-
-
-" EasyMotion
-hi EasyMotionShade ctermfg=234 guifg=#1c1c1c
-let g:EasyMotion_leader_key = '<Leader>'
-" forwards <- ,f
-nmap <leader>f <Plug>(easymotion-w)
-" backwards <- ,b
-" go change cursor
-nmap <leader>g <Plug>(easymotion-f)
-
-" CtrlP
-let g:ctrlp_cmd = 'CtrlP'
-" nmap <Space>o :CtrlP<cr>
-nmap <leader>p :CtrlP<cr>
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-
-" CtrlP ignore patterns
-let g:ctrlp_custom_ignore = {
-            \ 'dir': '\.git$\|node_modules$\|\.hg$\|\.svn$',
-            \ 'file': '\.exe$\|\.so$'
-            \ }
-
-
+" Ag & Ack -------------------------- {{{
 
 " The Silver Searcher, aka Ag
 nnoremap \ :Ag<SPACE>
@@ -957,84 +934,7 @@ nmap <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
 nmap <a-F11> :Ack -w <c-r><c-w><cr>
 
 
-
-" Ctags
-" Check the current folder for tags file and keep going one directory up all
-" the way to the root folder. SO you can be in any sub-folder in your project and it'll be able to find the
-" tags files.
-set tags=tags;/
-nnoremap <leader>T :CtrlPTag<cr>
-
-
-
-
-" Markdown to HTML
-nmap <leader>md :%!~/.vim/plugin/Markdown.pl --html4tags <cr>
-
-nmap <leader>sjs :set ft=javascript <cr>
-nmap <leader>srb :set ft=ruby <cr>
-
-
-
-" FuzzyFinder
-nmap ;d :FufFileWithCurrentBufferDir<CR>
-nmap ;f :FufBuffer<CR>
-nmap ;t :FufTaggedFile<CR>
-nnoremap ;l  :FufTag<cr>
-nnoremap ;<Space> :FufBookmarkDir<cr>
-nnoremap ;f :FufFile<cr>
-nnoremap ;h :FufFile ~/<cr>
-nnoremap ;j :FufFile ~/.vim/<cr>
-nnoremap ;db :FufFile ~/Dropbox/<cr>
-nnoremap ;m :FufFile ~/.tmuxinator/<cr>
-let g:fuf_file_exclude = '\v\~$|\.(DS_Store|o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-let g:fuf_buffer_keyDelete = '<C-d>'
-
-
-" SnipMate
-"let g:snipMate = {}
-"let g:snipMate.scope_aliases = {}
-"let g:snipMate.scope_aliases['ruby'] = 'ruby,rails,ruby-rails,ruby-1.9'
-":imap <C-space> <Plug>snipMateNextOrTrigger
-":smap <C-space> <Plug>snipMateNextOrTrigger
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger="<c-space>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-
-" Buftabline
-set hidden
-let g:buftabline_show=1
-let g:buftabline_numbers=1
-let g:buftabline_indicators=1
-let g:buftabline_separators=0
-:hi TabLine cterm=NONE gui=NONE ctermfg=10 guifg=#009010 ctermbg=236 guibg=#303030 term=NONE " other tabs
-:hi TabLineSel cterm=NONE gui=NONE ctermfg=8 guifg=#121212 ctermbg=2 guibg=#00c040 term=NONE " current tab
-:hi PmenuSel ctermfg=8 guifg=#808080 ctermbg=220 guibg=#ffdf00 gui=NONE term=NONE " Modified tabs
-:hi TabLineFill guifg=#121212 guibg=#121212 ctermfg=233 ctermbg=233 " where there are no labels
-
-
-
-
-" Git gitgutter column colors
-call gitgutter#highlight#define_highlights()
-highlight clear SignColumn
-highlight GitGutterAdd ctermfg=green
-highlight GitGutterChange ctermfg=yellow
-highlight GitGutterDelete ctermfg=red
-highlight GitGutterChangeDelete ctermfg=yellow
-
-" SuperTab
-" SuperTab doesn't provide auto pop up at the moment. Switching to Neocomplete.
-"  let g:SuperTabDefaultCompletionType = "context"
-"  let g:SuperTabClosePreviewOnPopupClose = 1
-
-
+" }}}
 " NERD Tree ------------------------- {{{
 " Toggle NERD Tree
 nmap <leader>n :NERDTreeToggle<CR>
@@ -1069,6 +969,25 @@ let NERDTreeIgnore=[ '\.ncb$', '\.suo$', '\.vcproj\.RIMNET', '\.obj$',
   call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
 
+
+" }}}
+" vim-devicons ---------------------- {{{
+
+" let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+" let g:webdevicons_enable_nerdtree = 1
+" let g:webdevicons_enable_unite = 1
+" let g:webdevicons_enable_vimfiler = 1
+" let g:webdevicons_enable_airline_tabline = 1
+" let g:webdevicons_enable_airline_statusline = 1
+" let g:webdevicons_enable_ctrlp = 1
+" let g:webdevicons_enable_flagship_statusline = 1
+" let g:WebDevIconsUnicodeDecorateFileNodes = 1
+" let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+" let g:webdevicons_conceal_nerdtree_brackets = 1
+" let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
+" let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+" let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+" let g:DevIconsEnableFoldersOpenClose = 1
 
 " }}}
 " Startify -------------------------- {{{
@@ -1125,6 +1044,46 @@ hi StartifyPath    ctermfg=245 guifg=#8a8a8a
 hi StartifySlash   ctermfg=240 guifg=#585858
 hi StartifySpecial ctermfg=240 guifg=#585858
 
+
+" }}}
+" Tmux ------------------------------ {{{
+
+" Fix Cursor in TMUX
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+" }}}
+" SnipMate -------------------------- {{{
+
+"let g:snipMate = {}
+"let g:snipMate.scope_aliases = {}
+"let g:snipMate.scope_aliases['ruby'] = 'ruby,rails,ruby-rails,ruby-1.9'
+":imap <C-space> <Plug>snipMateNextOrTrigger
+":smap <C-space> <Plug>snipMateNextOrTrigger
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<c-space>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" Snipppets
+
+" Enable snipMate compatibility feature.
+  let g:neosnippet#enable_snipmate_compatibility = 1
+  imap <C-s>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-s>     <Plug>(neosnippet_expand_or_jump)
+  xmap <C-s>     <Plug>(neosnippet_expand_target)
+
+" Tell Neosnippet about the other snippets
+  let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/neosnippets, ~/.vim/bundle/angular-vim-snippets/snippets'
 
 " }}}
 " Neocomplete ----------------------- {{{
@@ -1221,8 +1180,10 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
-let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '!'
+let g:syntastic_style_error_symbol = '⚡'
+" let g:syntastic_style_error_symbol = '✗'
+" let g:syntastic_warning_symbol = '⚠'
 
 noremap <leader>st :SyntasticToggleMode<CR>
 
@@ -1242,19 +1203,101 @@ map <Leader>E :lprev<CR>
 
 " }}}
 
+" Vim-airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_tab_nr = 1
+" let g:airline_theme='oceanicnext'
+let g:airline_theme = 'powerlineish'
+let g:airline_detect_modified = 1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline_extensions = ['branch', 'tabline']
+
+
+
+" EasyMotion
+hi EasyMotionShade ctermfg=234 guifg=#1c1c1c
+let g:EasyMotion_leader_key = '<Leader>'
+" forwards <- ,f
+nmap <leader>f <Plug>(easymotion-w)
+" backwards <- ,b
+" go change cursor
+nmap <leader>g <Plug>(easymotion-f)
+
+
+
+" CtrlP
+let g:ctrlp_cmd = 'CtrlP'
+" nmap <Space>o :CtrlP<cr>
+nmap <leader>p :CtrlP<cr>
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+" CtrlP ignore patterns
+let g:ctrlp_custom_ignore = {
+            \ 'dir': '\.git$\|node_modules$\|\.hg$\|\.svn$',
+            \ 'file': '\.exe$\|\.so$'
+            \ }
+
+
+
+
+" Ctags
+" Check the current folder for tags file and keep going one directory up all
+" the way to the root folder. SO you can be in any sub-folder in your project and it'll be able to find the
+" tags files.
+set tags=tags;/
+nnoremap <leader>T :CtrlPTag<cr>
+
+
+
+" FuzzyFinder
+nmap ;d :FufFileWithCurrentBufferDir<CR>
+nmap ;f :FufBuffer<CR>
+nmap ;t :FufTaggedFile<CR>
+nnoremap ;l  :FufTag<cr>
+nnoremap ;<Space> :FufBookmarkDir<cr>
+nnoremap ;f :FufFile<cr>
+nnoremap ;h :FufFile ~/<cr>
+nnoremap ;j :FufFile ~/.vim/<cr>
+nnoremap ;db :FufFile ~/Dropbox/<cr>
+nnoremap ;m :FufFile ~/.tmuxinator/<cr>
+let g:fuf_file_exclude = '\v\~$|\.(DS_Store|o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+let g:fuf_buffer_keyDelete = '<C-d>'
+
+
+
+" Buftabline
+set hidden
+let g:buftabline_show=1
+let g:buftabline_numbers=1
+let g:buftabline_indicators=1
+let g:buftabline_separators=0
+:hi TabLine cterm=NONE gui=NONE ctermfg=10 guifg=#009010 ctermbg=236 guibg=#303030 term=NONE " other tabs
+:hi TabLineSel cterm=NONE gui=NONE ctermfg=8 guifg=#121212 ctermbg=2 guibg=#00c040 term=NONE " current tab
+:hi PmenuSel ctermfg=8 guifg=#808080 ctermbg=220 guibg=#ffdf00 gui=NONE term=NONE " Modified tabs
+:hi TabLineFill guifg=#121212 guibg=#121212 ctermfg=233 ctermbg=233 " where there are no labels
+
+
+
+" Git gitgutter column colors
+call gitgutter#highlight#define_highlights()
+highlight clear SignColumn
+highlight GitGutterAdd ctermfg=green
+highlight GitGutterChange ctermfg=yellow
+highlight GitGutterDelete ctermfg=red
+highlight GitGutterChangeDelete ctermfg=yellow
+
+" SuperTab
+" SuperTab doesn't provide auto pop up at the moment. Switching to Neocomplete.
+"  let g:SuperTabDefaultCompletionType = "context"
+"  let g:SuperTabClosePreviewOnPopupClose = 1
+
+
+
 " }}}
 " NeoVim  ------------------------------------------------------------------ {{{
 " Switching to NeoVim
-
-" Fix Cursor in TMUX
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-
 
 
 let g:indent_guides_auto_colors = 0
@@ -1263,16 +1306,6 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 set virtualedit=
 set display+=lastline
 
-
-" Snipppets
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable snipMate compatibility feature.
-  let g:neosnippet#enable_snipmate_compatibility = 1
-  imap <C-s>     <Plug>(neosnippet_expand_or_jump)
-  smap <C-s>     <Plug>(neosnippet_expand_or_jump)
-  xmap <C-s>     <Plug>(neosnippet_expand_target)
-" Tell Neosnippet about the other snippets
-  let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/neosnippets, ~/.vim/bundle/angular-vim-snippets/snippets'
 
 
 
