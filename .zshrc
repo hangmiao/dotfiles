@@ -215,8 +215,9 @@ alias ap="alias | grep $1"
 
 alias ducks='find ~ -xdev -type f -size +1000M'
 
+alias m='mux'
 
-alias m='/Applications/Movist.app/Contents/MacOS/Movist'
+alias M='/Applications/Movist.app/Contents/MacOS/Movist'
 
 # Mac OS X ----------------------------------------------------------------- {{{
 
