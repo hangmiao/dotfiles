@@ -5,7 +5,7 @@ syntax on
 filetype off
 filetype plugin indent on
 " execute pathogen#infect()
-set nocompatible
+set nocompatible " Be iMproved
 set modelines=0
 set foldmethod=marker
 set cmdheight=1
@@ -94,8 +94,37 @@ map <F8> 20k<CR>
 map <s-F7> 6j<CR> " Shift + F7
 map <s-F8> 6k<CR>
 
+
+" Neovim terminal mapping
+" terminal 'normal mode'
+  tmap <esc> <c-\><c-n><esc><cr>
+
+" Align blocks of text and keep them selected
+  vmap < <gv
+  vmap > >gv
+
+" Make :help appear in a full-screen tab, instead of a window {{{
+
 " This is much better for 13' laptop.
-cnoremap h<SPACE> tab help<SPACE>
+" cnoremap h<SPACE> tab help<SPACE>
+
+"Only apply to .txt files...
+augroup HelpInTabs
+    autocmd!
+    autocmd BufEnter  *.txt   call HelpInNewTab()
+augroup END
+
+"Only apply to help files...
+function! HelpInNewTab ()
+    if &buftype == 'help'
+        "Convert the help window to a tab...
+        execute "normal \<C-W>T"
+    endif
+endfunction
+
+
+" }}}
+
 
 " }}}
 " Toggle Setup ------------------------------------------------------------- {{{
@@ -125,15 +154,15 @@ command! W w !sudo tee % &>/dev/null
 " Markdown to HTML
 nmap <leader>md :%!~/.vim/plugin/Markdown.pl --html4tags <cr>
 
-nmap <leader>sjs :set ft=javascript <cr>
-nmap <leader>srb :set ft=ruby <cr>
-
 " cd to the directory containing the file in the buffer
 nmap <silent> ,cd :lcd %:h<CR>
 nmap <silent> ,cr :lcd <c-r>=FindGitDirOrRoot()<cr><cr>
 nmap <silent> ,md :!mkdir -p %:p:h<CR>
 
 map <leader>re :call RenameFile()<cr>
+
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
 
 " scroll the viewport faster
 nnoremap <C-e> 10<C-e>
@@ -181,6 +210,10 @@ vnoremap <C-c> "+ygv"*y
 nnoremap <leader>s :%s///g<left><left><left>
 vnoremap <leader>s :s///g<left><left><left>
 
+" Substitute all occurrences of a word where the cursor is placed
+noremap <Leader>S :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+
 nnoremap gw 0f=w
 
 " Del text in current line but WITHOUT <CR>
@@ -193,10 +226,6 @@ nnoremap <leader>v 0v$hd
 
 " Close the current buffer and move to the previous one
   " nmap <leader>x :bp <BAR> bd #<CR>
-" Move to the next buffer
-  nmap <leader>, :bnext<CR>
-" Move to the previous buffer
-  nmap <leader>. :bprevious<CR>
 
 nnoremap <leader>G :Gblame<CR>
 
@@ -447,7 +476,7 @@ nnoremap <leader>c :call RubySyntax()<cr>
 nnoremap <leader>r :call RubyRun()<cr>
 nnoremap <leader>l :call RailsRun()<cr>
 " nnoremap <leader>l :call ShellList()<cr>
-nnoremap <leader>S :call FormatSqlStr()<cr>
+nnoremap <leader>F :call FormatSqlStr()<cr>
 nnoremap <space> :
 nnoremap <leader>q q:
 noremap <tab> %
@@ -473,6 +502,11 @@ nmap <silent> ,u~ :t.\|s/./\\~/g\|:nohls<cr>
 
 set backup                        " enable backups
 set noswapfile                    " it's 2015, Vim.
+
+set undofile
+set undodir="$HOME/.VIM_UNDO_FILES"
+set undolevels=5000
+
 
 set undodir=~/.vim/tmp/undo//     " undo files
 set backupdir=~/.vim/tmp/backup// " backups
@@ -518,12 +552,16 @@ endif
 " }}}
 " FileTypes ---------------------------------------------------------------- {{{
 
+" JavascriptLibs:
+let g:used_javascript_libs = 'jquery,underscore,angularjs,backbone'
+
 augroup myfiletypes
     " Clear out old autocmds in group.
     autocmd!
 
     " Set filetypes
-    au BufNewFile,BufRead *.js.erb setfiletype=javascript.ruby
+    " au BufNewFile,BufRead *.js.erb setfiletype=javascript.ruby
+    au BufNewFile,BufRead *.js.erb setfiletype javascript
     autocmd BufNewFile,BufRead *.html.erb set filetype=html.ruby
     au BufNewFile,BufRead *.j setf objj
     au BufNewFile,BufRead Jakefile setfiletype javascript
@@ -616,10 +654,10 @@ noremap <silent> <C-0> <C-W>>
 " Color settings ----------------------------------------------------------- {{{
 colorscheme solarized
 colorscheme monokai
-colorscheme gruvbox
+colorscheme busybee
 colorscheme PaperColor
 colorscheme colorsbox-material
-colorscheme busybee
+colorscheme gruvbox
 colorscheme mustang
 
 
@@ -771,58 +809,36 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
   if 0 | endif
 
   if has('vim_starting')
-    if &compatible
-      set nocompatible               " Be iMproved
-    endif
-
-" Required:
     set runtimepath+=~/.vim/bundle/neobundle.vim/
   endif
 
 " Required:
   call neobundle#begin(expand('~/.vim/bundle/'))
 
-" Let NeoBundle manage NeoBundle
-" Required:
-  NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundleFetch 'Shougo/neobundle.vim'
 
- " syntax
-  NeoBundle 'wavded/vim-stylus'
-  NeoBundle 'tpope/vim-markdown'
-  NeoBundle 'scrooloose/syntastic'
-  NeoBundle 'tmux-plugins/vim-tmux'
-  NeoBundle 'digitaltoad/vim-jade'
-  NeoBundle 'pangloss/vim-javascript'
-  NeoBundle 'mxw/vim-jsx'
-  NeoBundle '1995eaton/vim-better-javascript-completion'
-  NeoBundle 'nikvdp/ejs-syntax',{'autoload':{'filetypes':['ejs']}}
-  NeoBundle 'elzr/vim-json'
-  NeoBundle 'othree/javascript-libraries-syntax.vim'
+NeoBundle 'wavded/vim-stylus'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'tmux-plugins/vim-tmux'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'mxw/vim-jsx'
+NeoBundle '1995eaton/vim-better-javascript-completion'
+NeoBundle 'othree/javascript-libraries-syntax.vim'
+NeoBundleLazy 'nikvdp/ejs-syntax',{'autoload':{'filetypes':['ejs']}}
+NeoBundleLazy 'elzr/vim-json', {'autoload':{'filetypes':['json']}}
 
-" Typescript
-  NeoBundle 'leafgarland/typescript-vim'
-  NeoBundle 'Shougo/vimproc.vim', {
-       \ 'build' : {
-       \     'windows' : 'tools\\update-dll-mingw',
-       \     'cygwin' : 'make -f make_cygwin.mak',
-       \     'mac' : 'make -f make_mac.mak',
-       \     'linux' : 'make',
-       \     'unix' : 'gmake',
-       \    },
-       \ }
-
-" colorscheme & syntax highlighting
   NeoBundle 'mhartington/oceanic-next'
   NeoBundle 'kien/rainbow_parentheses.vim'
   NeoBundle 'chrisbra/Colorizer'
   NeoBundle 'Raimondi/delimitMate'
   NeoBundle 'valloric/MatchTagAlways'
+
  " Git helpers
   NeoBundle 'tpope/vim-fugitive'
   NeoBundle 'airblade/vim-gitgutter'
   NeoBundle 'Xuyuanp/nerdtree-git-plugin'
 
-" untils
   NeoBundle 'matze/vim-move'
   NeoBundle 'editorconfig/editorconfig-vim'
   NeoBundle 'terryma/vim-multiple-cursors'
@@ -852,7 +868,6 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
 
 " call plug#begin('~/.vim/plugged')
 " call plug#begin('~/.config/nvim')
-
 
 
 NeoBundle 'VundleVim/Vundle.vim'
@@ -1284,10 +1299,15 @@ let g:buftabline_separators=0
 " Git gitgutter column colors
 call gitgutter#highlight#define_highlights()
 highlight clear SignColumn
-highlight GitGutterAdd ctermfg=green
-highlight GitGutterChange ctermfg=yellow
-highlight GitGutterDelete ctermfg=red
-highlight GitGutterChangeDelete ctermfg=yellow
+highlight GitGutterAdd ctermfg=green guifg=#009010
+highlight GitGutterChange ctermfg=yellow guifg=#ffdf00
+highlight GitGutterDelete ctermfg=red guifg=red
+highlight GitGutterChangeDelete ctermfg=yellow guifg=#ffdf00
+
+let g:gitgutter_map_keys = 0
+nmap <Leader>ga <Plug>GitGutterStageHunk
+nmap <Leader>gu <Plug>GitGutterRevertHunk
+nmap <Leader>gv <Plug>GitGutterPreviewHunk
 
 " SuperTab
 " SuperTab doesn't provide auto pop up at the moment. Switching to Neocomplete.
@@ -1300,6 +1320,8 @@ highlight GitGutterChangeDelete ctermfg=yellow
 " NeoVim  ------------------------------------------------------------------ {{{
 " Switching to NeoVim
 
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
