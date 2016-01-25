@@ -143,7 +143,7 @@ set listchars=tab:▸\ ,eol:¬,extends:»,precedes:«
 
 " Edit the vimrc file
 nnoremap <leader>ev :e $MYVIMRC<cr>
-nmap <silent> ,sv :so $MYVIMRC<CR>
+nmap <silent> ,!v :so $MYVIMRC<CR>
 nnoremap <leader>et :e ~/.tmux.conf<cr>
 nnoremap <leader>ez :e ~/.zshrc<cr>
 nnoremap <leader>es :e ~/daily.txt<cr>
@@ -237,31 +237,13 @@ nmap <silent> <Leader>da :1,9000bwipeout<cr>
 " }}}
 " Splits ------------------------------------------------------------------- {{{
 
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-h> <C-w>h
-noremap <C-l> <C-w>l
-
-" create
-nnoremap c<C-j> :bel sp new<cr>
-nnoremap c<C-k> :abo sp new<cr>
-nnoremap c<C-h> :lefta vsp new<cr>
-nnoremap c<C-l> :rightb vsp new<cr>
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
 nnoremap <leader>- :bel sp new<cr>
 nnoremap <leader>\ :rightb vsp new<cr>
-
-" resize
-nnoremap g<C-j> <C-w>j<C-w>_
-nnoremap g<C-k> <C-w>k<C-w>_
-nnoremap g<C-h> <C-w>h<C-w>_
-nnoremap g<C-l> <C-w>l<C-w>_
-
-" delete
-nnoremap d<C-j> <C-w>j<C-w>c
-nnoremap d<C-k> <C-w>k<C-w>c
-nnoremap d<C-h> <C-w>h<C-w>c
-nnoremap d<C-l> <C-w>l<C-w>c
 
 " }}}
 " Command editing ---------------------------------------------------------- {{{
@@ -276,7 +258,7 @@ cnoremap <ESC>b     <S-Left>
 cnoremap <ESC><C-B> <S-Left>
 cnoremap <ESC>f     <S-Right>
 cnoremap <ESC><C-F> <S-Right>
-cnoremap <ESC><C-H> <C-W>
+" cnoremap <ESC><C-H> <C-W>
 
 " }}}
 " Life savers -------------------------------------------------------------- {{{
@@ -886,7 +868,6 @@ NeoBundle 'vim-scripts/FuzzyFinder'
 NeoBundle 'ap/vim-buftabline'
 NeoBundle 'MarcWeber/vim-addon-mw-utils'
 NeoBundle 'tomtom/tlib_vim'
-NeoBundle 'SirVer/ultisnips'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'vim-scripts/L9'
@@ -898,6 +879,7 @@ NeoBundle 'maksimr/vim-jsbeautify'
 NeoBundle 'beautify-web/js-beautify'
 
 " NeoBundle 'Valloric/YouCompleteMe'
+" NeoBundle 'SirVer/ultisnips'
 " NeoBundle 'Lokaltog/powerline'
 " NeoBundle 'terryma/vim-smooth-scroll'
 " NeoBundle 'garbas/vim-snipmate'
@@ -1072,6 +1054,22 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
+" vim-tmux-navigator ---------------- {{{
+"
+  let g:tmux_navigator_no_mappings = 1
+  nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+  nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+  nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+  nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+  nnoremap <silent> <C-;> :TmuxNavigatePrevious<cr>
+  tmap <C-j> <C-\><C-n>:TmuxNavigateDown<cr>
+  tmap <C-k> <C-\><C-n>:TmuxNavigateUp<cr>
+  tmap <C-h> <C-\><C-n>:TmuxNavigateLeft<cr>
+  tmap <C-l> <C-\><C-n>:TmuxNavigateRight<cr>
+  tmap <C-;> <C-\><C-n>:TmuxNavigatePrevious<cr>
+
+" }}}
+
 " }}}
 " SnipMate -------------------------- {{{
 
@@ -1085,9 +1083,10 @@ endif
 let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsNoMap=1
 
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+" " If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
 
 " Snipppets
 
@@ -1131,8 +1130,8 @@ endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
 " Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
+" inoremap <expr><C-g>     neocomplete#undo_completion()
+" inoremap <expr><C-l>     neocomplete#complete_common_string()
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
@@ -1387,8 +1386,9 @@ if has('gui_running')
     " GUI Vim
     let macvim_skip_colorscheme=1 " respect color settings in .vimrc
 
-    set guifont=Source\ Code\ Pro\ for\ Powerline:h16
-    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h16
+    " set guifont=Source\ Code\ Pro\ for\ Powerline:h16
+    " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h16
+    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types:h16
 
     set mouse=a
 
