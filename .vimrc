@@ -232,15 +232,15 @@ nnoremap <leader>G :Gblame<CR>
 " Automatically change current directory to that of the file in the buffer
 " autocmd BufEnter * cd %:p:h
 " Wipe out all buffers
-nmap <silent> <Leader>da :1,9000bwipeout<cr>
+" nmap <silent> <Leader>da :1,9000bwipeout<cr>
 
 " }}}
 " Splits ------------------------------------------------------------------- {{{
 
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-l> <C-w>l
 
 nnoremap <leader>- :bel sp new<cr>
 nnoremap <leader>\ :rightb vsp new<cr>
@@ -634,14 +634,13 @@ noremap <silent> <C-0> <C-W>>
 
 " }}}
 " Color settings ----------------------------------------------------------- {{{
-colorscheme solarized
-colorscheme monokai
-colorscheme busybee
-colorscheme PaperColor
-colorscheme colorsbox-material
-colorscheme gruvbox
+" colorscheme solarized
+" colorscheme monokai
+" colorscheme busybee
+" colorscheme PaperColor
+" colorscheme colorsbox-material
+" colorscheme gruvbox
 colorscheme mustang
-
 
 " set background=dark
 "highlight Comment ctermfg=119 guifg=#87ff5f
