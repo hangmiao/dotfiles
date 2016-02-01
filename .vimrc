@@ -2,7 +2,6 @@
 scriptencoding utf-8
 
 syntax on
-filetype off
 filetype plugin indent on
 " execute pathogen#infect()
 set nocompatible " Be iMproved
@@ -46,7 +45,6 @@ set showmatch " show matching brackets (),{},[]
 set mat=5 " show matching brackets for 0.5 seconds
 set hlsearch
 set scrolloff=3
-set autoindent
 set showmode
 set showcmd
 set hidden
@@ -77,7 +75,7 @@ let mapleader = ","
 set lazyredraw
 
 " setting path explicitly to make it load faster
-let g:ruby_path="/usr/bin/ruby"
+let g:ruby_path = "/usr/bin/ruby"
 let g:python_host_prog = '/usr/local/bin/python3'
 
 " Non-compatible
@@ -97,11 +95,7 @@ map <s-F8> 6k<CR>
 
 " Neovim terminal mapping
 " terminal 'normal mode'
-  tmap <esc> <c-\><c-n><esc><cr>
-
-" Align blocks of text and keep them selected
-  vmap < <gv
-  vmap > >gv
+tmap <esc> <c-\><c-n><esc><cr>
 
 " Make :help appear in a full-screen tab, instead of a window {{{
 
@@ -234,6 +228,9 @@ nnoremap <leader>G :Gblame<CR>
 " Wipe out all buffers
 " nmap <silent> <Leader>da :1,9000bwipeout<cr>
 
+
+nnoremap <leader>p :pwd<cr>
+
 " }}}
 " Splits ------------------------------------------------------------------- {{{
 
@@ -241,6 +238,18 @@ nnoremap <leader>G :Gblame<CR>
 " nnoremap <C-k> <C-w>k
 " nnoremap <C-h> <C-w>h
 " nnoremap <C-l> <C-w>l
+
+" " resize current buffer by +/- 5
+" nnoremap <leader><left> :vertical resize -10<cr>
+" nnoremap <leader><down> :resize +5<cr>
+" nnoremap <leader><up> :resize -5<cr>
+" nnoremap <leader><right> :vertical resize +10<cr>
+
+noremap <silent> <C-Left> :vertical resize -3<CR>
+noremap <silent> <C-Right> :vertical resize -3<CR>
+noremap <silent> <C-Down> :resize -3<CR>
+noremap <silent> <C-Up> :resize -3<CR>
+
 
 nnoremap <leader>- :bel sp new<cr>
 nnoremap <leader>\ :rightb vsp new<cr>
@@ -485,9 +494,9 @@ nmap <silent> ,u~ :t.\|s/./\\~/g\|:nohls<cr>
 set backup                        " enable backups
 set noswapfile                    " it's 2015, Vim.
 
-set undofile
-set undodir="$HOME/.VIM_UNDO_FILES"
-set undolevels=5000
+" set undofile
+" set undodir="$HOME/.VIM_UNDO_FILES"
+" set undolevels=5000
 
 
 set undodir=~/.vim/tmp/undo//     " undo files
@@ -794,7 +803,15 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
   endif
 
 " Required:
-  call neobundle#begin(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
+" call plug#begin('~/.vim/plugged')
+" call plug#begin('~/.config/nvim')
+
+" set the runtime path to include Vundle and initialize
+" set rtp+=~/.vim/bundle/Vundle.vim
+" set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+" call vundle#begin()
+
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -809,46 +826,36 @@ NeoBundle 'othree/javascript-libraries-syntax.vim'
 NeoBundleLazy 'nikvdp/ejs-syntax',{'autoload':{'filetypes':['ejs']}}
 NeoBundleLazy 'elzr/vim-json', {'autoload':{'filetypes':['json']}}
 
-  NeoBundle 'mhartington/oceanic-next'
-  NeoBundle 'kien/rainbow_parentheses.vim'
-  NeoBundle 'chrisbra/Colorizer'
-  NeoBundle 'Raimondi/delimitMate'
-  NeoBundle 'valloric/MatchTagAlways'
+NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundle 'chrisbra/Colorizer'
+NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'valloric/MatchTagAlways'
 
- " Git helpers
-  NeoBundle 'tpope/vim-fugitive'
-  NeoBundle 'airblade/vim-gitgutter'
-  NeoBundle 'Xuyuanp/nerdtree-git-plugin'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'Xuyuanp/nerdtree-git-plugin'
 
-  NeoBundle 'matze/vim-move'
-  NeoBundle 'editorconfig/editorconfig-vim'
-  NeoBundle 'terryma/vim-multiple-cursors'
-  NeoBundle 'bling/vim-airline'
-  NeoBundle 'mattn/emmet-vim'
-  NeoBundle 'Shougo/neocomplete.vim'
-  NeoBundle 'Shougo/neosnippet'
-  NeoBundle 'Shougo/neosnippet-snippets'
-  NeoBundle 'matthewsimo/angular-vim-snippets'
-  NeoBundle 'ryanoasis/vim-webdevicons'
-  NeoBundle 'guns/xterm-color-table.vim'
-  NeoBundle 'sjl/clam.vim'
-  NeoBundle 'fmoralesc/vim-tutor-mode'
+NeoBundle 'benekastah/neomake'
+NeoBundle 'matze/vim-move'
+NeoBundle 'editorconfig/editorconfig-vim'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'matthewsimo/angular-vim-snippets'
+NeoBundle 'ryanoasis/vim-webdevicons'
+NeoBundle 'guns/xterm-color-table.vim'
+NeoBundle 'sjl/clam.vim'
+NeoBundle 'fmoralesc/vim-tutor-mode'
 
-  " NeoBundle 'gosukiwi/vim-atom-dark'
-  " NeoBundle 'Yggdroot/indentLine'
-  " NeoBundle 'ervandew/supertab'
-  " NeoBundle 'Quramy/tsuquyomi'
-  " NeoBundle 'ashisha/image.vim'
-  " NeoBundle 'othree/yajs.vim'
-
-
-" set the runtime path to include Vundle and initialize
-" set rtp+=~/.vim/bundle/Vundle.vim
-" set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-" call vundle#begin()
-
-" call plug#begin('~/.vim/plugged')
-" call plug#begin('~/.config/nvim')
+" NeoBundle 'gosukiwi/vim-atom-dark'
+" NeoBundle 'Yggdroot/indentLine'
+" NeoBundle 'ervandew/supertab'
+" NeoBundle 'Quramy/tsuquyomi'
+" NeoBundle 'ashisha/image.vim'
+" NeoBundle 'othree/yajs.vim'
 
 
 NeoBundle 'VundleVim/Vundle.vim'
@@ -899,8 +906,6 @@ call neobundle#end()
   endif
 
 
-
-" filetype plugin indent on    " required
 
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
@@ -1185,8 +1190,6 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_javascript_checkers = ['jscs', 'eslint']
-let g:syntastic_check_on_open = 0
 " let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_auto_loc_list = 1
 
@@ -1200,21 +1203,40 @@ let g:syntastic_style_error_symbol = '⚡'
 
 noremap <leader>st :SyntasticToggleMode<CR>
 
-function! JscsFix()
-    let l:winview = winsaveview()
-    % ! jscs -x
-    call winrestview(l:winview)
-endfunction
-command JscsFix :call JscsFix()
-
-noremap <leader>j :JscsFix<CR>
- " autocmd BufWritePre *.js,*.jsx JscsFix
-
 let g:syntastic_mode_map = { 'passive_filetypes': ['sass', 'scss','html'] }
 map <Leader>e :lnext<CR>
 map <Leader>E :lprev<CR>
 
 " }}}
+" Linting ----------------------------{{{
+
+let g:syntastic_javascript_checkers = ['jscs', 'eslint']
+" let g:syntastic_check_on_open = 0
+
+function! neomake#makers#ft#javascript#eslint()
+    return {
+        \ 'args': ['-f', 'compact'],
+        \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+        \ '%W%f: line %l\, col %c\, Warning - %m'
+        \ }
+endfunction
+
+let g:neomake_javascript_enabled_makers = ['eslint']
+
+autocmd! BufWritePost * Neomake
+
+function! JscsFix()
+    let l:winview = winsaveview()
+    % ! jscs -x
+    call winrestview(l:winview)
+endfunction
+
+command JscsFix :call JscsFix()
+noremap <leader>j :JscsFix<CR>
+"}}}
+
+
+noremap <c-f> :Autoformat<CR>
 
 " Vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -1243,7 +1265,8 @@ nmap <leader>g <Plug>(easymotion-f)
 " CtrlP
 let g:ctrlp_cmd = 'CtrlP'
 " nmap <Space>o :CtrlP<cr>
-nmap <leader>p :CtrlP<cr>
+nnoremap <C-p> :CtrlP<cr>
+
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " CtrlP ignore patterns
@@ -1333,7 +1356,6 @@ set display+=lastline
   " Make files look nice
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   autocmd FileType css,scss,sass :ColorHighlight
-  noremap <c-f> :Autoformat<CR>
 
 
 " Typescript & Javscript omni complete
@@ -1401,9 +1423,9 @@ if has('gui_running')
     "highlight SpellBad term=underline gui=undercurl guisp=Orange
 
     " Different cursors for different modes.
-    set guicursor=n-c:block-Cursor-blinkon0
-    set guicursor+=v:block-vCursor-blinkon0
-    set guicursor+=i-ci:ver20-iCursor
+    " set guicursor=n-c:block-Cursor-blinkon0
+    " set guicursor+=v:block-vCursor-blinkon0
+    " set guicursor+=i-ci:ver20-iCursor
 
     let g:deoplete#enable_at_startup = 0
     " nnoremap <D-e> :tabnew<cr>
