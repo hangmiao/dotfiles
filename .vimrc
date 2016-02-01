@@ -655,14 +655,15 @@ colorscheme mustang
 "highlight Comment ctermfg=119 guifg=#87ff5f
 "highlight Identifier ctermfg=99AA00
 
-:hi CursorLine cterm=NONE ctermbg=214 ctermfg=black " Highlight line to not be an underline
+hi CursorLine cterm=NONE ctermbg=214 ctermfg=black " Highlight line to not be an underline
+hi Visual  guifg=DarkGrey guibg=LightBlue gui=none ctermfg=black ctermbg=214
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 highlight SpecialKey term=standout ctermfg=DarkGrey guifg=DarkGrey ctermbg=yellow guibg=yellow
 highlight RedundantSpaces term=standout ctermbg=Grey guibg=#ffddcc
 
 highlight MatchParen term=reverse ctermfg=248 guifg=#a8a8a8 ctermbg=242 guibg=#666666
-highlight Folded term=standout ctermfg=black ctermbg=4 guifg=#a0a8b0 guibg=#384048
+highlight Folded term=standout ctermfg=235 ctermbg=6 guifg=#a0a8b0 guibg=#384048
 
 
 " set enc=utf-8
