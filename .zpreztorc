@@ -153,7 +153,7 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
 #
 
 # Auto start a session when Zsh is launched in a local terminal.
-zstyle ':prezto:module:tmux:auto-start' local 'yes'
+# zstyle ':prezto:module:tmux:auto-start' local 'yes'
 
 # Auto start a session when Zsh is launched in a SSH connection.
 # zstyle ':prezto:module:tmux:auto-start' remote 'yes'
@@ -167,3 +167,21 @@ zstyle ':prezto:module:utility:wdiff' color 'yes'
 
 # Indicate when the editor is in the primary keymap (emacs or viins) insert mode
 zstyle ':prezto:module:editor:info:keymap:primary:insert' format 'I'
+
+
+# Group matches and describe.
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*:matches' group 'yes'
+# zstyle ':completion:*:options' description 'yes'
+# zstyle ':completion:*:options' auto-description '%d'
+# zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
+# zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
+# zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+# zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+# zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+# zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+# zstyle ':completion:*' group-name ''
+zstyle ':completion:*' verbose yes
+
+# Directories
+zstyle ':completion:*:default' list-colors ''

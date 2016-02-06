@@ -250,7 +250,6 @@ noremap <silent> <C-Right> :vertical resize -3<CR>
 noremap <silent> <C-Down> :resize -3<CR>
 noremap <silent> <C-Up> :resize -3<CR>
 
-
 nnoremap <leader>- :bel sp new<cr>
 nnoremap <leader>\ :rightb vsp new<cr>
 
@@ -655,8 +654,8 @@ colorscheme mustang
 "highlight Comment ctermfg=119 guifg=#87ff5f
 "highlight Identifier ctermfg=99AA00
 
-hi CursorLine cterm=NONE ctermbg=214 ctermfg=black " Highlight line to not be an underline
-hi Visual  guifg=DarkGrey guibg=LightBlue gui=none ctermfg=black ctermbg=214
+hi CursorLine cterm=NONE ctermbg=214 ctermfg=black guifg=black guibg=Orange " Highlight line to not be an underline
+hi Visual  guifg=black guibg=LightBlue gui=none ctermfg=black ctermbg=214
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 highlight SpecialKey term=standout ctermfg=DarkGrey guifg=DarkGrey ctermbg=yellow guibg=yellow
@@ -870,6 +869,7 @@ NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'Chiel92/vim-autoformat'
+NeoBundle 'godlygeek/tabular'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'vim-scripts/FuzzyFinder'
 NeoBundle 'ap/vim-buftabline'
@@ -977,19 +977,19 @@ let NERDTreeIgnore=[ '\.ncb$', '\.suo$', '\.vcproj\.RIMNET', '\.obj$',
 
 " let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 " let g:webdevicons_enable_nerdtree = 1
-" let g:webdevicons_enable_unite = 1
-" let g:webdevicons_enable_vimfiler = 1
-" let g:webdevicons_enable_airline_tabline = 1
-" let g:webdevicons_enable_airline_statusline = 1
-" let g:webdevicons_enable_ctrlp = 1
-" let g:webdevicons_enable_flagship_statusline = 1
+let g:webdevicons_enable_unite = 1
+let g:webdevicons_enable_vimfiler = 1
+let g:webdevicons_enable_airline_tabline = 1
+let g:webdevicons_enable_airline_statusline = 1
+let g:webdevicons_enable_ctrlp = 1
+let g:webdevicons_enable_flagship_statusline = 1
 " let g:WebDevIconsUnicodeDecorateFileNodes = 1
 " let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 " let g:webdevicons_conceal_nerdtree_brackets = 1
 " let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
 " let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 " let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-" let g:DevIconsEnableFoldersOpenClose = 1
+let g:DevIconsEnableFoldersOpenClose = 1
 
 " }}}
 " Startify -------------------------- {{{
@@ -1238,6 +1238,8 @@ noremap <leader>j :JscsFix<CR>
 
 
 noremap <c-f> :Autoformat<CR>
+noremap <c-t> :Tabularize /
+
 
 " Vim-airline
 let g:airline#extensions#tabline#enabled = 1

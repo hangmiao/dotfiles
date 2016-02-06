@@ -31,6 +31,8 @@ source ~/.zshrc
 gem install rails -v 4.2.4
 rails -v
 
+gem install ruby-beautify
+
 
 brew install mysql55
 sudo rm -rf /var/db/receipts/com.mysql.*
