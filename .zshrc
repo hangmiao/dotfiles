@@ -25,7 +25,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 source ~/z.sh
-source ~/tmuxinator.zsh
+# source ~/tmuxinator.zsh # somehow this is super slow
 
 # }}}
 # Set up zprezto  ---------------------------------------------------------- {{{
@@ -307,6 +307,7 @@ recent() {
 # PATH=$HOME/.rvm/gems/ruby-1.9.3-p448/bin:$PATH # Add RVM to PATH for scripting
 # rvm use ruby-1.9.3-p448 --default
 # rvm get stable --auto-dotfiles
+
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/bin/python3:$PATH"
 export PATH=$PATH:/usr/sbin:/usr/bin:/sbin:/bin:~/bin:/usr/games
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

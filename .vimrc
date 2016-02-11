@@ -141,6 +141,7 @@ nmap <silent> ,!v :so $MYVIMRC<CR>
 nnoremap <leader>et :e ~/.tmux.conf<cr>
 nnoremap <leader>ez :e ~/.zshrc<cr>
 nnoremap <leader>es :e ~/daily.txt<cr>
+nnoremap <leader>ec :e ~/changelog.md<cr>
 
 " Sudo to save file with temporary privileges
 command! W w !sudo tee % &>/dev/null
@@ -926,6 +927,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Open a new tab and search for something.
 " nmap <leader>a :tab split<CR>:Ack ""<Left>
+" Match exact case, e.g. only search for small cases, use -s option
 nmap <leader>a :e split<CR>:Ack ""<Left>
 
 " Immediately search for the word under the cursor in a new tab.
