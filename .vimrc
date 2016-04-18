@@ -215,9 +215,10 @@ nnoremap gw 0f=w
 nnoremap <leader>v 0v$hd
 
 " Insert the current datestamp
-:nnoremap <leader>d i<SPACE><ESC>"=strftime("%B %d, %Y")<CR>p
-:inoremap <leader>d <SPACE><SPACE><ESC>"=strftime("%B %d, %Y")<CR>P
-
+" :nnoremap <leader>d i<SPACE><ESC>"=strftime("%B %d, %Y")<CR>p
+" :inoremap <leader>d <SPACE><SPACE><ESC>"=strftime("%B %d, %Y")<CR>P
+:nnoremap <leader>d i<ESC>"=strftime("%B %d, %Y")<CR>p
+:inoremap <leader>d <SPACE><ESC>"=strftime("%B %d, %Y")<CR>P
 
 " Close the current buffer and move to the previous one
   " nmap <leader>x :bp <BAR> bd #<CR>
@@ -246,13 +247,16 @@ nnoremap <leader>p :pwd<cr>
 " nnoremap <leader><up> :resize -5<cr>
 " nnoremap <leader><right> :vertical resize +10<cr>
 
-noremap <silent> <C-Left> :vertical resize -3<CR>
-noremap <silent> <C-Right> :vertical resize -3<CR>
-noremap <silent> <C-Down> :resize -3<CR>
-noremap <silent> <C-Up> :resize -3<CR>
+" noremap <silent> <C-Left> :vertical resize -3<CR>
+" noremap <silent> <C-Right> :vertical resize -3<CR>
+" noremap <silent> <C-Down> :resize -3<CR>
+" noremap <silent> <C-Up> :resize -3<CR>
 
 nnoremap <leader>- :bel sp new<cr>
 nnoremap <leader>\ :rightb vsp new<cr>
+
+nnoremap <c-left> 5<c-w>>
+nnoremap <c-right> 5<c-w><
 
 " }}}
 " Command editing ---------------------------------------------------------- {{{
@@ -313,6 +317,7 @@ nnoremap J mzJ`z
 noremap <tab> %
 vnoremap <tab> %
 
+
 " Ack motions {{{
 
 nnoremap <silent> <leader>M :set opfunc=<SID>AckMotion<CR>g@
@@ -341,14 +346,16 @@ endfunction
 " Pry ---------------------------------------------------------------------- {{{
 
 " Shorthand to type binding.pry
-:ab pry binding.pry
-:ab pry- require 'pry-debugger'
-:ab p* p '', '*'*128
+" :ab pry- require 'pry-debugger'
+" :ab pry- require 'pry-byebug'
+" :ab pry binding.pry
+:ab pry require 'pry-byebug'; binding.pry
+:ab p* puts '', '*'*128
 
 
 " Make pry debugger statements painfully obvious
 au BufEnter *.rb syn match error contained "\<binding.pry\>"
-au BufEnter *.rb syn match error contained "\<debugger\>"
+au BufEnter *.rb syn match error contained "\<byebug\>"
 
 " }}}
 
@@ -621,25 +628,6 @@ au VimResized * :wincmd =
 "noremap <silent> ,k :wincmd k<CR>
 "noremap <silent> ,l :wincmd l<CR>
 "noremap <silent> ,sb :wincmd p<CR>
-noremap <silent> <C-F9>  :vertical resize -10<CR>
-noremap <silent> <C-F10> :resize +10<CR>
-noremap <silent> <C-F11> :resize -10<CR>
-noremap <silent> <C-F12> :vertical resize +10<CR>
-noremap <silent> ,s8 :vertical resize 83<CR>
-noremap <silent> ,cj :wincmd j<CR>:close<CR>
-noremap <silent> ,ck :wincmd k<CR>:close<CR>
-noremap <silent> ,ch :wincmd h<CR>:close<CR>
-noremap <silent> ,cl :wincmd l<CR>:close<CR>
-noremap <silent> ,cc :close<CR>
-noremap <silent> ,cw :cclose<CR>
-noremap <silent> ,ml <C-W>L
-noremap <silent> ,mk <C-W>K
-noremap <silent> ,mh <C-W>H
-noremap <silent> ,mj <C-W>J
-noremap <silent> <C-7> <C-W>>
-noremap <silent> <C-8> <C-W>+
-noremap <silent> <C-9> <C-W>+
-noremap <silent> <C-0> <C-W>>
 
 " }}}
 " Color settings ----------------------------------------------------------- {{{
@@ -659,7 +647,7 @@ hi CursorLine cterm=NONE ctermbg=214 ctermfg=black guifg=black guibg=Orange " Hi
 hi Visual  guifg=black guibg=LightBlue gui=none ctermfg=black ctermbg=214
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
-highlight SpecialKey term=standout ctermfg=DarkGrey guifg=DarkGrey ctermbg=yellow guibg=yellow
+highlight SpecialKey term=standout ctermfg=DarkGrey guifg=DarkGrey ctermbg=10 guibg=yellow
 highlight RedundantSpaces term=standout ctermbg=Grey guibg=#ffddcc
 
 highlight MatchParen term=reverse ctermfg=248 guifg=#a8a8a8 ctermbg=242 guibg=#666666
@@ -841,6 +829,7 @@ NeoBundle 'matze/vim-move'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet'
@@ -864,6 +853,7 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'uguu-org/vim-matrix-screensaver'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'hangmiao/tmux-powerline'
 NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'ctrlpvim/ctrlp.vim'
@@ -934,7 +924,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 nmap <leader>a :e split<CR>:Ack ""<Left>
 
 " Immediately search for the word under the cursor in a new tab.
-nmap <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
+nmap <leader>A :e split<CR>:Ack <C-r><C-w><CR>
 
 " Ack
 " find usages
@@ -1001,7 +991,7 @@ let g:DevIconsEnableFoldersOpenClose = 1
 
 " let g:startify_custom_header =
 "   \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
-
+let g:startify_custom_header = []
 let g:startify_custom_indices = ['f', 'g', 'h']
 
 autocmd User Startified setlocal cursorline
@@ -1423,7 +1413,7 @@ if has('gui_running')
 
     " set guifont=Source\ Code\ Pro\ for\ Powerline:h16
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h16
-    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types:h16
+    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types:h17
 
     set mouse=a
 
