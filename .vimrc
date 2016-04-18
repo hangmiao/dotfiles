@@ -310,6 +310,8 @@ nnoremap =- V`]=
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
+noremap <tab> %
+vnoremap <tab> %
 
 " Ack motions {{{
 
@@ -470,8 +472,6 @@ nnoremap <leader>l :call RailsRun()<cr>
 nnoremap <leader>F :call FormatSqlStr()<cr>
 nnoremap <space> :
 nnoremap <leader>q q:
-noremap <tab> %
-vnoremap <tab> %
 
 nnoremap <leader>h ^
 nnoremap <leader>l g_
@@ -885,6 +885,9 @@ NeoBundle 'mhinz/vim-startify'
 NeoBundle 'ryanoasis/vim-devicons'
 NeoBundle 'maksimr/vim-jsbeautify'
 NeoBundle 'beautify-web/js-beautify'
+NeoBundle 'tmhedberg/matchit'
+NeoBundle 'sickill/vim-pasta'
+NeoBundle 'vim-scripts/ZoomWin'
 
 " NeoBundle 'Valloric/YouCompleteMe'
 " NeoBundle 'SirVer/ultisnips'
@@ -1340,6 +1343,12 @@ nmap <Leader>gv <Plug>GitGutterPreviewHunk
 "  let g:SuperTabDefaultCompletionType = "context"
 "  let g:SuperTabClosePreviewOnPopupClose = 1
 
+" Pasta
+let g:pasta_disabled_filetypes = ['python', 'coffee']
+let g:pasta_enabled_filetypes = ['ruby', 'pill', 'javascript', 'css', 'sh']
+" Don't to override default p and P mappings
+" let g:pasta_paste_before_mapping = ',P'
+" let g:pasta_paste_after_mapping = ',p'
 
 
 " }}}
@@ -1437,3 +1446,4 @@ if has('gui_running')
 endif
 
 " }}}
+
