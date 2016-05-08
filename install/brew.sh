@@ -49,6 +49,7 @@ brew install coreutils
 brew install w3m
 brew install cowsay
 brew install fortune
+brew install ffmpeg
 
 brew install caskroom/cask/brew-cask
 brew cask install dockertoolbox
