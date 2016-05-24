@@ -815,7 +815,7 @@ NeoBundle 'othree/javascript-libraries-syntax.vim'
 NeoBundleLazy 'nikvdp/ejs-syntax',{'autoload':{'filetypes':['ejs']}}
 NeoBundleLazy 'elzr/vim-json', {'autoload':{'filetypes':['json']}}
 
-NeoBundle 'kien/rainbow_parentheses.vim'
+" NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'chrisbra/Colorizer'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'valloric/MatchTagAlways'
@@ -825,6 +825,7 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'Xuyuanp/nerdtree-git-plugin'
 
 NeoBundle 'benekastah/neomake'
+NeoBundle 'Shougo/deoplete.nvim'
 NeoBundle 'matze/vim-move'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'terryma/vim-multiple-cursors'
@@ -838,7 +839,7 @@ NeoBundle 'matthewsimo/angular-vim-snippets'
 NeoBundle 'ryanoasis/vim-webdevicons'
 NeoBundle 'guns/xterm-color-table.vim'
 NeoBundle 'sjl/clam.vim'
-NeoBundle 'fmoralesc/vim-tutor-mode'
+" NeoBundle 'fmoralesc/vim-tutor-mode'
 
 " NeoBundle 'gosukiwi/vim-atom-dark'
 " NeoBundle 'Yggdroot/indentLine'
@@ -846,7 +847,6 @@ NeoBundle 'fmoralesc/vim-tutor-mode'
 " NeoBundle 'Quramy/tsuquyomi'
 " NeoBundle 'ashisha/image.vim'
 " NeoBundle 'othree/yajs.vim'
-
 
 NeoBundle 'VundleVim/Vundle.vim'
 NeoBundle 'Lokaltog/vim-easymotion'
@@ -1103,6 +1103,7 @@ let g:UltiSnipsNoMap=1
 " Neocomplete ----------------------- {{{
 
 " Use deoplete.
+set runtimepath+=~/.vim/bundle/deoplete.nvim
 let g:deoplete#enable_at_startup = 1
 
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
@@ -1412,7 +1413,7 @@ if has('gui_running')
     let macvim_skip_colorscheme=1 " respect color settings in .vimrc
 
     " set guifont=Source\ Code\ Pro\ for\ Powerline:h16
-    " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h16
+    " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h18
     set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types:h17
 
     set mouse=a
