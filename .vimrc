@@ -57,7 +57,6 @@ set laststatus=2
 set noshowmode
 set numberwidth=2
 set guioptions+=a " macvim copied clipboard on selection
-set re=1 " Use the old regex engine to make render rb file faster in terminal
 
 set so=7 " set 7 lines to the cursors - when moving vertical
 set history=1000 " change history to 1000
@@ -93,9 +92,6 @@ map <s-F7> 6j<CR> " Shift + F7
 map <s-F8> 6k<CR>
 
 
-" Neovim terminal mapping
-" terminal 'normal mode'
-tmap <esc> <c-\><c-n><esc><cr>
 
 " Make :help appear in a full-screen tab, instead of a window {{{
 
@@ -1064,11 +1060,21 @@ endif
   nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
   nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
   nnoremap <silent> <C-;> :TmuxNavigatePrevious<cr>
+
+if has('nvim')
   tmap <C-j> <C-\><C-n>:TmuxNavigateDown<cr>
   tmap <C-k> <C-\><C-n>:TmuxNavigateUp<cr>
   tmap <C-h> <C-\><C-n>:TmuxNavigateLeft<cr>
   tmap <C-l> <C-\><C-n>:TmuxNavigateRight<cr>
   tmap <C-;> <C-\><C-n>:TmuxNavigatePrevious<cr>
+
+  " Neovim terminal mapping
+  " terminal 'normal mode'
+  tmap <esc> <c-\><c-n><esc><cr>
+
+  set re=1 " Use the old regex engine to make render rb file faster in terminal
+endif
+
 
 " }}}
 
