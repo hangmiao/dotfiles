@@ -76,7 +76,7 @@ set lazyredraw
 
 " setting path explicitly to make it load faster
 let g:ruby_path = "/usr/bin/ruby"
-let g:python_host_prog = '/usr/local/bin/python3'
+" let g:python_host_prog = '/usr/local/bin/python3'
 
 " Non-compatible
 " set ttyscroll=0        " turn off scrolling
@@ -141,6 +141,7 @@ nmap <silent> ,!v :so $MYVIMRC<CR>
 nnoremap <leader>et :e ~/.tmux.conf<cr>
 nnoremap <leader>ez :e ~/.zshrc<cr>
 nnoremap <leader>es :e ~/daily.txt<cr>
+nnoremap <leader>em :e ~/most_recent_used.rb<cr>
 nnoremap <leader>ec :e ~/changelog.md<cr>
 
 " Sudo to save file with temporary privileges
@@ -158,6 +159,8 @@ map <leader>re :call RenameFile()<cr>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
+
+
 
 " scroll the viewport faster
 nnoremap <C-e> 10<C-e>
@@ -314,8 +317,6 @@ nnoremap =- V`]=
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
-noremap <tab> %
-vnoremap <tab> %
 
 
 " Ack motions {{{
@@ -566,6 +567,7 @@ augroup myfiletypes
     au BufNewFile,BufRead *.god setfiletype ruby
     au BufNewFile,BufRead *.pill setfiletype ruby
     au BufNewFile,BufRead *.rake setfiletype ruby
+    au BufNewFile,BufRead *.scala setfiletype java
 
 
     " File type specific behaviour
@@ -825,7 +827,7 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'Xuyuanp/nerdtree-git-plugin'
 
 NeoBundle 'benekastah/neomake'
-NeoBundle 'Shougo/deoplete.nvim'
+" NeoBundle 'Shougo/deoplete.nvim'
 NeoBundle 'matze/vim-move'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'terryma/vim-multiple-cursors'
@@ -1103,7 +1105,7 @@ let g:UltiSnipsNoMap=1
 " Neocomplete ----------------------- {{{
 
 " Use deoplete.
-set runtimepath+=~/.vim/bundle/deoplete.nvim
+" set runtimepath+=~/.vim/bundle/deoplete.nvim
 let g:deoplete#enable_at_startup = 1
 
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
@@ -1166,7 +1168,7 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
@@ -1438,3 +1440,7 @@ endif
 
 " }}}
 
+noremap <tab> %
+vnoremap <tab> %
+
+nnoremap <leader>t :!tmux send-keys -t right C-d C-c C-c C-d C-c Up C-m <cr>

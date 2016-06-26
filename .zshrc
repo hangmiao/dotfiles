@@ -172,6 +172,7 @@ export EDITOR='nvim'
 
 alias vim='nvim'
 alias vi='nvim'
+alias vimdiff='nvim -d'
 
 alias l="ls -lahG"
 alias fl="ls -ltra | grep '\->'" # find link
@@ -218,6 +219,7 @@ alias ducks='find ~ -xdev -type f -size +1000M'
 alias m='mux'
 
 alias M='/Applications/Movist.app/Contents/MacOS/Movist'
+alias sd='sudo shutdown -r now'
 
 # Mac OS X ----------------------------------------------------------------- {{{
 
@@ -422,3 +424,5 @@ function switchToDocker
 
 
 # }}}
+
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
