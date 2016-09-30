@@ -137,8 +137,8 @@ nmap <silent> ,!v :so $MYVIMRC<CR>
 nnoremap <leader>et :e ~/.tmux.conf<cr>
 nnoremap <leader>ez :e ~/.zshrc<cr>
 nnoremap <leader>es :e ~/daily.txt<cr>
-nnoremap <leader>em :e ~/most_recent_used.rb<cr>
 nnoremap <leader>ec :e ~/changelog.md<cr>
+nnoremap <leader>em :Startify<cr>
 
 " Sudo to save file with temporary privileges
 command! W w !sudo tee % &>/dev/null
@@ -207,6 +207,8 @@ vnoremap <leader>s :s///g<left><left><left>
 " Substitute all occurrences of a word where the cursor is placed
 noremap <Leader>S :%s/\<<C-r><C-w>\>//g<Left><Left>
 
+" Run sql across dbs, replace the 'replace' in the boilerplate.
+nnoremap rs :%s/replace/""/g<left><left><left>
 
 nnoremap gw 0f=w
 
@@ -480,12 +482,16 @@ nnoremap <leader>q q:
 nnoremap <leader>h ^
 nnoremap <leader>l g_
 
+nnoremap <leader>l A
+
 " Don't jump yet
 nnoremap * * <c-o>
 
 " Insert file name
 imap ,fn <c-r>=expand('%:t')<cr>
 " imap ,fn <c-r>=expand('%:t:r')<cr>
+" Copy the full path
+:nmap cp :let @+ = expand("%:p")<cr>
 
 " Underline the current line with '='
 nmap <silent> ,u= :t.\|s/./=/g\|:nohls<cr>
@@ -1450,3 +1456,7 @@ noremap <tab> %
 vnoremap <tab> %
 
 nnoremap <leader>t :!tmux send-keys -t right C-d C-c C-c C-d C-c Up C-m <cr>
+
+set shortmess=a
+set cmdheight=2
+
