@@ -7,13 +7,12 @@ filetype plugin indent on
 set nocompatible " Be iMproved
 set modelines=0
 set foldmethod=marker
-set cmdheight=1
 set shortmess=a
 " waiting for another key to be pressed measured in milliseconds.
 " set timeoutlen=300
 " No delay for escape key press
 set ttimeoutlen=0
-
+set cmdheight=2
 
 "set tw=79
 "set formatoptions+=t
@@ -70,6 +69,7 @@ set ww=<,>,[,],h,l
 let mapleader = ","
 
 " :set cursorline
+set nocursorline
 " :set cursorcolumn
 set lazyredraw
 
@@ -131,6 +131,9 @@ set listchars=tab:▸\ ,eol:¬,extends:»,precedes:«
 " }}}
 " Quick editing ------------------------------------------------------------ {{{
 
+nmap <silent> ,y :%y<CR>
+nmap <silent> ,0 :%d<CR>
+
 " Edit the vimrc file
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nmap <silent> ,!v :so $MYVIMRC<CR>
@@ -155,8 +158,6 @@ map <leader>re :call RenameFile()<cr>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
-
-
 
 " scroll the viewport faster
 nnoremap <C-e> 10<C-e>
@@ -1194,6 +1195,26 @@ endif
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
+
+let g:neocomplcache_disable_auto_complete = 1
+
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : "\<C-x>\<C-u>"
+function! s:check_back_space()"{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1] =~ '\s'
+endfunction"}}}
+
+" Auto complete to common string and show available variants (if any).
+inoremap <expr><C-l> neocomplcache#complete_common_string()
+
+" Highlighting first candidate.
+let g:neocomplcache_enable_auto_select = 1
+inoremap <expr><C-h> neocomplcache#smart_close_popup().“\<C-h>”
+inoremap <expr><BS> neocomplcache#smart_close_popup().“\<C-h>”
+
+" Choose candidate with <CR>.
+inoremap <expr><CR> neocomplcache#smart_close_popup() . “\<CR>”
+
 " }}}
 " Syntastic ------------------------- {{{
 
@@ -1456,6 +1477,4 @@ vnoremap <tab> %
 
 nnoremap <leader>t :!tmux send-keys -t right C-d C-c C-c C-d C-c Up C-m <cr>
 
-set shortmess=a
-set cmdheight=2
 
