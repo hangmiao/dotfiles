@@ -214,6 +214,8 @@ alias al='alias'
 # e.g. run `ap 'gr'` (note the single quote)
 alias ap="alias | grep $1"
 
+alias ag='ag --ignore=test --ignore=lib/stat-sv-health '
+
 alias ducks='find ~ -xdev -type f -size +1000M'
 
 alias m='mux'
@@ -231,6 +233,7 @@ alias lock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resour
 
 alias o.='open .'
 alias of='open -a Firefox'
+alias oc='open -a "Google Chrome" '
 
 # }}}
 # Git ---------------------------------------------------------------------- {{{
@@ -426,3 +429,7 @@ function switchToDocker
 # }}}
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+
+export MONGO_PATH=/usr/local/mongodb
+export PATH=$PATH:$MONGO_PATH/bin
+export LOG_LEVEL=DEBUG
