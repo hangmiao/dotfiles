@@ -1031,7 +1031,7 @@ let g:startify_skiplist = [
 let g:startify_session_dir = "~/.vim/sessions"
 
 let g:startify_bookmarks = [
-            \ { 't': '~/tmuxinator/' },
+            \ { 't': '~/.tmuxinator/' },
             \ { 'r': '~/Utilities/run_sql_in_vim/run_sql_in_vim_read.sql' },
             \ { 'm': '~/most_recent_used.rb' },
             \ ]
