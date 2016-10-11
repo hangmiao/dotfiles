@@ -134,6 +134,8 @@ set listchars=tab:▸\ ,eol:¬,extends:»,precedes:«
 nmap <silent> ,y :%y<CR>
 nmap <silent> ,0 :%d<CR>
 
+nmap <silent> ,z :qa!<CR>
+
 " Edit the vimrc file
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nmap <silent> ,!v :so $MYVIMRC<CR>
@@ -1010,14 +1012,14 @@ let g:startify_session_persistence    = 1
 let g:startify_session_delete_buffers = 1
 
 let g:startify_list_order = [
-  \ ['   MRU:'],
-  \ 'files',
-  \ ['   MRU within this dir:'],
-  \ 'dir',
   \ ['   Sessions:'],
   \ 'sessions',
   \ ['   Bookmarks:'],
   \ 'bookmarks',
+  \ ['   MRU:'],
+  \ 'files',
+  \ ['   MRU within this dir:'],
+  \ 'dir',
   \ ]
 
 let g:startify_skiplist = [
@@ -1029,6 +1031,7 @@ let g:startify_skiplist = [
 let g:startify_session_dir = "~/.vim/sessions"
 
 let g:startify_bookmarks = [
+            \ { 't': '~/tmuxinator/' },
             \ { 'r': '~/Utilities/run_sql_in_vim/run_sql_in_vim_read.sql' },
             \ { 'm': '~/most_recent_used.rb' },
             \ ]
@@ -1208,12 +1211,12 @@ endfunction"}}}
 inoremap <expr><C-l> neocomplcache#complete_common_string()
 
 " Highlighting first candidate.
-let g:neocomplcache_enable_auto_select = 1
-inoremap <expr><C-h> neocomplcache#smart_close_popup().“\<C-h>”
-inoremap <expr><BS> neocomplcache#smart_close_popup().“\<C-h>”
+" let g:neocomplcache_enable_auto_select = 1
+" inoremap <expr><C-h> neocomplcache#smart_close_popup().“\<C-h>”
+" inoremap <expr><BS> neocomplcache#smart_close_popup().“\<C-h>”
 
 " Choose candidate with <CR>.
-inoremap <expr><CR> neocomplcache#smart_close_popup() . “\<CR>”
+" inoremap <expr><CR> neocomplcache#smart_close_popup() . “\<CR>”
 
 " }}}
 " Syntastic ------------------------- {{{
