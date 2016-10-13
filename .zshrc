@@ -214,7 +214,8 @@ alias al='alias'
 # e.g. run `ap 'gr'` (note the single quote)
 alias ap="alias | grep $1"
 
-alias ag='ag --ignore=test --ignore=lib/stat-sv-health '
+# alias ag='ag --ignore=test --ignore=lib/stat-sv-health '
+alias ag='ag --ignore=lib/stat-sv-health '
 
 alias ducks='find ~ -xdev -type f -size +1000M'
 

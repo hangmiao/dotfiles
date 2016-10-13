@@ -1311,8 +1311,10 @@ let g:ctrlp_custom_ignore = {
             \ 'file': '\.exe$\|\.so$'
             \ }
 
-
-
+" 0 - don't follow symbolic links.
+" 1 - follow but ignore looped internal symlinks to avoid duplicates.
+" 2 - follow all symlinks indiscriminately.
+let g:ctrlp_follow_symlinks = 2
 
 " Ctags
 " Check the current folder for tags file and keep going one directory up all
