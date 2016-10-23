@@ -27,13 +27,13 @@ set title " Display filename in titlebar
 set nu
 set rnu
 set lisp
-set autoindent
+" set autoindent
 set smartindent
+" set cindent
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-set cindent
 set shiftwidth=2
 set clipboard+=unnamed
 set ignorecase
@@ -314,6 +314,10 @@ nnoremap <leader>V V`]
 nnoremap <lt>> V`]<
 nnoremap ><lt> V`]>
 nnoremap =- V`]=
+
+# indent with text selected
+vmap < <gv
+vmap > >gv
 
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
@@ -1453,7 +1457,9 @@ if has('gui_running')
 
     " set guifont=Source\ Code\ Pro\ for\ Powerline:h16
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h18
-    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types:h17
+    " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types:h19
+    " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Regular:h19
+    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono:h15
 
     set mouse=a
 
@@ -1473,6 +1479,12 @@ if has('gui_running')
 
     let g:deoplete#enable_at_startup = 0
     " nnoremap <D-e> :tabnew<cr>
+
+    # cmd indention
+    nmap <D-[> <<
+    nmap <D-]> >>
+    vmap <D-[> <gv
+    vmap <D-]> >gv
 endif
 
 " }}}
