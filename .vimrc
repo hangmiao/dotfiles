@@ -136,6 +136,36 @@ nmap <silent> ,0 :%d<CR>
 
 nmap <silent> ,z :qa!<CR>
 
+" Buffers
+" Create a new buffer and set filetype
+nmap <silent> ,n :enew<CR>:set ft=ruby<CR>
+
+" Close a buffer
+nnoremap <leader>x :bd<cr>
+nnoremap <leader>X :bd!<cr>
+" Wipe out all buffers
+nmap <silent> <Leader>xa :1,9000bwipeout<cr>
+
+" Reload current buffer
+nnoremap <leader>; :e!<cr>
+
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
+
+
+" Tabs
+" e.g. Ctrl + [
+" nnoremap <C-[> :tabprev<cr>
+" nnoremap <C-]> :tabnext<cr>
+nnoremap <C-9> gT
+nnoremap <C-0> gt
+
+" noremap <A-[> gT
+" noremap <A-]> gt
+
+nnoremap <leader>t :tabnew<cr>
+nnoremap <leader>w :tabclose<cr>
+
 " Edit the vimrc file
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nmap <silent> ,!v :so $MYVIMRC<CR>
@@ -158,9 +188,6 @@ nmap <silent> ,md :!mkdir -p %:p:h<CR>
 
 map <leader>re :call RenameFile()<cr>
 
-" Switch between the last two files
-nnoremap <leader><leader> <c-^>
-
 " scroll the viewport faster
 nnoremap <C-e> 10<C-e>
 nnoremap <C-y> 10<C-y>
@@ -171,32 +198,10 @@ nnoremap <silent> k gk
 nnoremap <silent> ^ g^
 nnoremap <silent> $ g$
 
-
 " Automatically jump to end of text pasted
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
-
-" Close a buffer
-nnoremap <leader>x :bd<cr>
-nnoremap <leader>X :bd!<cr>
-
-" Reload current buffer
-nnoremap <leader>; :e!<cr>
-
-" Tabs
-" e.g. Ctrl + [
-" nnoremap <C-[> :tabprev<cr>
-" nnoremap <C-]> :tabnext<cr>
-nnoremap <C-9> gT
-nnoremap <C-0> gt
-
-" noremap <A-[> gT
-" noremap <A-]> gt
-
-nnoremap <leader>t :tabnew<cr>
-nnoremap <leader>w :tabclose<cr>
-
 
 vnoremap <C-c> "+ygv"*y
 
@@ -227,13 +232,10 @@ nnoremap <leader>v 0v$hd
 " Close the current buffer and move to the previous one
   " nmap <leader>x :bp <BAR> bd #<CR>
 
-nnoremap <leader>G :Gblame<CR>
+nnoremap <leader>B :Gblame<CR>
 
 " Automatically change current directory to that of the file in the buffer
 " autocmd BufEnter * cd %:p:h
-" Wipe out all buffers
-" nmap <silent> <Leader>da :1,9000bwipeout<cr>
-
 
 nnoremap <leader>p :pwd<cr>
 
@@ -945,7 +947,7 @@ nmap <a-F11> :Ack -w <c-r><c-w><cr>
 " }}}
 " NERD Tree ------------------------- {{{
 " Toggle NERD Tree
-nmap <leader>n :NERDTreeToggle<CR>
+nmap <leader>N :NERDTreeToggle<CR>
 
 " Show the bookmarks table on startup
 let NERDTreeShowBookmarks=1
@@ -1456,11 +1458,11 @@ if has('gui_running')
     " GUI Vim
     let macvim_skip_colorscheme=1 " respect color settings in .vimrc
 
-    " set guifont=Source\ Code\ Pro\ for\ Powerline:h16
+    set guifont=Source\ Code\ Pro\ for\ Powerline:h16
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h18
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types:h19
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Regular:h19
-    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono:h15
+    " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono:h15
 
     set mouse=a
 
