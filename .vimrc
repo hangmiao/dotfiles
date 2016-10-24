@@ -91,7 +91,11 @@ map <F8> 20k<CR>
 map <s-F7> 6j<CR> " Shift + F7
 map <s-F8> 6k<CR>
 
+noremap <tab> %
+vnoremap <tab> %
 
+" Tmux
+nnoremap <leader>t :!tmux send-keys -t right C-d C-c C-c C-d C-c Up C-m <cr>
 
 " Make :help appear in a full-screen tab, instead of a window {{{
 
@@ -144,7 +148,7 @@ nmap <silent> ,n :enew<CR>:set ft=ruby<CR>
 nnoremap <leader>x :bd<cr>
 nnoremap <leader>X :bd!<cr>
 " Wipe out all buffers
-nmap <silent> <Leader>xa :1,9000bwipeout<cr>
+" nmap <silent> <leader>xa :1,900bwipeout<cr>
 
 " Reload current buffer
 nnoremap <leader>; :e!<cr>
@@ -1458,8 +1462,8 @@ if has('gui_running')
     " GUI Vim
     let macvim_skip_colorscheme=1 " respect color settings in .vimrc
 
-    set guifont=Source\ Code\ Pro\ for\ Powerline:h16
-    " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h18
+    " set guifont=Source\ Code\ Pro\ for\ Powerline:h16
+    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h18
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types:h19
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Regular:h19
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono:h15
@@ -1491,10 +1495,3 @@ if has('gui_running')
 endif
 
 " }}}
-
-noremap <tab> %
-vnoremap <tab> %
-
-nnoremap <leader>t :!tmux send-keys -t right C-d C-c C-c C-d C-c Up C-m <cr>
-
-
