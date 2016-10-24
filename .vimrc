@@ -1481,7 +1481,7 @@ if has('gui_running')
     let g:deoplete#enable_at_startup = 0
     " nnoremap <D-e> :tabnew<cr>
 
-    # cmd indention
+    " cmd indention
     nmap <D-[> <<
     nmap <D-]> >>
     vmap <D-[> <gv
