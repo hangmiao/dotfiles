@@ -315,9 +315,9 @@ nnoremap <lt>> V`]<
 nnoremap ><lt> V`]>
 nnoremap =- V`]=
 
-# indent with text selected
-vmap < <gv
-vmap > >gv
+" indent with text selected
+" map < <gv
+" map > >gv
 
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
@@ -1310,6 +1310,7 @@ nnoremap <C-p> :CtrlP<cr>
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " CtrlP ignore patterns
+set wildignore+=*/tmp/*,*.so,*.swp,*.html,*.png,*.zip     " MacOSX/Linux
 let g:ctrlp_custom_ignore = {
             \ 'dir': '\.git$\|node_modules$\|\.hg$\|\.svn$',
             \ 'file': '\.exe$\|\.so$'
