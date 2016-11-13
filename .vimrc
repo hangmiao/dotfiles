@@ -95,7 +95,8 @@ noremap <tab> %
 vnoremap <tab> %
 
 " Tmux
-nnoremap <leader>t :!tmux send-keys -t right C-d C-c C-c C-d C-c Up C-m <cr>
+" nnoremap <leader>t :!tmux send-keys -t right C-d C-c C-c C-d C-c Up C-m <cr>
+nnoremap <leader>t :!tmux send-keys -t right C-d C-c Up <cr>
 
 " Make :help appear in a full-screen tab, instead of a window {{{
 
@@ -156,6 +157,11 @@ nnoremap <leader>; :e!<cr>
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
+nmap <silent> ,j :bn<CR>
+nmap <silent> ,k :bp<CR>
+
+
+nmap <silent> <leader>bl :ls<CR>
 
 " Tabs
 " e.g. Ctrl + [
@@ -207,7 +213,6 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
-vnoremap <C-c> "+ygv"*y
 
 
 " Substitute
@@ -300,15 +305,6 @@ function! Refresh_firefox()
   endif
 endfunction
 
-
-" Bubble single lines
-nnoremap <leader>k [e
-nnoremap <leader>j ]e
-
-" Bubble multiple lines
-vmap <leader>k [egv
-vmap <leader>k ]egv
-
 " Uppercase (More convenient than using ~ and going back and forth)
 " Note that this will overwrite the contents of the z mark.
 inoremap <C-u> <esc>mzgUiw`za
@@ -362,7 +358,7 @@ endfunction
 " :ab pry- require 'pry-byebug'
 " :ab pry binding.pry
 :ab pry require 'pry-byebug'; binding.pry
-:ab p* puts '', '*'*128
+:ab p* puts '', '*'*48
 
 
 " Make pry debugger statements painfully obvious
@@ -478,8 +474,8 @@ endfunction
 " }}}
 " My Remappings ------------------------------------------------------------ {{{
 
-nnoremap <silent> H :bp<CR>
-nnoremap <silent> L :bn<CR>
+" nnoremap <silent> H :bp<CR>
+" nnoremap <silent> L :bn<CR>
 inoremap jj <ESC>
 nnoremap / /\v
 vnoremap / /\v
@@ -1276,7 +1272,7 @@ function! JscsFix()
 endfunction
 
 command JscsFix :call JscsFix()
-noremap <leader>j :JscsFix<CR>
+" noremap <leader>j :JscsFix<CR>
 "}}}
 
 
@@ -1463,7 +1459,7 @@ if has('gui_running')
     let macvim_skip_colorscheme=1 " respect color settings in .vimrc
 
     " set guifont=Source\ Code\ Pro\ for\ Powerline:h16
-    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h18
+    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h16
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types:h19
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Regular:h19
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono:h15
