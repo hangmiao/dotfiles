@@ -167,7 +167,7 @@ nnoremap <C-0> gt
 " noremap <A-[> gT
 " noremap <A-]> gt
 
-nnoremap <leader>t :tabnew<cr>
+" nnoremap <leader>t :tabnew<cr>
 nnoremap <leader>w :tabclose<cr>
 
 " Edit the vimrc file
@@ -1495,3 +1495,7 @@ if has('gui_running')
 endif
 
 " }}}
+
+
+nnoremap / /\v
+vnoremap / /\v
