@@ -203,7 +203,7 @@ alias bi='bundle install'
 alias rt='RAILS_ENV=test bundle exec rake test:all'
 
 # IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias publicip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
@@ -220,9 +220,7 @@ alias ag='ag --ignore=lib/stat-sv-health '
 alias ducks='find ~ -xdev -type f -size +1000M'
 
 alias m='mux'
-
-alias M='/Applications/Movist.app/Contents/MacOS/Movist'
-alias sd='sudo shutdown -r now'
+alias h='history'
 
 # Mac OS X ----------------------------------------------------------------- {{{
 
@@ -231,10 +229,13 @@ alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall F
 
 # lock computer
 alias lock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
+alias sd='sudo shutdown -r now'
 
+alias M='/Applications/Movist.app/Contents/MacOS/Movist'
 alias o.='open .'
 alias of='open -a Firefox'
 alias oc='open -a "Google Chrome" '
+alias oe='open -a Microsoft\ Excel '
 
 # }}}
 # Git ---------------------------------------------------------------------- {{{
