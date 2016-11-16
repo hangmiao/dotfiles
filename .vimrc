@@ -85,11 +85,11 @@ let g:ruby_path = "/usr/bin/ruby"
 " }}}
 " Better settings ---------------------------------------------------------- {{{
 
-map <F7> 20j<CR>
-map <F8> 20k<CR>
+map <F7> 30j<CR>
+map <F8> 30k<CR>
 
-map <s-F7> 6j<CR> " Shift + F7
-map <s-F8> 6k<CR>
+map <s-F7> 15j<CR> " Shift + F7
+map <s-F8> 15k<CR>
 
 noremap <tab> %
 vnoremap <tab> %
@@ -1276,7 +1276,7 @@ command JscsFix :call JscsFix()
 "}}}
 
 
-noremap <c-f> :Autoformat<CR>
+" noremap <c-f> :Autoformat<CR>
 noremap <c-t> :Tabularize /
 
 
