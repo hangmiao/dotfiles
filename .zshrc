@@ -427,6 +427,18 @@ function switchToDocker
  docker-compose run web rm /myapp/tmp/pids/server.pid; docker-compose up
 }
 
+function addSub
+{
+  files=(*)
+  for i in $files; do
+    if [[ $i =~ \.mp4$ ]] || [[ $i =~ \.mkv$ ]]
+      then
+        echo "Adding sub to '$i'"
+        mkvmerge -o "$PWD/${i%.*}"_new "$i" "${i%.*}".srt && rm "$i" "${i%.*}".srt && mv "${i%.*}"_new "$i"
+    fi;
+  done
+}
+
 
 # }}}
 
