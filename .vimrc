@@ -35,7 +35,8 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set shiftwidth=2
-set clipboard+=unnamed
+" set clipboard+=unnamed
+set clipboard=unnamed
 set ignorecase
 set smartcase
 " set gdefault
@@ -95,8 +96,7 @@ noremap <tab> %
 vnoremap <tab> %
 
 " Tmux
-" nnoremap <leader>t :!tmux send-keys -t right C-d C-c C-c C-d C-c Up C-m <cr>
-nnoremap <leader>t :!tmux send-keys -t right C-d C-c Up <cr>
+nnoremap <leader>u :silent !tmux send-keys -t right C-d C-c C-c C-d C-c Up C-m<cr>
 
 " Make :help appear in a full-screen tab, instead of a window {{{
 
@@ -129,9 +129,12 @@ map <F6> :setlocal spell! spelllang=en_us<CR>
 
 set pastetoggle=<F9>
 
-map <F10> :set list!<CR>
+map <leader>tl :set list!<CR>
 "set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set listchars=tab:▸\ ,eol:¬,extends:»,precedes:«
+
+nnoremap <leader>tr :RainbowParentheses!!<cr>
+
 
 " }}}
 " Quick editing ------------------------------------------------------------ {{{
@@ -245,8 +248,6 @@ nnoremap <leader>B :Gblame<CR>
 
 " Automatically change current directory to that of the file in the buffer
 " autocmd BufEnter * cd %:p:h
-
-nnoremap <leader>p :pwd<cr>
 
 " }}}
 " Splits ------------------------------------------------------------------- {{{
@@ -578,7 +579,7 @@ augroup myfiletypes
     au BufNewFile,BufRead *.god setfiletype ruby
     au BufNewFile,BufRead *.pill setfiletype ruby
     au BufNewFile,BufRead *.rake setfiletype ruby
-    au BufNewFile,BufRead *.scala setfiletype java
+    " au BufNewFile,BufRead *.scala setfiletype java
 
 
     " File type specific behaviour
@@ -792,11 +793,11 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
 
 " If vundle is not installed, do it first
   let bundleExists = 1
-  " if (!isdirectory(expand("$HOME/.vim/bundle/neobundle.vim")))
-  "    call system(expand("mkdir -p $HOME/.vim/bundle"))
-  "    call system(expand("git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim"))
-  "    let bundleExists = 0
-  " endif
+  if (!isdirectory(expand("$HOME/.vim/bundle/neobundle.vim")))
+     call system(expand("mkdir -p $HOME/.vim/bundle"))
+     call system(expand("git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim"))
+     let bundleExists = 0
+  endif
 
   if 0 | endif
 
@@ -823,6 +824,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tmux-plugins/vim-tmux'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'junegunn/rainbow_parentheses.vim'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle '1995eaton/vim-better-javascript-completion'
 NeoBundle 'othree/javascript-libraries-syntax.vim'
@@ -1301,7 +1303,7 @@ let g:EasyMotion_leader_key = '<Leader>'
 nmap <leader>f <Plug>(easymotion-w)
 " backwards <- ,b
 " go change cursor
-nmap <leader>g <Plug>(easymotion-f)
+" nmap <leader>g <Plug>(easymotion-f)
 
 
 
@@ -1388,6 +1390,10 @@ let g:pasta_enabled_filetypes = ['ruby', 'pill', 'javascript', 'css', 'sh']
 " let g:pasta_paste_before_mapping = ',P'
 " let g:pasta_paste_after_mapping = ',p'
 
+augroup rainbow_lisp
+  autocmd!
+  autocmd FileType scala,lisp,clojure,scheme RainbowParentheses
+augroup END
 
 " }}}
 " NeoVim  ------------------------------------------------------------------ {{{
