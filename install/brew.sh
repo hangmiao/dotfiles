@@ -52,11 +52,13 @@ brew install fortune
 brew install ffmpeg
 
 brew install caskroom/cask/brew-cask
+brew tap caskroom/versions
 brew cask install dockertoolbox
 brew cask install docker-machine
 brew cask install iterm2
 brew cask install firefox
 brew cask install google-chrome
+brew cask install google-chrome-canary
 brew cask install dropbox
 brew cask install spectacle
 brew cask install quicksilver
@@ -72,9 +74,9 @@ brew cask install ldoce5-viewer
 brew cask install slack
 brew cask install skitch
 brew cask install rcdefaultapp
-brew cask install transmission
 brew cask install seil
 brew cask install utc-menu-clock
+brew cask install caffeine
+brew cask install dash
 
-brew tap caskroom/versions
 brew cask install sublime-text3
