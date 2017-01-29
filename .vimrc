@@ -360,6 +360,7 @@ endfunction
 " :ab pry binding.pry
 :ab pry require 'pry-byebug'; binding.pry
 :ab p* puts '', '*'*48
+:ab pl println(
 
 
 " Make pry debugger statements painfully obvious
