@@ -504,10 +504,10 @@ imap ,fn <c-r>=expand('%:t')<cr>
 " Copy the full path
 :nmap cp :let @+ = expand("%:p")<cr>
 
-" Underline the current line with '='
-nmap <silent> ,u= :t.\|s/./=/g\|:nohls<cr>
-nmap <silent> ,u- :t.\|s/./-/g\|:nohls<cr>
-nmap <silent> ,u~ :t.\|s/./\\~/g\|:nohls<cr>
+" " Underline the current line with '='
+" nmap <silent> ,u= :t.\|s/./=/g\|:nohls<cr>
+" nmap <silent> ,u- :t.\|s/./-/g\|:nohls<cr>
+" nmap <silent> ,u~ :t.\|s/./\\~/g\|:nohls<cr>
 
 " }}}
 " Backups ------------------------------------------------------------------ {{{
