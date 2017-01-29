@@ -1247,7 +1247,10 @@ let g:syntastic_style_error_symbol = '⚡'
 
 noremap <leader>st :SyntasticToggleMode<CR>
 
-let g:syntastic_mode_map = { 'passive_filetypes': ['sass', 'scss','html'] }
+let g:syntastic_mode_map = { "mode": "active",
+                           \ "active_filetypes": [],
+                           \ "passive_filetypes": ['sass', 'scss','html', 'scala'] }
+
 map <Leader>e :lnext<CR>
 map <Leader>E :lprev<CR>
 
