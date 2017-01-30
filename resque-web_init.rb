@@ -1,5 +1,5 @@
 require 'resque-cleaner'
-require 'resque-sliders'
+# require 'resque-sliders'
 #require 'resque/scheduler/tasks'
 
 module Resque::Plugins

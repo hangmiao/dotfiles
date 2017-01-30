@@ -446,4 +446,14 @@ test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_in
 
 export MONGO_PATH=/usr/local/mongodb
 export PATH=$PATH:$MONGO_PATH/bin
-export LOG_LEVEL=DEBUG
+# export LOG_LEVEL=DEBUG
+export LOG_LEVEL=INFO
+source /usr/local/share/zsh/site-functions/_aws
+
+export LESS='-R'
+export LESSOPEN='|~/.lessfilter %s'
+
+
+alias sbt-pq='sbt "run --dir /Users/hahn/Development/Github/STAT-HQ/proxy_queue/proxies --config /Users/hahn/Development/Github/proxy-queue/src/main/resources/application.conf"'
+alias sc='scala -Dscala.color'
+

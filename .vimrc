@@ -127,7 +127,7 @@ endfunction
 " Spell check toggle
 map <F6> :setlocal spell! spelllang=en_us<CR>
 
-set pastetoggle=<F9>
+" set pastetoggle=<F9>
 
 map <leader>tl :set list!<CR>
 "set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
@@ -583,6 +583,11 @@ augroup myfiletypes
     " au BufNewFile,BufRead *.scala setfiletype java
 
 
+    autocmd BufNewFile,BufReadPost *.log :set filetype=messages
+    autocmd BufNewFile,BufReadPost /var/log/* :set filetype=messages
+
+
+
     " File type specific behaviour
     autocmd FileType cpp,php,ruby,eruby,yaml,html,xhtml,xml set sw=2 ts=2 expandtab
     autocmd FileType objj,javascript,javascript.ruby set sw=4 ts=4 expandtab
@@ -678,7 +683,7 @@ set fillchars+=vert:│
 hi VertSplit term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 " highlight conflicts
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+" match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 
 " Indent Guides {{{
@@ -1042,7 +1047,7 @@ let g:startify_session_dir = "~/.vim/sessions"
 
 let g:startify_bookmarks = [
             \ { 't': '~/.tmuxinator/' },
-            \ { 'r': '~/Utilities/run_sql_in_vim/run_sql_in_vim_read.sql' },
+            \ { 'r': '~/Utilities/run_sql_in_vim/run_sql_in_vim_write.sql' },
             \ { 'm': '~/most_recent_used.rb' },
             \ ]
 
@@ -1506,3 +1511,17 @@ endif
 
 nnoremap / /\v
 vnoremap / /\v
+
+
+" highlight OverLength ctermbg=yellow ctermfg=black guibg=#592929
+" match OverLength /\%121v.\+/
+
+" highlight ColorColumn ctermbg=214
+" set colorcolumn=120
+
+" highlight ColorColumn ctermbg=214
+" match ColorColumn /\%121v.\+/
+" let &colorcolumn=join(range(121,999),",")
+
+
+" let &colorcolumn="120,".join(range(150,999),",")
