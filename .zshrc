@@ -241,6 +241,7 @@ alias oe='open -a Microsoft\ Excel '
 # Git ---------------------------------------------------------------------- {{{
 
 alias gs='git status'
+alias gsh='git show'
 alias gsi='git status --ignored'
 alias gco='git checkout'
 alias gb='git branch'
@@ -453,7 +454,5 @@ source /usr/local/share/zsh/site-functions/_aws
 export LESS='-R'
 export LESSOPEN='|~/.lessfilter %s'
 
-
-alias sbt-pq='sbt "run --dir /Users/hahn/Development/Github/STAT-HQ/proxy_queue/proxies --config /Users/hahn/Development/Github/proxy-queue/src/main/resources/application.conf"'
 alias sc='scala -Dscala.color'
 

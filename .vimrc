@@ -837,7 +837,6 @@ NeoBundle 'othree/javascript-libraries-syntax.vim'
 NeoBundleLazy 'nikvdp/ejs-syntax',{'autoload':{'filetypes':['ejs']}}
 NeoBundleLazy 'elzr/vim-json', {'autoload':{'filetypes':['json']}}
 
-" NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'chrisbra/Colorizer'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'valloric/MatchTagAlways'
@@ -1504,6 +1503,9 @@ if has('gui_running')
     nmap <D-]> >>
     vmap <D-[> <gv
     vmap <D-]> >gv
+
+    let g:startify_disable_at_vimenter = 1
+    autocmd VimEnter execute "normal <leader>n"
 endif
 
 " }}}
