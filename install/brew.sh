@@ -67,6 +67,7 @@ brew cask install quicksilver
 brew cask install sequel-pro
 brew cask install sourcetree
 brew cask install virtualbox
+brew cask install quiver
 brew cask install macvim
 brew cask install libreoffice
 brew cask install adobe-reader
@@ -83,3 +84,5 @@ brew cask install wiznote
 
 
 brew cask install sublime-text3
+
+brew cask cleanup
