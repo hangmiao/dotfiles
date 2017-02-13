@@ -229,7 +229,7 @@ alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall F
 
 # lock computer
 alias lock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
-alias sd='sudo shutdown -r now'
+# alias sd='sudo shutdown -r now'
 
 alias M='/Applications/Movist.app/Contents/MacOS/Movist'
 alias o.='open .'
