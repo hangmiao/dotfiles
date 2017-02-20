@@ -51,6 +51,7 @@ brew install cowsay
 brew install fortune
 brew install ffmpeg
 brew install archey
+brew install awscli
 
 brew install caskroom/cask/brew-cask
 brew tap caskroom/versions
