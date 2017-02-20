@@ -7,8 +7,14 @@ fi
 
 echo "Installing homebrew packages..."
 
+
+brew update
 brew tap homebrew/dupes
 brew tap homebrew/services
+brew tap homebrew/versions
+
+brew install rbenv ruby-build mongodb dynamodb-local mysql@5.5 redis28 imagemagick@6 sbt
+brew link imagemagick@6 --force
 
 # cli tools
 brew install ack
@@ -20,14 +26,13 @@ brew install hub
 #brew install macvim --with-override-system-vim --with-python
 #brew link --overwrite macvim
 #brew linkapps macvim
-brew install vim --with-python3 --with-cscope --with-lua
-brew link --overwrite vim
-brew linkapps vim
-brew linkapps macvim
+# brew install vim --with-python3 --with-cscope --with-lua
+# brew link --overwrite vim
+# brew linkapps vim
+# brew linkapps macvim
 
 brew tap neovim/neovim
 brew install --HEAD neovim
-
 
 brew install reattach-to-user-namespace
 brew install tmux
@@ -55,6 +60,7 @@ brew install awscli
 
 brew install caskroom/cask/brew-cask
 brew tap caskroom/versions
+brew cask install java
 brew cask install dockertoolbox
 brew cask install docker-machine
 brew cask install iterm2
@@ -87,3 +93,4 @@ brew cask install wiznote
 brew cask install sublime-text3
 
 brew cask cleanup
+brew services start --all

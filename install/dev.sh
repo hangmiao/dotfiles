@@ -41,7 +41,8 @@ sudo rm -rf /var/db/receipts/com.mysql.*
 #brew link mysql55 --force
 brew link --overwrite mysql55 --force
 # To have launchd start mysql at login:
-ln -sfv /usr/local/opt/mysql55/*.plist ~/Library/LaunchAgents
+ln -sfv /usr/local/opt/mysql@5.5/*.plist ~/Library/LaunchAgents
+brew services restart mysql55
 
 # Then to load mysql now:
 launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
