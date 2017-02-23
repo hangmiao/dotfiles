@@ -13,8 +13,13 @@ brew tap homebrew/dupes
 brew tap homebrew/services
 brew tap homebrew/versions
 
-brew install rbenv ruby-build mongodb dynamodb-local mysql@5.5 redis28 imagemagick@6 sbt
+brew install rbenv ruby-build mongodb dynamodb-local mysql@5.5 redis28 imagemagick@6 sbt logstash
 brew link imagemagick@6 --force
+# For mongodb
+sudo mkdir -p /data/db
+sudo chown -R `id -u` /data/db
+
+
 
 # cli tools
 brew install ack

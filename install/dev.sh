@@ -45,7 +45,7 @@ ln -sfv /usr/local/opt/mysql@5.5/*.plist ~/Library/LaunchAgents
 brew services restart mysql55
 
 # Then to load mysql now:
-launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+# launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 
 gem install tmuxinator
 export EDITOR='vim'
