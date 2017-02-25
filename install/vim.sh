@@ -6,7 +6,6 @@ brew install --HEAD neovim
 
 ln -s /Users/hahn/Development/Github/dotfiles/.vimrc  ~/.config/nvim/init.vim
 
-
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 # install vundle
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -29,3 +28,4 @@ git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim
 # ln -s ~/.vim $XDG_CONFIG_HOME/nvim
 # ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
 
+cp -avR ~/.vim/ ~/.config/nvim

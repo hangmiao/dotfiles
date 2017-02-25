@@ -839,7 +839,7 @@ NeoBundleLazy 'elzr/vim-json', {'autoload':{'filetypes':['json']}}
 
 NeoBundle 'chrisbra/Colorizer'
 NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'valloric/MatchTagAlways'
+" NeoBundle 'valloric/MatchTagAlways'
 
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'airblade/vim-gitgutter'
