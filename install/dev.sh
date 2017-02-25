@@ -44,6 +44,8 @@ brew link --overwrite mysql55 --force
 ln -sfv /usr/local/opt/mysql@5.5/*.plist ~/Library/LaunchAgents
 brew services restart mysql55
 
+brew install postgres
+
 # Then to load mysql now:
 # launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 
