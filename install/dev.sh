@@ -35,6 +35,7 @@ rails -v
 
 gem install ruby-beautify
 
+mkdir -p ~/Library/LaunchAgents
 
 brew install mysql55
 sudo rm -rf /var/db/receipts/com.mysql.*
@@ -43,18 +44,18 @@ brew link --overwrite mysql55 --force
 # To have launchd start mysql at login:
 ln -sfv /usr/local/opt/mysql@5.5/*.plist ~/Library/LaunchAgents
 brew services restart mysql55
+# Then to load mysql now:
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 
 brew install postgres
+ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 
-# Then to load mysql now:
-# launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 
 gem install tmuxinator
 export EDITOR='vim'
 
 brew install imagemagick
-
-mkdir ~/Library/LaunchAgents
 
 curl -sL http://git.io/vsk46 | \
     sed -e "s?{{docker-machine}}?$(which docker-machine)?" \
