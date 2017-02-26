@@ -870,7 +870,7 @@ NeoBundle 'sjl/clam.vim'
 " NeoBundle 'othree/yajs.vim'
 
 NeoBundle 'VundleVim/Vundle.vim'
-" NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'uguu-org/vim-matrix-screensaver'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tomtom/tcomment_vim'
@@ -1305,10 +1305,10 @@ let g:airline_extensions = ['branch', 'tabline']
 
 
 " EasyMotion
-" hi EasyMotionShade ctermfg=234 guifg=#1c1c1c
-" let g:EasyMotion_leader_key = '<Leader>'
+hi EasyMotionShade ctermfg=234 guifg=#1c1c1c
+let g:EasyMotion_leader_key = '<Leader>'
 " forwards <- ,f
-" nmap <leader>f <Plug>(easymotion-w)
+nmap <leader>f <Plug>(easymotion-w)
 " backwards <- ,b
 " go change cursor
 " nmap <leader>g <Plug>(easymotion-f)
