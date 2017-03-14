@@ -62,6 +62,7 @@ brew install fortune
 brew install ffmpeg
 brew install archey
 brew install awscli
+brew install ctags-exuberant
 
 brew install caskroom/cask/brew-cask
 brew tap caskroom/versions
@@ -93,7 +94,6 @@ brew cask install caffeine
 brew cask install dash
 brew cask install deluge
 brew cask install wiznote
-
 
 brew cask install sublime-text3
 

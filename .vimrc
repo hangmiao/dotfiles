@@ -1288,7 +1288,7 @@ command JscsFix :call JscsFix()
 
 
 " noremap <c-f> :Autoformat<CR>
-noremap <c-t> :Tabularize /
+noremap <leader>tb :Tabularize /
 
 
 " Vim-airline
@@ -1339,7 +1339,16 @@ let g:ctrlp_follow_symlinks = 2
 " the way to the root folder. SO you can be in any sub-folder in your project and it'll be able to find the
 " tags files.
 set tags=tags;/
-nnoremap <leader>T :CtrlPTag<cr>
+" search through your tags file and jump to where tags are defined.
+" Very useful when you need to jump around a project in a hurry.
+nnoremap <leader>. :CtrlPTag<cr>
+
+" `Ctrl + ]` and `Ctrl` + [ to jump back and forth
+nnoremap <C-[> <C-T>
+" Open a new tab while keep the cursor in the original file in place
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+" Open a vertical split
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 
 
