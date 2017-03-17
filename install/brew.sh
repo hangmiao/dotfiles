@@ -63,6 +63,7 @@ brew install ffmpeg
 brew install archey
 brew install awscli
 brew install ctags-exuberant
+brew install youtube-dl
 
 brew install caskroom/cask/brew-cask
 brew tap caskroom/versions
