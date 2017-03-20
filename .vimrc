@@ -76,7 +76,8 @@ set lazyredraw
 
 " setting path explicitly to make it load faster
 let g:ruby_path = "/usr/bin/ruby"
-" let g:python_host_prog = '/usr/local/bin/python3'
+let g:python2_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Non-compatible
 " set ttyscroll=0        " turn off scrolling
@@ -139,6 +140,11 @@ nnoremap <leader>tr :RainbowParentheses!!<cr>
 " }}}
 " Quick editing ------------------------------------------------------------ {{{
 
+nmap <silent> ,s :w<CR>
+
+" Reload current buffer
+nnoremap <leader>; :e!<cr>
+
 nmap <silent> ,y :%y<CR>
 nmap <silent> ,0 :%d<CR>
 
@@ -154,9 +160,6 @@ nnoremap <leader>x :bd<cr>
 nnoremap <leader>X :bd!<cr>
 " Wipe out all buffers
 " nmap <silent> <leader>xa :1,900bwipeout<cr>
-
-" Reload current buffer
-nnoremap <leader>; :e!<cr>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
@@ -200,7 +203,8 @@ nmap <silent> ,cd :lcd %:h<CR>
 nmap <silent> ,cr :lcd <c-r>=FindGitDirOrRoot()<cr><cr>
 nmap <silent> ,md :!mkdir -p %:p:h<CR>
 
-map <leader>re :call RenameFile()<cr>
+" map <leader>re :call RenameFile()<cr>
+map <leader>re :Rename<space>
 
 " scroll the viewport faster
 nnoremap <C-e> 10<C-e>
@@ -360,7 +364,7 @@ endfunction
 " :ab pry- require 'pry-byebug'
 " :ab pry binding.pry
 :ab pry require 'pry-byebug'; binding.pry
-:ab p* puts '', '*'*48
+:ab p* puts '', '*'*28
 :ab pl println(
 
 
@@ -799,18 +803,18 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
 
 
 " If vundle is not installed, do it first
-  let bundleExists = 1
-  if (!isdirectory(expand("$HOME/.vim/bundle/neobundle.vim")))
-     call system(expand("mkdir -p $HOME/.vim/bundle"))
-     call system(expand("git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim"))
-     let bundleExists = 0
-  endif
+let bundleExists = 1
+call system(expand("mkdir -p $HOME/.vim/bundle"))
+if (!isdirectory(expand("$HOME/.vim/bundle/neobundle.vim")))
+call system(expand("git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim"))
+let bundleExists = 0
+endif
 
-  if 0 | endif
+if 0 | endif
 
-  if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-  endif
+if has('vim_starting')
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 
 " Required:
 call neobundle#begin(expand('~/.vim/bundle/'))
@@ -831,6 +835,8 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tmux-plugins/vim-tmux'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'epeli/slimux'
+
 NeoBundle 'junegunn/rainbow_parentheses.vim'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle '1995eaton/vim-better-javascript-completion'
@@ -900,6 +906,7 @@ NeoBundle 'beautify-web/js-beautify'
 NeoBundle 'tmhedberg/matchit'
 NeoBundle 'sickill/vim-pasta'
 NeoBundle 'vim-scripts/ZoomWin'
+NeoBundle 'wojtekmach/vim-rename'
 
 " NeoBundle 'Valloric/YouCompleteMe'
 " NeoBundle 'SirVer/ultisnips'
@@ -916,11 +923,11 @@ NeoBundle 'vim-scripts/ZoomWin'
 call neobundle#end()
 
 " Required:
-  filetype plugin indent on
-  NeoBundleCheck
-  if bundleExists == 0
-    echo "Installing Bundles, ignore errors"
-  endif
+filetype plugin indent on
+NeoBundleCheck
+if bundleExists == 0
+echo "Installing Bundles, ignore errors"
+endif
 
 
 
@@ -1291,6 +1298,10 @@ command JscsFix :call JscsFix()
 " noremap <c-f> :Autoformat<CR>
 noremap <leader>tb :Tabularize /
 
+" Slimux
+nnoremap <Leader>sl :SlimuxREPLSendLine<CR>
+vnoremap <Leader>ss :SlimuxREPLSendSelection<CR>
+nnoremap <leader>sb :SlimuxREPLSendBuffer<CR>
 
 " Vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -1532,12 +1543,6 @@ endif
 
 
 " let &colorcolumn="120,".join(range(150,999),",")
-"
-set clipboard=unnamed
-
-let g:python2_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
-
 
 nnoremap <C-k> <C-u>
 nnoremap <C-j> <C-d>
