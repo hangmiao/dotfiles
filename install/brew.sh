@@ -96,6 +96,10 @@ brew cask install deluge
 brew cask install wiznote
 
 brew cask install sublime-text3
+brew tap gwerbin/tap
+brew install --HEAD gwerbin/tap/neovim-qt
 
 brew cask cleanup
 brew services start --all
+
+

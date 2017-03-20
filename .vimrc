@@ -146,7 +146,8 @@ nmap <silent> ,z :qa!<CR>
 
 " Buffers
 " Create a new buffer and set filetype
-nmap <silent> ,n :enew<CR>:set ft=ruby<CR>
+nmap <silent> ,nr :enew<CR>:set ft=ruby<CR>
+nmap <silent> ,ns :enew<CR>:set ft=scala<CR>
 
 " Close a buffer
 nnoremap <leader>x :bd<cr>
@@ -206,10 +207,10 @@ nnoremap <C-e> 10<C-e>
 nnoremap <C-y> 10<C-y>
 
 " moving up and down work as you would expect
-nnoremap <silent> j gj
-nnoremap <silent> k gk
-nnoremap <silent> ^ g^
-nnoremap <silent> $ g$
+" nnoremap <silent> j gj
+" nnoremap <silent> k gk
+" nnoremap <silent> ^ g^
+" nnoremap <silent> $ g$
 
 " Automatically jump to end of text pasted
 vnoremap <silent> y y`]
@@ -221,11 +222,11 @@ nnoremap <silent> p p`]
 " Substitute
 " %s in normal mode
 " selected texts in visual mode
-nnoremap <leader>s :%s///g<left><left><left>
-vnoremap <leader>s :s///g<left><left><left>
+nnoremap <leader>r :%s///g<left><left><left>
+vnoremap <leader>r :s///g<left><left><left>
 
 " Substitute all occurrences of a word where the cursor is placed
-noremap <Leader>S :%s/\<<C-r><C-w>\>//g<Left><Left>
+noremap <Leader>R :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " Run sql across dbs, replace the 'replace' in the boilerplate.
 nnoremap rs :%s/replace/""/g<left><left><left>
@@ -483,8 +484,8 @@ nnoremap / /\v
 vnoremap / /\v
 "nnoremap <leader><space> :noh<cr>
 nnoremap <leader>c :call RubySyntax()<cr>
-nnoremap <leader>r :call RubyRun()<cr>
-nnoremap <leader>l :call RailsRun()<cr>
+" nnoremap <leader>r :call RubyRun()<cr>
+" nnoremap <leader>l :call RailsRun()<cr>
 " nnoremap <leader>l :call ShellList()<cr>
 nnoremap <leader>F :call FormatSqlStr()<cr>
 nnoremap <space> :
@@ -846,7 +847,7 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'Xuyuanp/nerdtree-git-plugin'
 
 NeoBundle 'benekastah/neomake'
-" NeoBundle 'Shougo/deoplete.nvim'
+NeoBundle 'Shougo/deoplete.nvim'
 NeoBundle 'matze/vim-move'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'terryma/vim-multiple-cursors'
@@ -1514,15 +1515,10 @@ if has('gui_running')
     vmap <D-]> >gv
 
     let g:startify_disable_at_vimenter = 1
-    autocmd VimEnter execute "normal <leader>n"
+    autocmd VimEnter execute "normal <leader>ns"
 endif
 
 " }}}
-
-
-nnoremap / /\v
-vnoremap / /\v
-
 
 " highlight OverLength ctermbg=yellow ctermfg=black guibg=#592929
 " match OverLength /\%121v.\+/
@@ -1538,3 +1534,13 @@ vnoremap / /\v
 " let &colorcolumn="120,".join(range(150,999),",")
 "
 set clipboard=unnamed
+
+let g:python2_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
+
+
+nnoremap <C-k> <C-u>
+nnoremap <C-j> <C-d>
+
+nnoremap / /\v
+vnoremap / /\v

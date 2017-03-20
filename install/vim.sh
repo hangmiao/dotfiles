@@ -1,11 +1,18 @@
 # Set brew macvim to be the default
 brew link --overwrite macvim
 
-brew tap neovim/homebrew-neovim
-brew install --HEAD neovim
+# Neovim with Python
+brew install python
+brew install python3
+pip2 install neovim --upgrade
+pip3 install neovim --upgrade
+
+# brew tap neovim/homebrew-neovim
+# brew install --HEAD neovim
+
+brew install neovim/neovim/neovim
 
 ln -s /Users/hahn/Development/Github/dotfiles/.vimrc  ~/.config/nvim/init.vim
-
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 # install vundle
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
