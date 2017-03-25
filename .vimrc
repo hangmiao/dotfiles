@@ -97,7 +97,8 @@ noremap <tab> %
 vnoremap <tab> %
 
 " Tmux
-nnoremap <leader>u :silent !tmux send-keys -t right C-d C-c C-c C-d C-c Up C-m<cr>
+" nnoremap <leader>u :silent !tmux send-keys -t right C-d C-c C-c C-d C-c Up C-m<cr>
+nnoremap <leader>u :silent !tmux send-keys -t right C-c Up C-m<cr>
 
 " Make :help appear in a full-screen tab, instead of a window {{{
 
@@ -606,6 +607,8 @@ augroup myfiletypes
 
     " Treat .rss files as XML
     autocmd BufNewFile,BufRead *.rss setfiletype xml
+
+    autocmd BufNewFile * :setfiletype scala
 augroup END
 
 
@@ -1135,6 +1138,18 @@ let g:UltiSnipsNoMap=1
   smap <C-s>     <Plug>(neosnippet_expand_or_jump)
   xmap <C-s>     <Plug>(neosnippet_expand_target)
 
+  "imap <expr><TAB>
+  " \ pumvisible() ? "\<C-n>" :
+  " \ neosnippet#expandable_or_jumpable() ?
+  " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+  " For conceal markers.
+  if has('conceal')
+    set conceallevel=2 concealcursor=niv
+  endif
+
 " Tell Neosnippet about the other snippets
   let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/neosnippets, ~/.vim/bundle/angular-vim-snippets/snippets'
 
@@ -1549,3 +1564,4 @@ nnoremap <C-j> <C-d>
 
 nnoremap / /\v
 vnoremap / /\v
+
