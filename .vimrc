@@ -98,7 +98,7 @@ vnoremap <tab> %
 
 " Tmux
 " nnoremap <leader>u :silent !tmux send-keys -t right C-d C-c C-c C-d C-c Up C-m<cr>
-nnoremap <leader>u :silent !tmux send-keys -t right C-c Up C-m<cr>
+" nnoremap <leader>u :silent !tmux send-keys -t right C-c Up C-m<cr>
 
 " Make :help appear in a full-screen tab, instead of a window {{{
 
@@ -417,7 +417,10 @@ function! ShellList()
   !ls -lah
 endfunction
 
-
+function! RunMostRecentCmd()
+  :w
+  :silent !tmux send-keys -t right C-c Up C-m
+endfunction
 
 function! FindGitDirOrRoot()
   let filedir = expand('%:p:h')
@@ -493,6 +496,8 @@ nnoremap <leader>c :call RubySyntax()<cr>
 " nnoremap <leader>l :call RailsRun()<cr>
 " nnoremap <leader>l :call ShellList()<cr>
 nnoremap <leader>F :call FormatSqlStr()<cr>
+nnoremap <leader>u :call RunMostRecentCmd()<cr>
+
 nnoremap <space> :
 nnoremap <leader>q q:
 
@@ -608,7 +613,7 @@ augroup myfiletypes
     " Treat .rss files as XML
     autocmd BufNewFile,BufRead *.rss setfiletype xml
 
-    autocmd BufNewFile * :setfiletype scala
+    " autocmd BufNewFile * :setfiletype scala
 augroup END
 
 
@@ -910,6 +915,11 @@ NeoBundle 'tmhedberg/matchit'
 NeoBundle 'sickill/vim-pasta'
 NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'wojtekmach/vim-rename'
+
+
+" NeoBundle 'xolox/vim-misc'
+" NeoBundle 'xolox/vim-notes'
+NeoBundle 'suan/vim-instant-markdown'
 
 " NeoBundle 'Valloric/YouCompleteMe'
 " NeoBundle 'SirVer/ultisnips'
@@ -1394,7 +1404,11 @@ nnoremap "g :FufFile ~/Development/Github/<cr>
 " let g:fuf_file_exclude = '\v\~$|\.(DS_Store|o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 let g:fuf_buffer_keyDelete = '<C-d>'
 
-
+" vim-instant-markdown
+let g:instant_markdown_slow = 1
+let g:instant_markdown_autostart = 0
+let g:instant_markdown_allow_unsafe_content = 1
+let g:instant_markdown_allow_external_content = 1
 
 " Buftabline
 set hidden
@@ -1544,6 +1558,22 @@ if has('gui_running')
     autocmd VimEnter execute "normal <leader>ns"
 endif
 
+
+if has("gui_vimr")
+  " VimR specific settings like
+  set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h18
+
+  " Remove all the UI cruft
+  set guioptions-=T " Removes top toolbar
+  set guioptions-=r " Removes right hand scroll bar
+  set go-=L " Removes left hand scroll bar
+  set go-=l
+  set go-=R
+
+  let g:startify_disable_at_vimenter = 1
+  autocmd VimEnter execute "normal <leader>ns"
+endif
+
 " }}}
 
 " highlight OverLength ctermbg=yellow ctermfg=black guibg=#592929
@@ -1565,3 +1595,5 @@ nnoremap <C-j> <C-d>
 nnoremap / /\v
 vnoremap / /\v
 
+au BufEnter *.scala setl formatprg=java\ -jar\ ~/bin/scalariform.jar\ -f\ -q\ +alignSingleLineCaseStatements\ --stdin\ --stdout
+au BufEnter *.scala setl equalprg=java\ -jar\ ~/bin/scalariform.jar\ -f\ -q\ +alignSingleLineCaseStatements\ --stdin\ --stdout

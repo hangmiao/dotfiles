@@ -94,6 +94,12 @@ brew cask install utc-menu-clock
 brew cask install caffeine
 brew cask install dash
 brew cask install deluge
+
+# brew install pandoc
+# brew install lynx
+brew install node
+npm -g install instant-markdown-d
+
 brew cask install wiznote
 
 brew cask install sublime-text3
