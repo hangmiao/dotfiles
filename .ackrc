@@ -1,6 +1,7 @@
 --ignore-file=is:tags
 --ignore-file=is:.tags
 --ignore-file=is:.keep
+--ignore-file=is:html
 --color
 --follow
 --group
