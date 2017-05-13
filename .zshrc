@@ -240,9 +240,9 @@ alias oe='open -a Microsoft\ Excel '
 # }}}
 # Git ---------------------------------------------------------------------- {{{
 
-alias gs='git status'
-alias gsh='git show'
+alias gs='git status -sb'
 alias gsi='git status --ignored'
+alias gsh='git show'
 alias gco='git checkout'
 alias gb='git branch'
 alias gpl='git pull'
@@ -456,4 +456,3 @@ export LESS='-R'
 export LESSOPEN='|~/.lessfilter %s'
 
 alias sc='scala -Dscala.color'
-
