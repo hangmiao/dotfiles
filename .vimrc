@@ -287,8 +287,8 @@ cnoremap <C-A>      <Home>
 cnoremap <C-E>      <End>
 cnoremap <C-B>      <Left>
 cnoremap <C-F>      <Right>
-cnoremap <C-N>      <End>
 cnoremap <C-P>      <Up>
+cnoremap <C-N>      <Down>
 cnoremap <ESC>b     <S-Left>
 cnoremap <ESC><C-B> <S-Left>
 cnoremap <ESC>f     <S-Right>
@@ -574,6 +574,8 @@ endif
 
 " Highlight every other line
  map <leader><Tab> :set hls<CR>/\n.*\n/<CR>
+
+ map! <C-v>co ⌘
 
 " }}}
 " FileTypes ---------------------------------------------------------------- {{{
