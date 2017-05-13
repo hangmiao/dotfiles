@@ -295,6 +295,9 @@ cnoremap <ESC>f     <S-Right>
 cnoremap <ESC><C-F> <S-Right>
 " cnoremap <ESC><C-H> <C-W>
 
+" Pull last visually selected area onto command-line mode
+cnoremap <leader>9 <C-R>=fnameescape(getline("'<")[ getpos("'<")[2]-1 : getpos("'>")[2]-1 ])<CR>
+
 " }}}
 " Life savers -------------------------------------------------------------- {{{
 
