@@ -96,6 +96,9 @@ map <s-F8> 15k<CR>
 noremap <tab> %
 vnoremap <tab> %
 
+nnoremap / /\v
+vnoremap / /\v
+
 " Tmux
 " nnoremap <leader>u :silent !tmux send-keys -t right C-d C-c C-c C-d C-c Up C-m<cr>
 " nnoremap <leader>u :silent !tmux send-keys -t right C-c Up C-m<cr>
@@ -368,6 +371,7 @@ endfunction
 " :ab pry- require 'pry-byebug'
 " :ab pry binding.pry
 :ab pry require 'pry-byebug'; binding.pry
+:ab eof if __FILE__ == $PROGRAM_NAME
 :ab p* puts '', '*'*28
 :ab pl println(
 
@@ -422,7 +426,7 @@ endfunction
 
 function! RunMostRecentCmd()
   :w
-  :silent !tmux send-keys -t right C-c Up C-m
+  :silent !tmux send-keys -t right C-c C-d C-c Up C-m
 endfunction
 
 function! FindGitDirOrRoot()
@@ -920,6 +924,7 @@ NeoBundle 'tmhedberg/matchit'
 NeoBundle 'sickill/vim-pasta'
 NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'wojtekmach/vim-rename'
+NeoBundle 'janko-m/vim-test'
 
 
 " NeoBundle 'xolox/vim-misc'
@@ -1026,11 +1031,11 @@ let g:webdevicons_enable_airline_statusline = 1
 let g:webdevicons_enable_ctrlp = 1
 let g:webdevicons_enable_flagship_statusline = 1
 " let g:WebDevIconsUnicodeDecorateFileNodes = 1
-" let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 " let g:webdevicons_conceal_nerdtree_brackets = 1
 " let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
 " let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-" let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 
 " }}}
@@ -1458,6 +1463,20 @@ augroup rainbow_lisp
   autocmd FileType scala,lisp,clojure,scheme RainbowParentheses
 augroup END
 
+
+let test#strategy = "neovim"
+let test#ruby#minitest#file_pattern = '.rb' " the default is '_test\.rb'
+" let g:test#preserve_screen = 1
+let g:test#runner_commands = ['Minitest', 'Mocha']
+let test#filename_modifier = ':p'
+let g:test#ruby#minitest#executable = 'bundle exec rake'
+" let test#javascript#mocha#file_pattern = '.spec\.js'
+
+nmap <silent> <leader>t :TestNearest<CR>
+
+
+
+
 " }}}
 " NeoVim  ------------------------------------------------------------------ {{{
 " Switching to NeoVim
@@ -1596,9 +1615,6 @@ endif
 
 nnoremap <C-k> <C-u>
 nnoremap <C-j> <C-d>
-
-nnoremap / /\v
-vnoremap / /\v
 
 au BufEnter *.scala setl formatprg=java\ -jar\ ~/bin/scalariform.jar\ -f\ -q\ +alignSingleLineCaseStatements\ --stdin\ --stdout
 au BufEnter *.scala setl equalprg=java\ -jar\ ~/bin/scalariform.jar\ -f\ -q\ +alignSingleLineCaseStatements\ --stdin\ --stdout
