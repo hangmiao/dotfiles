@@ -531,7 +531,7 @@ imap ,fn <c-r>=expand('%:t')<cr>
 " Backups ------------------------------------------------------------------ {{{
 
 set backup                        " enable backups
-set noswapfile                    " it's 2015, Vim.
+set noswapfile
 
 " set undofile
 " set undodir="$HOME/.VIM_UNDO_FILES"
@@ -850,9 +850,10 @@ NeoBundle 'wavded/vim-stylus'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tmux-plugins/vim-tmux'
+NeoBundle 'epeli/slimux'
+NeoBundle 'jgdavey/tslime.vim'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'epeli/slimux'
 
 NeoBundle 'junegunn/rainbow_parentheses.vim'
 NeoBundle 'mxw/vim-jsx'
@@ -925,6 +926,7 @@ NeoBundle 'sickill/vim-pasta'
 NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'wojtekmach/vim-rename'
 NeoBundle 'janko-m/vim-test'
+NeoBundle 'kassio/neoterm'
 
 
 " NeoBundle 'xolox/vim-misc'
@@ -973,7 +975,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " Open a new tab and search for something.
 " nmap <leader>a :tab split<CR>:Ack ""<Left>
 " Match exact case, e.g. only search for small cases, use -s option
-nmap <leader>a :e split<CR>:Ack ""<Left>
+" nmap <leader>a :e split<CR>:Ack ""<Left>
 
 " Immediately search for the word under the cursor in a new tab.
 nmap <leader>A :e split<CR>:Ack <C-r><C-w><CR>
@@ -1464,7 +1466,9 @@ augroup rainbow_lisp
 augroup END
 
 
-let test#strategy = "neovim"
+" let test#strategy = "neovim"
+let test#strategy = "tslime"
+
 let test#ruby#minitest#file_pattern = '.rb' " the default is '_test\.rb'
 " let g:test#preserve_screen = 1
 let g:test#runner_commands = ['Minitest', 'Mocha']
@@ -1473,6 +1477,10 @@ let g:test#ruby#minitest#executable = 'bundle exec rake'
 " let test#javascript#mocha#file_pattern = '.spec\.js'
 
 nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>a :TestFile<CR>
+" nmap <silent> <leader>a :TestSuite<CR>
+" nmap <silent> <leader>l :TestLast<CR>
+" nmap <silent> <leader>g :TestVisit<CR>
 
 
 
