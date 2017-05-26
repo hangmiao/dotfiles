@@ -24,7 +24,7 @@ rvm --default use 2.2.2
 #ruby -v
 
 gem install bundler chef knife-ec2
-gem install resque-cleaner, resque-scheduler, resque-sliders
+gem install resque-cleaner
 gem install pry-doc
 
 gem install pg -- --with-pg-config=~/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config
@@ -53,6 +53,7 @@ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 
 
 gem install tmuxinator
+gem install rack
 export EDITOR='vim'
 
 brew install imagemagick
