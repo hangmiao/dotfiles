@@ -1476,12 +1476,22 @@ let test#filename_modifier = ':p'
 let g:test#ruby#minitest#executable = 'bundle exec rake'
 " let test#javascript#mocha#file_pattern = '.spec\.js'
 
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>a :TestFile<CR>
+function! TestNearestAutoSave()
+  :w
+  :TestNearest
+endfunction
+
+function! TestFileAutoSave()
+  :w
+  :TestFile
+endfunction
+
+nmap <silent> <leader>t :call TestNearestAutoSave()<CR>
+nmap <silent> <leader>a :call TestFileAutoSave()<CR>
+" nmap <silent> <leader>t :TestNearest<CR>
 " nmap <silent> <leader>a :TestSuite<CR>
 " nmap <silent> <leader>l :TestLast<CR>
 " nmap <silent> <leader>g :TestVisit<CR>
-
 
 
 

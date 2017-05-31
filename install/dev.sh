@@ -53,6 +53,7 @@ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 
 
 gem install tmuxinator
+gem install bluepill
 gem install rack
 export EDITOR='vim'
 
