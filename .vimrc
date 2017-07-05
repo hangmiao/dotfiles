@@ -56,7 +56,7 @@ set backspace=indent,eol,start
 set laststatus=2
 set noshowmode
 set numberwidth=2
-set guioptions+=a " macvim copied clipboard on selection
+" set guioptions+=a " macvim copied clipboard on selection
 
 set so=7 " set 7 lines to the cursors - when moving vertical
 set history=1000 " change history to 1000
