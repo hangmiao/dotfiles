@@ -429,6 +429,12 @@ function! RunMostRecentCmd()
   :silent !tmux send-keys -t right C-c C-d C-c Up C-m
 endfunction
 
+function! RubocopAutoFormatAndSave()
+  !rubocop -a %
+  :e!
+  :w
+endfunction
+
 function! FindGitDirOrRoot()
   let filedir = expand('%:p:h')
   if isdirectory(filedir)
@@ -444,8 +450,6 @@ function! FindGitDirOrRoot()
   endif
 endfunction
 
-
-
 function! RenameFile()
 let old_name = expand('%')
 let new_name = input('New file name: ', expand('%'), 'file')
@@ -455,8 +459,6 @@ if new_name != '' && new_name != old_name
     redraw!
 endif
 endfunction
-
-
 
 " Strip trailing whitespace
 function! StripTrailingWhitespace()
@@ -481,7 +483,6 @@ if has("autocmd")
   autocmd VimEnter * :call SetupCtrlP()
 endif
 
-
 function! FormatSqlStr()
   :%s//\r&/g
   :%s/\\n,//g
@@ -504,6 +505,7 @@ nnoremap <leader>c :call RubySyntax()<cr>
 " nnoremap <leader>l :call ShellList()<cr>
 nnoremap <leader>F :call FormatSqlStr()<cr>
 nnoremap <leader>u :call RunMostRecentCmd()<cr>
+nmap <silent> <leader>rc :call RubocopAutoFormatAndSave()<CR>
 
 nnoremap <space> :
 nnoremap <leader>q q:
