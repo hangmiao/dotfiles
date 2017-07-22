@@ -166,7 +166,6 @@ unalias rm
 
 export EDITOR='nvim'
 
-
 # }}}
 # Alias -------------------------------------------------------------------- {{{
 
@@ -220,7 +219,13 @@ alias ag='ag --ignore=lib/stat-sv-health '
 alias ducks='find ~ -xdev -type f -size +1000M'
 
 alias m='mux'
+alias m='tmuxinator'
 alias h='history'
+
+alias hs='stack ghci'
+
+alias d='docker'
+alias dm='docker-machine'
 
 # Mac OS X ----------------------------------------------------------------- {{{
 
@@ -241,8 +246,8 @@ alias oe='open -a Microsoft\ Excel '
 # Git ---------------------------------------------------------------------- {{{
 
 alias gs='git status -sb'
-alias gsi='git status --ignored'
 alias gsh='git show'
+alias gsi='git status --ignored'
 alias gco='git checkout'
 alias gb='git branch'
 alias gpl='git pull'
@@ -275,12 +280,10 @@ alias grp='git reset --hard origin/production'
 # Revert to a particular commit that has already been pushed to the remote repo
 alias gforce='git push origin master --force'
 
-
 # List untracked files
 alias glu='git ls-files --others --exclude-standard'
 # Nice alias for adding untracked files:
 alias gau='!git add $(git ls-files -o --exclude-standard)'
-
 
 # }}}
 # }}}
@@ -300,14 +303,10 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
-
-
-
 # e.g. Run 'recent 7' to find files modified in the past 7 days.
 recent() {
   find ~ -type f -regex ".*\.txt" -mtime -$1 -exec vim "{}" +
 }
-
 
 # }}}
 # RVM  --------------------------------------------------------------------- {{{
@@ -317,18 +316,26 @@ recent() {
 # rvm use ruby-1.9.3-p448 --default
 # rvm get stable --auto-dotfiles
 
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/bin/python3:$PATH"
-export PATH=$PATH:/usr/sbin:/usr/bin:/sbin:/bin:~/bin:/usr/games
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="~/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/bin/python3:$PATH"
+export PATH=$PATH:/usr/sbin:/usr/bin:/sbin:/bin:~/bin:/usr/games:/usr/local/Cellar/
+export MONGO_PATH=/usr/local/mongodb
+export PATH=$PATH:$MONGO_PATH/bin
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+# export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="/usr/local/opt/qt5/bin:$PATH"
 
 # echo "Going to load RVM"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 # }}}
 # Docker  ------------------------------------------------------------------ {{{
 
 # docker-machine start default
 # eval $(docker-machine env default)
+
+# export DOCKER_HOST=tcp://192.168.59.103:2376
+# export DOCKER_CERT_PATH=/Users/hahn/.boot2docker/certs/boot2docker-vm
+# export DOCKER_TLS_VERIFY=1
 
 # }}}
 # Color settings ----------------------------------------------------------- {{{
@@ -409,7 +416,6 @@ function isClean()
 # More Custom stuff -------------------------------------------------------- {{{
 
 # w3m -cols 99999 -dump http://en.wikipedia.org/wiki/$(date +%B_%d) | less | sed -n '/Events/, /Births/ p' | sed -n 's/^.*• //p' | gshuf -n 1
-
 
 function switchToMac
 {
