@@ -52,8 +52,6 @@ brew install htop
 brew install CMake
 brew install mkvtoolnix
 brew install rename
-brew install boot2docker
-brew install docker-compose
 brew install the_silver_searcher
 brew install coreutils
 brew install w3m
@@ -69,7 +67,6 @@ brew install caskroom/cask/brew-cask
 brew tap caskroom/versions
 brew cask install java
 brew cask install dockertoolbox
-brew cask install docker-machine
 brew cask install iterm2
 brew cask install firefox
 brew cask install google-chrome

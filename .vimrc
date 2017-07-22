@@ -426,6 +426,7 @@ endfunction
 
 function! RunMostRecentCmd()
   :w
+  :silent !tmux send-keys -t right C-b
   :silent !tmux send-keys -t right C-c C-d C-c Up C-m
 endfunction
 
