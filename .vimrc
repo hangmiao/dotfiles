@@ -629,6 +629,10 @@ augroup myfiletypes
 augroup END
 
 
+au BufEnter *.scala setl formatprg=java\ -jar\ ~/bin/scalariform.jar\ -f\ -q\ +alignSingleLineCaseStatements\ --stdin\ --stdout
+au BufEnter *.scala setl equalprg=java\ -jar\ ~/bin/scalariform.jar\ -f\ -q\ +alignSingleLineCaseStatements\ --stdin\ --stdout
+
+
 " }}}
 " Folding ------------------------------------------------------------------ {{{
 
@@ -678,11 +682,12 @@ au VimResized * :wincmd =
 " Color settings ----------------------------------------------------------- {{{
 " colorscheme solarized
 " colorscheme monokai
-" colorscheme busybee
+colorscheme busybee
 " colorscheme PaperColor
 " colorscheme colorsbox-material
 " colorscheme gruvbox
-colorscheme mustang
+" colorscheme mustang
+" colorscheme lucario
 
 " set background=dark
 "highlight Comment ctermfg=119 guifg=#87ff5f
@@ -819,10 +824,8 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
 
 " }}}
 " }}}
-" Vundle Setup ------------------------------------------------------------- {{{
+" NeoBundle Setup ------------------------------------------------------------- {{{
 
-
-" If vundle is not installed, do it first
 let bundleExists = 1
 call system(expand("mkdir -p $HOME/.vim/bundle"))
 if (!isdirectory(expand("$HOME/.vim/bundle/neobundle.vim")))
@@ -833,7 +836,7 @@ endif
 if 0 | endif
 
 if has('vim_starting')
-set runtimepath+=~/.vim/bundle/neobundle.vim/
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 " Required:
@@ -1636,6 +1639,3 @@ endif
 
 nnoremap <C-k> <C-u>
 nnoremap <C-j> <C-d>
-
-au BufEnter *.scala setl formatprg=java\ -jar\ ~/bin/scalariform.jar\ -f\ -q\ +alignSingleLineCaseStatements\ --stdin\ --stdout
-au BufEnter *.scala setl equalprg=java\ -jar\ ~/bin/scalariform.jar\ -f\ -q\ +alignSingleLineCaseStatements\ --stdin\ --stdout
