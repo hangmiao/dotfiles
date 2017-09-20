@@ -55,6 +55,7 @@ brew install rename
 brew install the_silver_searcher
 brew install coreutils
 brew install w3m
+brew install gpg
 brew install cowsay
 brew install fortune
 brew install ffmpeg
@@ -76,6 +77,7 @@ brew cask install spectacle
 brew cask install quicksilver
 #brew cask install the-unarchiver
 brew cask install sequel-pro
+brew cask install sql-tabs
 brew cask install sourcetree
 brew cask install virtualbox
 brew cask install quiver

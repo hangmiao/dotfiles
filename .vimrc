@@ -682,11 +682,11 @@ au VimResized * :wincmd =
 " Color settings ----------------------------------------------------------- {{{
 " colorscheme solarized
 " colorscheme monokai
-colorscheme busybee
+" colorscheme busybee
 " colorscheme PaperColor
 " colorscheme colorsbox-material
 " colorscheme gruvbox
-" colorscheme mustang
+colorscheme mustang
 " colorscheme lucario
 
 " set background=dark
@@ -1639,3 +1639,13 @@ endif
 
 nnoremap <C-k> <C-u>
 nnoremap <C-j> <C-d>
+
+
+
+if &term =~ '256color'
+    " Disable Background Color Erase (BCE) so that color schemes
+    " work properly when Vim is used inside tmux and GNU screen.
+    set t_ut=
+endif
+
+autocmd FileType javascript setlocal equalprg=js-beautify\ --stdin

@@ -222,10 +222,19 @@ alias m='mux'
 alias m='tmuxinator'
 alias h='history'
 
+alias sc='scala -Dscala.color'
 alias hs='stack ghci'
+alias spl='bin/superpill --no-privileged'
+alias cb='bin/cardboard'
 
+# start docker
+alias ds="zsh --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'"
 alias d='docker'
 alias dm='docker-machine'
+
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+# alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
+alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
 
 # Mac OS X ----------------------------------------------------------------- {{{
 
@@ -241,6 +250,7 @@ alias o.='open .'
 alias of='open -a Firefox'
 alias oc='open -a "Google Chrome" '
 alias oe='open -a Microsoft\ Excel '
+alias ol='open -a LibreOffice '
 
 # }}}
 # Git ---------------------------------------------------------------------- {{{
@@ -447,18 +457,47 @@ function addSub
   done
 }
 
-
 # }}}
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
-export MONGO_PATH=/usr/local/mongodb
-export PATH=$PATH:$MONGO_PATH/bin
-# export LOG_LEVEL=DEBUG
-export LOG_LEVEL=INFO
-# source /usr/local/share/zsh/site-functions/_aws
+export LOG_LEVEL=DEBUG
+# export LOG_LEVEL=INFO
+source /usr/local/share/zsh/site-functions/_aws
 
 export LESS='-R'
 export LESSOPEN='|~/.lessfilter %s'
 
-alias sc='scala -Dscala.color'
+rmd () {
+  pandoc $1 | lynx -stdin
+}
+
+oa() {
+  # open up resque-web
+  open -a "Google Chrome" "https://$1:81"
+  # open up app
+  open -a "Google Chrome" "https://$1"
+}
+
+
+# openChrome()
+
+
+
+# export PROXY_SERVICE_ENV=test
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+source /usr/local/share/zsh/site-functions/_aws
+
+# export http_proxy=http://user723:6zpnfjjap1faofs8@209.147.68.20:60000/
+# export HTTP_PROXY=http://user723:6zpnfjjap1faofs8@209.147.68.20:60000/
+# # export https_proxy=https://user723:6zpnfjjap1faofs8@209.147.68.20:60000/
+
+
+export RESQUE_SLICE_LENGTH=2
+
+# Put this line at the end of ~/.bashrc and also at the end of ~/.profile
+export CHEF_USERNAME=hang
+
+# If you don't store your checkout of the chef-repo at ~/git/stat-chef-repo, add this too
+export CHEF_REPO=/Users/hahn/Development/Github/stat-chef-repo/
