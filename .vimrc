@@ -1161,6 +1161,7 @@ let g:UltiSnipsNoMap=1
 " Snipppets
 
 " Enable snipMate compatibility feature.
+" ctrl + s (i.e. not space)
   let g:neosnippet#enable_snipmate_compatibility = 1
   imap <C-s>     <Plug>(neosnippet_expand_or_jump)
   smap <C-s>     <Plug>(neosnippet_expand_or_jump)
@@ -1572,7 +1573,7 @@ if has('gui_running')
     let macvim_skip_colorscheme=1 " respect color settings in .vimrc
 
     " set guifont=Source\ Code\ Pro\ for\ Powerline:h16
-    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h18
+    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h16
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types:h19
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Regular:h19
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono:h15
