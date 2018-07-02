@@ -1,4 +1,4 @@
-Pry.config.editor = 'vim'
+Pry.config.editor = 'nvim'
 
 if defined?(PryByebug)
   Pry.commands.alias_command 'c', 'continue'
@@ -6,6 +6,7 @@ if defined?(PryByebug)
   Pry.commands.alias_command 'n', 'next'
   Pry.commands.alias_command 'f', 'finish'
   Pry.commands.alias_command 'b', '!!!'
+  Pry.commands.alias_command 'e', 'edit'
   Pry.config.commands.alias_command "wai", "whereami"
 end
 
@@ -18,4 +19,6 @@ end
 
 
 Pry.config.color = true
-#Pry.config.theme = "solarized"
+Pry.config.theme = "solarized"
+
+Pry.config.default_window_size = 20

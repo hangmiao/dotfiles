@@ -12,7 +12,7 @@ set shortmess=a
 " set timeoutlen=300
 " No delay for escape key press
 set ttimeoutlen=0
-set cmdheight=2
+set cmdheight=3 "when it's 2 scp it still shows Press ENTER or type command to continue
 
 "set tw=79
 "set formatoptions+=t
@@ -158,6 +158,7 @@ nmap <silent> ,z :qa!<CR>
 " Create a new buffer and set filetype
 nmap <silent> ,nr :enew<CR>:set ft=ruby<CR>
 nmap <silent> ,ns :enew<CR>:set ft=scala<CR>
+nmap <silent> ,nj :enew<CR>:set ft=javascript<CR>
 
 " Close a buffer
 nnoremap <leader>x :bd<cr>
@@ -189,7 +190,8 @@ nnoremap <leader>w :tabclose<cr>
 
 " Edit the vimrc file
 nnoremap <leader>ev :e $MYVIMRC<cr>
-nmap <silent> ,!v :so $MYVIMRC<CR>
+" refresh vimrc
+nmap <silent> <leader>ev! :so $MYVIMRC<CR>
 nnoremap <leader>et :e ~/.tmux.conf<cr>
 nnoremap <leader>ez :e ~/.zshrc<cr>
 nnoremap <leader>es :e ~/daily.txt<cr>
@@ -374,7 +376,7 @@ endfunction
 :ab eof if __FILE__ == $PROGRAM_NAME
 :ab p* puts '', '*'*28
 :ab pl println(
-
+:ab cl console.log('-----------------------------'); console.log()
 
 " Make pry debugger statements painfully obvious
 au BufEnter *.rb syn match error contained "\<binding.pry\>"
@@ -431,6 +433,7 @@ function! RunMostRecentCmd()
 endfunction
 
 function! RubocopAutoFormatAndSave()
+  :w
   !rubocop -a %
   :e!
   :w
@@ -613,7 +616,8 @@ augroup myfiletypes
 
     " File type specific behaviour
     autocmd FileType cpp,php,ruby,eruby,yaml,html,xhtml,xml set sw=2 ts=2 expandtab
-    autocmd FileType objj,javascript,javascript.ruby set sw=4 ts=4 expandtab
+    " autocmd FileType objj,javascript,javascript.ruby set sw=4 ts=4 expandtab
+    autocmd FileType objj,javascript,javascript.ruby set sw=2 ts=2 expandtab
     autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType make set sw=8 ts=8 noexpandtab
 
@@ -927,6 +931,7 @@ NeoBundle 'mhinz/vim-startify'
 NeoBundle 'ryanoasis/vim-devicons'
 NeoBundle 'maksimr/vim-jsbeautify'
 NeoBundle 'beautify-web/js-beautify'
+NeoBundle 'w0rp/ale'
 NeoBundle 'tmhedberg/matchit'
 NeoBundle 'sickill/vim-pasta'
 NeoBundle 'vim-scripts/ZoomWin'
@@ -1150,7 +1155,7 @@ endif
 ":smap <C-space> <Plug>snipMateNextOrTrigger
 
 " UltiSnips
-let g:UltiSnipsExpandTrigger="<c-space>"
+" let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsNoMap=1
@@ -1163,9 +1168,10 @@ let g:UltiSnipsNoMap=1
 " Enable snipMate compatibility feature.
 " ctrl + s (i.e. not space)
   let g:neosnippet#enable_snipmate_compatibility = 1
-  imap <C-s>     <Plug>(neosnippet_expand_or_jump)
-  smap <C-s>     <Plug>(neosnippet_expand_or_jump)
-  xmap <C-s>     <Plug>(neosnippet_expand_target)
+  imap <C-space>     <Plug>(neosnippet_expand_or_jump)
+  " imap <C-s>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-space>     <Plug>(neosnippet_expand_or_jump)
+  xmap <C-space>     <Plug>(neosnippet_expand_target)
 
   "imap <expr><TAB>
   " \ pumvisible() ? "\<C-n>" :
@@ -1625,7 +1631,7 @@ endif
 
 " }}}
 
-" highlight OverLength ctermbg=yellow ctermfg=black guibg=#592929
+highlight OverLength ctermbg=yellow ctermfg=black guibg=#592929
 " match OverLength /\%121v.\+/
 
 " highlight ColorColumn ctermbg=214
@@ -1650,3 +1656,18 @@ if &term =~ '256color'
 endif
 
 autocmd FileType javascript setlocal equalprg=js-beautify\ --stdin
+
+" // JS linter autocorrect
+" let g:ale_fixers = { 'javascript': ['prettier'] }
+" let g:ale_javascript_prettier_options = '--no-semi --trailing-comma es6'
+
+" Fix JavaScript code with ESlint
+" let g:ale_fixers = {}
+" let g:ale_fixers.javascript = ['eslint']
+
+" let g:ale_fixers.javascript = [
+" \ 'eslint',
+" \ 'remove_trailing_lines',
+" \ {buffer, lines -> filter(lines, 'v:val !=~ ''^\s*//''')},
+" \]
+let g:ale_fix_on_save = 1
