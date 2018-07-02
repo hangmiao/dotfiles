@@ -232,9 +232,12 @@ alias ds="zsh --login '/Applications/Docker/Docker Quickstart Terminal.app/Conte
 alias d='docker'
 alias dm='docker-machine'
 
-alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+# alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias chrome="/usr/local/Caskroom/google-chrome/latest/Google Chrome.app/Contents/MacOS/Google\ Chrome"
 # alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
 alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+
+# alias yd="youtube-dl -o '%(title)s.%(ext)s' -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "
 
 # Mac OS X ----------------------------------------------------------------- {{{
 
@@ -334,6 +337,7 @@ export PATH=$PATH:$MONGO_PATH/bin
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 # export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="/usr/local/opt/qt5/bin:$PATH"
+export PATH="/Users/hahn/Development/Github/dotfiles/utilities:$PATH"
 
 # echo "Going to load RVM"
 
@@ -463,7 +467,7 @@ test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_in
 
 export LOG_LEVEL=DEBUG
 # export LOG_LEVEL=INFO
-source /usr/local/share/zsh/site-functions/_aws
+# source /usr/local/share/zsh/site-functions/_aws
 
 export LESS='-R'
 export LESSOPEN='|~/.lessfilter %s'
@@ -483,11 +487,17 @@ oa() {
 # openChrome()
 
 
+yd () {
+  dir='/Users/hahn/Downloads/_'
+  cd dir
+  echo "Current dir: ${PWD}"
+  youtube-dl -o '%(title)s.%(ext)s' -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' $1
+}
 
 # export PROXY_SERVICE_ENV=test
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
-source /usr/local/share/zsh/site-functions/_aws
+# source /usr/local/share/zsh/site-functions/_aws
 
 # export http_proxy=http://user723:6zpnfjjap1faofs8@209.147.68.20:60000/
 # export HTTP_PROXY=http://user723:6zpnfjjap1faofs8@209.147.68.20:60000/
