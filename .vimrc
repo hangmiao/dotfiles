@@ -1429,6 +1429,9 @@ nnoremap "g :FufFile ~/Development/Github/<cr>
 " let g:fuf_file_exclude = '\v\~$|\.(DS_Store|o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 let g:fuf_buffer_keyDelete = '<C-d>'
 
+" FZF
+set rtp+=/usr/local/opt/fzf
+
 " vim-instant-markdown
 let g:instant_markdown_slow = 1
 let g:instant_markdown_autostart = 0
