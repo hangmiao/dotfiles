@@ -132,7 +132,8 @@ endfunction
 " Spell check toggle
 map <F6> :setlocal spell! spelllang=en_us<CR>
 
-" set pastetoggle=<F9>
+" set nopaste
+" set pastetoggle=<F6>
 
 map <leader>tl :set list!<CR>
 "set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
@@ -173,7 +174,7 @@ nmap <silent> ,j :bn<CR>
 nmap <silent> ,k :bp<CR>
 
 
-nmap <silent> <leader>bl :ls<CR>
+" nmap <silent> <leader>bl :ls<CR>
 
 " Tabs
 " e.g. Ctrl + [
@@ -645,6 +646,8 @@ augroup END
 au BufEnter *.scala setl formatprg=java\ -jar\ ~/bin/scalariform.jar\ -f\ -q\ +alignSingleLineCaseStatements\ --stdin\ --stdout
 au BufEnter *.scala setl equalprg=java\ -jar\ ~/bin/scalariform.jar\ -f\ -q\ +alignSingleLineCaseStatements\ --stdin\ --stdout
 
+
+autocmd FileType javascript setlocal equalprg=js-beautify\ --stdin
 
 " }}}
 " Folding ------------------------------------------------------------------ {{{
@@ -1341,6 +1344,7 @@ endfunction
 
 let g:neomake_javascript_enabled_makers = ['eslint']
 
+
 autocmd! BufWritePost * Neomake
 
 function! JscsFix()
@@ -1351,6 +1355,22 @@ endfunction
 
 command JscsFix :call JscsFix()
 " noremap <leader>j :JscsFix<CR>
+
+
+" // JS linter autocorrect
+" let g:ale_fixers = { 'javascript': ['prettier'] }
+" let g:ale_javascript_prettier_options = '--no-semi --trailing-comma es6'
+
+" Fix JavaScript code with ESlint
+" let g:ale_fixers = {}
+" let g:ale_fixers.javascript = ['eslint']
+
+" let g:ale_fixers.javascript = [
+" \ 'eslint',
+" \ 'remove_trailing_lines',
+" \ {buffer, lines -> filter(lines, 'v:val !=~ ''^\s*//''')},
+" \]
+let g:ale_fix_on_save = 1
 "}}}
 
 
@@ -1425,11 +1445,11 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " FuzzyFinder
 nmap "d :FufFileWithCurrentBufferDir<CR>
-nmap "f :FufBuffer<CR>
+" nmap "f :FufBuffer<CR>
+nmap <leader>b :FufBuffer<CR>
 nmap "t :FufTaggedFile<CR>
 nnoremap "l  :FufTag<cr>
 nnoremap "<Space> :FufBookmarkDir<cr>
-nnoremap "f :FufFile<cr>
 nnoremap "h :FufFile ~/<cr>
 nnoremap "j :FufFile ~/.vim/<cr>
 nnoremap "db :FufFile ~/Dropbox/<cr>
@@ -1591,7 +1611,7 @@ if has('gui_running')
     let macvim_skip_colorscheme=1 " respect color settings in .vimrc
 
     " set guifont=Source\ Code\ Pro\ for\ Powerline:h16
-    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h16
+    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h14
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types:h19
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Regular:h19
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono:h15
@@ -1641,45 +1661,13 @@ if has("gui_vimr")
   autocmd VimEnter execute "normal <leader>ns"
 endif
 
-" }}}
-
 highlight OverLength ctermbg=yellow ctermfg=black guibg=#592929
-" match OverLength /\%121v.\+/
-
-" highlight ColorColumn ctermbg=214
-" set colorcolumn=120
-
-" highlight ColorColumn ctermbg=214
-" match ColorColumn /\%121v.\+/
-" let &colorcolumn=join(range(121,999),",")
-
-
-" let &colorcolumn="120,".join(range(150,999),",")
-
-nnoremap <C-k> <C-u>
-nnoremap <C-j> <C-d>
-
-
 
 if &term =~ '256color'
     " Disable Background Color Erase (BCE) so that color schemes
     " work properly when Vim is used inside tmux and GNU screen.
     set t_ut=
 endif
-
-autocmd FileType javascript setlocal equalprg=js-beautify\ --stdin
-
-" // JS linter autocorrect
-" let g:ale_fixers = { 'javascript': ['prettier'] }
-" let g:ale_javascript_prettier_options = '--no-semi --trailing-comma es6'
-
-" Fix JavaScript code with ESlint
-" let g:ale_fixers = {}
-" let g:ale_fixers.javascript = ['eslint']
-
-" let g:ale_fixers.javascript = [
-" \ 'eslint',
-" \ 'remove_trailing_lines',
-" \ {buffer, lines -> filter(lines, 'v:val !=~ ''^\s*//''')},
-" \]
-let g:ale_fix_on_save = 1
+" }}}
+nnoremap <C-k> <C-u>
+nnoremap <C-j> <C-d>
