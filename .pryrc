@@ -22,3 +22,5 @@ Pry.config.color = true
 Pry.config.theme = "solarized"
 
 Pry.config.default_window_size = 20
+Pry.pager = nil
+

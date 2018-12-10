@@ -25,9 +25,11 @@ sudo chown -R `id -u` /data/db
 brew install ack
 brew install tree
 brew install wget
+brew install terraform
 
 brew install git
 brew install hub
+brew install colordiff
 #brew install macvim --with-override-system-vim --with-python
 #brew link --overwrite macvim
 #brew linkapps macvim
