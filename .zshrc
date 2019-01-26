@@ -27,6 +27,12 @@ fi
 source ~/z.sh
 # source ~/tmuxinator.zsh # somehow this is super slow
 
+DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# echo "dotfiles dir: $DOTFILES_DIR"
+. $DOTFILES_DIR/.zsh_utilities/youtube.sh
+. $DOTFILES_DIR/.zsh_utilities/va.sh
+. $DOTFILES_DIR/.zsh_utilities/http_proxy.sh
+
 # }}}
 # Set up zprezto  ---------------------------------------------------------- {{{
 
@@ -157,6 +163,9 @@ unalias rm
 # }}}
 # Better settings ---------------------------------------------------------- {{{
 
+export LESS='-R'
+export LESSOPEN='|~/.lessfilter %s'
+
 # Preferred editor for local and remote sessions
   if [[ -n $SSH_CONNECTION ]]; then
     export EDITOR='vim'
@@ -236,8 +245,6 @@ alias dm='docker-machine'
 alias chrome="/usr/local/Caskroom/google-chrome/latest/Google Chrome.app/Contents/MacOS/Google\ Chrome"
 # alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
 alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
-
-# alias yd="youtube-dl -o '%(title)s.%(ext)s' -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "
 
 # Mac OS X ----------------------------------------------------------------- {{{
 
@@ -405,7 +412,7 @@ recent() {
 }
 
 # }}}
-# RVM  --------------------------------------------------------------------- {{{
+# export PATH --------------------------------------------------------------------- {{{
 
 #### Add RVM Crap
 # PATH=$HOME/.rvm/gems/ruby-1.9.3-p448/bin:$PATH # Add RVM to PATH for scripting
@@ -421,6 +428,7 @@ export PATH=$PATH:$MONGO_PATH/bin
 # export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="/usr/local/opt/qt5/bin:$PATH"
 export PATH="/Users/hahn/Development/Github/dotfiles/utilities:$PATH"
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 
 # echo "Going to load RVM"
 
@@ -583,11 +591,6 @@ bindkey -M vicmd v edit-command-line
 # }}}
 # Custom stuff ------------------------------------------------------------- {{{
 
-# }}}
-# More Custom stuff -------------------------------------------------------- {{{
-
-# w3m -cols 99999 -dump http://en.wikipedia.org/wiki/$(date +%B_%d) | less | sed -n '/Events/, /Births/ p' | sed -n 's/^.*• //p' | gshuf -n 1
-
 function switchToMac
 {
  cd ~/Development/Github/Notes/config
@@ -606,28 +609,17 @@ function switchToDocker
  docker-compose run web rm /myapp/tmp/pids/server.pid; docker-compose up
 }
 
-function addSub
-{
-  files=(*)
-  for i in $files; do
-    if [[ $i =~ \.mp4$ ]] || [[ $i =~ \.mkv$ ]] || [[ $i =~ \.m4v$ ]]
-      then
-        echo "Adding sub to '$i'"
-        mkvmerge -o "$PWD/${i%.*}"_new "$i" "${i%.*}".srt && rm "$i" "${i%.*}".srt && mv "${i%.*}"_new "$i"
-    fi;
-  done
-}
+
+# w3m -cols 99999 -dump http://en.wikipedia.org/wiki/$(date +%B_%d) | less | sed -n '/Events/, /Births/ p' | sed -n 's/^.*• //p' | gshuf -n 1
 
 # }}}
+# More Custom stuff -------------------------------------------------------- {{{
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
 export LOG_LEVEL=DEBUG
 # export LOG_LEVEL=INFO
-# source /usr/local/share/zsh/site-functions/_aws
 
-export LESS='-R'
-export LESSOPEN='|~/.lessfilter %s'
 
 rmd () {
   pandoc $1 | lynx -stdin
@@ -643,38 +635,8 @@ oa() {
 
 # openChrome()
 
-goToDownloadsDir() {
-  dir='/Users/hahn/Downloads/_'
-  cd dir
-  echo "Current dir: ${PWD}"
-}
-
-yd () {
-  goToDownloadsDir
-  youtube-dl -o '%(title)s.%(ext)s' -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$1"
-}
-
-ydsub () {
-  goToDownloadsDir
-  youtube-dl "$1" -o '%(title)s.%(ext)s' -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' --sub-lang en-US --sub-format srt --write-sub
-}
+# }}}
 
 
-
-# export PROXY_SERVICE_ENV=test
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
-# source /usr/local/share/zsh/site-functions/_aws
-
-# export http_proxy=http://user723:6zpnfjjap1faofs8@209.147.68.20:60000/
-# export HTTP_PROXY=http://user723:6zpnfjjap1faofs8@209.147.68.20:60000/
-# # export https_proxy=https://user723:6zpnfjjap1faofs8@209.147.68.20:60000/
-
-
-export RESQUE_SLICE_LENGTH=2
-
-# Put this line at the end of ~/.bashrc and also at the end of ~/.profile
-export CHEF_USERNAME=hang
-
-# If you don't store your checkout of the chef-repo at ~/git/stat-chef-repo, add this too
-export CHEF_REPO=/Users/hahn/Development/Github/stat-chef-repo/
+# things needed to be at the end of this file
+. $DOTFILES_DIR/.zsh_utilities/private.sh
