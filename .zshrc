@@ -296,26 +296,80 @@ alias gforce='git push origin master --force'
 # List untracked files
 alias glu='git ls-files --others --exclude-standard'
 # Nice alias for adding untracked files:
-alias gau='!git add $(git ls-files -o --exclude-standard)'
+alias gau='git add $(git ls-files -o --exclude-standard)'
+
+
+function backmerge
+{
+  # do `git checkout production && git pull` first and fix conflict if any
+
+  git push origin production
+  isClean git checkout staging # if not clean, abort
+  git pull
+  isConflict git merge production # if there's conflict, abort
+  git push origin staging
+
+  isClean git checkout master
+  git pull
+  isConflict git merge staging
+  git push origin master
+}
+
+function isConflict()
+{
+  $@ # run it first
+
+  # Conflict
+  if [[ $(git ls-files -u  | cut -f 2 | sort -u | wc -l) -ne 0 ]]
+  then
+    # echo it in red color
+    echo -e "\n\nCannot \e[31m$@\e[0m: Conflict. \nAborting.\n\n\n"
+    return 1
+    #exit 1
+  fi
+}
+
+function isClean()
+{ # line 1
+  current_git_status=`$@` # run it first
+  if [[ "$current_git_status" == "" ]]
+  then
+    # echo it in red color
+    echo -e "\n\nCannot \e[31m$@\e[0m: See the above msg. \nAborting.\n\n\n"
+    return 1
+    #exit 1
+  fi
+}
+
+
 
 # Colour constants for nicer output.
 GREEN='\033[0;32m'
 RESET='\033[0m'
 
+# gitPushNewBranch
+function gpb() {
+  # git push --set-upstream origin <BRANCH-NAME>
+
+  # Get the current branch name, or use 'HEAD' if we cannot get it.
+  branch=$(git symbolic-ref -q HEAD)
+  branch=${branch##refs/heads/}
+  branch=${branch:-HEAD}
+
+  echo "Pushing to remote branch for ${GREEN}${branch}${RESET}..."
+
+  # Push to origin, grabbing the output but then echoing it back.
+  push_output=`git push origin -u ${branch} 2>&1`
+  echo ""
+  echo ${push_output}
+}
+
 # Push the current branch to origin, set upstream, open the PR page if possible.
 gpr() {
-    # Get the current branch name, or use 'HEAD' if we cannot get it.
-    branch=$(git symbolic-ref -q HEAD)
-    branch=${branch##refs/heads/}
-    branch=${branch:-HEAD}
+    gpb
 
     # Pushing take a little while, so let the user know we're working.
     echo "Opening pull request for ${GREEN}${branch}${RESET}..."
-
-    # Push to origin, grabbing the output but then echoing it back.
-    push_output=`git push origin -u ${branch} 2>&1`
-    echo ""
-    echo ${push_output}
 
     # If there's anything which starts with http, it's a good guess it'll be a
     # link to GitHub/GitLab/Whatever. So open it.
@@ -528,48 +582,6 @@ bindkey -M vicmd v edit-command-line
 
 # }}}
 # Custom stuff ------------------------------------------------------------- {{{
-
-function backmerge
-{
-  # do `git checkout production && git pull` first and fix conflict if any
-
-  git push origin production
-  isClean git checkout staging # if not clean, abort
-  git pull
-  isConflict git merge production # if there's conflict, abort
-  git push origin staging
-
-  isClean git checkout master
-  git pull
-  isConflict git merge staging
-  git push origin master
-}
-
-function isConflict()
-{
-  $@ # run it first
-
-  # Conflict
-  if [[ $(git ls-files -u  | cut -f 2 | sort -u | wc -l) -ne 0 ]]
-  then
-    # echo it in red color
-    echo -e "\n\nCannot \e[31m$@\e[0m: Conflict. \nAborting.\n\n\n"
-    return 1
-    #exit 1
-  fi
-}
-
-function isClean()
-{ # line 1
-  current_git_status=`$@` # run it first
-  if [[ "$current_git_status" == "" ]]
-  then
-    # echo it in red color
-    echo -e "\n\nCannot \e[31m$@\e[0m: See the above msg. \nAborting.\n\n\n"
-    return 1
-    #exit 1
-  fi
-}
 
 # }}}
 # More Custom stuff -------------------------------------------------------- {{{

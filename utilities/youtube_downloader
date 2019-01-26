@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'optparse'
+require 'date'
+
+if $PROGRAM_NAME == __FILE__
+  start_date = Date.today.prev_month
+  end_date = Date.today
+  dir = ''
+
+  OptionParser.new do |opts|
+    opts.banner = 'Usage: youtube_downloader e.g. ' \
+      './youtube_downloader --start-date 2018-03-30 --end-date 2018-03-31 --dir /Users/hahn/Downloads/_/CBC'
+      '[--start_date start_date] [--end_date end_date]'
+    opts.on('--start-date DATE', 'Run for specified start_date') { |s_date| start_date = Date.parse(s_date) if s_date }
+    opts.on('--end-date DATE', 'Run for specified end_date') { |e_date| end_date = Date.parse(e_date) if e_date }
+    opts.on('--dir DIR', 'Download directory') { |d_dir| dir = d_dir if d_dir }
+  end.parse!
+
+  (start_date..end_date).each do |date|
+    current_date = date.strftime('%B %-d, %Y') # %-d to remove leading zero
+    puts "Downloading #{current_date}"
+    str = "cd #{dir} && youtube-dl " \
+          "-o '%(title)s.%(ext)s' " \
+          "-f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' " \
+          "ytuser:CBCTheNational " \
+          "--match-title '#{current_date}' " \
+          "--dateafter #{start_date.prev_day.strftime('%Y%m%d')}"
+
+    system str
+
+    mv_file = "find . -type f -name '*#{current_date}*' -exec mv {} '#{date}.mp4' \\;"
+    system "cd #{dir} && #{mv_file}"
+  end
+end
