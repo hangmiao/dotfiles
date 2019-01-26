@@ -17,6 +17,23 @@ export LC_IDENTIFICATION=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # }}}
+# Color settings ----------------------------------------------------------- {{{
+
+# Tell ls to be colourful
+export CLICOLOR=1
+export LSCOLORS="exfxcxdxcxegedabagacad"
+
+# Set colors to match iTerm2 Terminal Colors
+export TERM=xterm-256color
+
+# Tell grep to highlight matches
+export GREP_OPTIONS='--color=auto'
+
+# Colour constants for nicer output.
+GREEN='\033[0;32m'
+RESET='\033[0m'
+
+# }}}
 # Source ------------------------------------------------------------------- {{{
 
 # Source Prezto.
@@ -350,10 +367,6 @@ function isClean()
 
 
 
-# Colour constants for nicer output.
-GREEN='\033[0;32m'
-RESET='\033[0m'
-
 # gitPushNewBranch
 function gpb() {
   # git push --set-upstream origin <BRANCH-NAME>
@@ -559,19 +572,6 @@ export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
   }
 
 # }}}
-# Color settings ----------------------------------------------------------- {{{
-
-# Tell ls to be colourful
-export CLICOLOR=1
-export LSCOLORS="exfxcxdxcxegedabagacad"
-
-# Set colors to match iTerm2 Terminal Colors
-export TERM=xterm-256color
-
-# Tell grep to highlight matches
-export GREP_OPTIONS='--color=auto'
-
-# }}}
 # Key bindings ------------------------------------------------------------- {{{
 
 # Gives vim style of line editing at the prompt
@@ -636,7 +636,6 @@ oa() {
 # openChrome()
 
 # }}}
-
 
 # things needed to be at the end of this file
 . $DOTFILES_DIR/.zsh_utilities/private.sh
