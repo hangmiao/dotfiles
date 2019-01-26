@@ -298,6 +298,35 @@ alias glu='git ls-files --others --exclude-standard'
 # Nice alias for adding untracked files:
 alias gau='!git add $(git ls-files -o --exclude-standard)'
 
+# Colour constants for nicer output.
+GREEN='\033[0;32m'
+RESET='\033[0m'
+
+# Push the current branch to origin, set upstream, open the PR page if possible.
+gpr() {
+    # Get the current branch name, or use 'HEAD' if we cannot get it.
+    branch=$(git symbolic-ref -q HEAD)
+    branch=${branch##refs/heads/}
+    branch=${branch:-HEAD}
+
+    # Pushing take a little while, so let the user know we're working.
+    echo "Opening pull request for ${GREEN}${branch}${RESET}..."
+
+    # Push to origin, grabbing the output but then echoing it back.
+    push_output=`git push origin -u ${branch} 2>&1`
+    echo ""
+    echo ${push_output}
+
+    # If there's anything which starts with http, it's a good guess it'll be a
+    # link to GitHub/GitLab/Whatever. So open it.
+    link=$(echo ${push_output} | grep -o 'http.*' | sed -e 's/[[:space:]]*$//')
+    if [ ${link} ]; then
+        echo ""
+        echo "Opening: ${GREEN}${link}${RESET}..."
+        python -mwebbrowser ${link}
+    fi
+}
+
 # }}}
 # }}}
 # Life Savers -------------------------------------------------------------- {{{
@@ -569,7 +598,7 @@ function addSub
 {
   files=(*)
   for i in $files; do
-    if [[ $i =~ \.mp4$ ]] || [[ $i =~ \.mkv$ ]]
+    if [[ $i =~ \.mp4$ ]] || [[ $i =~ \.mkv$ ]] || [[ $i =~ \.m4v$ ]]
       then
         echo "Adding sub to '$i'"
         mkvmerge -o "$PWD/${i%.*}"_new "$i" "${i%.*}".srt && rm "$i" "${i%.*}".srt && mv "${i%.*}"_new "$i"
@@ -602,13 +631,23 @@ oa() {
 
 # openChrome()
 
-
-yd () {
+goToDownloadsDir() {
   dir='/Users/hahn/Downloads/_'
   cd dir
   echo "Current dir: ${PWD}"
-  youtube-dl -o '%(title)s.%(ext)s' -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' $1
 }
+
+yd () {
+  goToDownloadsDir
+  youtube-dl -o '%(title)s.%(ext)s' -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$1"
+}
+
+ydsub () {
+  goToDownloadsDir
+  youtube-dl "$1" -o '%(title)s.%(ext)s' -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' --sub-lang en-US --sub-format srt --write-sub
+}
+
+
 
 # export PROXY_SERVICE_ENV=test
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
