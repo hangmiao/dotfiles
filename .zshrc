@@ -50,8 +50,14 @@ DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . $DOTFILES_DIR/.zsh_utilities/va.sh
 . $DOTFILES_DIR/.zsh_utilities/http_proxy.sh
 
+
+source /usr/local/share/zsh/site-functions/_aws
+
 # }}}
 # Set up zprezto  ---------------------------------------------------------- {{{
+
+#disable auto correct
+unsetopt correct_all
 
 setopt AUTO_CD                # cd if no matching command
 setopt AUTO_PARAM_SLASH       # adds slash at end of tabbed dirs
@@ -248,20 +254,39 @@ alias m='mux'
 alias m='tmuxinator'
 alias h='history'
 
-alias sc='scala -Dscala.color'
+# alias sc='scala -Dscala.color'
+alias sc='sbt -Dscala.color console'
 alias hs='stack ghci'
 alias spl='bin/superpill --no-privileged'
 alias cb='bin/cardboard'
 
 # start docker
-alias ds="zsh --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'"
-alias d='docker'
+# alias ds="zsh --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'"
+alias d='docker '
 alias dm='docker-machine'
 
-# alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-alias chrome="/usr/local/Caskroom/google-chrome/latest/Google Chrome.app/Contents/MacOS/Google\ Chrome"
+# alias yd="youtube-dl -o '%(title)s.%(ext)s' -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "
+alias dl='docker logs -f headless-spider'
+alias db='docker rm -f `docker ps --no-trunc -aq`; docker build -t headless . ;'
+# alias ds='service headless-spider stop; service headless-spider start'
+alias dc='docker exec -it `docker ps -aqf "name=headless-spider"` /bin/bash'
+alias dps='docker ps -a'
+
+# try creating a container from the tag 'headless'
+alias dr="docker run --env HOST=host.docker.internal --env 'DEBUG=*' -v /Users/hahn/Development/Github/headless-spider/container_out:/usr/src/app/container_out --name headless-spider headless"
+
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 # alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
 alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+
+# terraform
+alias tfp="cd terraform; terraform init && terraform workspace select production && terraform plan --var-file environments/production.tfvars"
+alias tfa="terraform apply --var-file environments/production.tfvars"
+
+# alias fgco="git checkout $(git branch | fzf)"
+# alias fgcor="git checkout --track $(git branch -r | fzf)"
+# alias fgco="git checkout `git branch | fzf`"
+# alias fgcor="git checkout --track `git branch -r | fzf`"
 
 # Mac OS X ----------------------------------------------------------------- {{{
 
@@ -401,6 +426,12 @@ gpr() {
     fi
 }
 
+alias gbm='git branch -r --sort=creatordate \
+    --format "%(creatordate:relative);%(committername);%(refname:lstrip=-1)" \
+    | grep -v ";HEAD$" \
+    | column -s ";" -t \
+    | grep hahnmiao'
+
 # }}}
 # }}}
 # Life Savers -------------------------------------------------------------- {{{
@@ -443,6 +474,14 @@ export PATH="/usr/local/opt/qt5/bin:$PATH"
 export PATH="/Users/hahn/Development/Github/dotfiles/utilities:$PATH"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+export PATH="/usr/local/opt/node@8/bin:$PATH"
+export PATH="/usr/local/opt/mysql@5.5/bin:$PATH"
+export PATH="/usr/local/opt/mysql@5.5/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+
 # echo "Going to load RVM"
 
 # }}}
@@ -451,6 +490,7 @@ export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 # docker-machine start default
 # eval $(docker-machine env default)
 
+# export HOST=host.docker.internal
 # export DOCKER_HOST=tcp://192.168.59.103:2376
 # export DOCKER_CERT_PATH=/Users/hahn/.boot2docker/certs/boot2docker-vm
 # export DOCKER_TLS_VERIFY=1
@@ -492,26 +532,33 @@ export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
     fi
   }
 
-  # fgco - checkout git branch/tag
   fgco() {
-    local tags branches target
-    tags=$(
-      git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}'
-    ) || return
-    branches=$(
-      git branch --all | grep -v HEAD |
-        sed "s/.* //" | sed "s#remotes/[^/]*/##" |
-        sort -u | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}'
-    ) || return
-    target=$(
-      (
-        echo "$tags"
-        echo "$branches"
-      ) |
-        fzf-tmux -l30 -- --no-hscroll --ansi +m -d "\t" -n 2
-    ) || return
-    git checkout $(echo "$target" | awk '{print $2}')
+    # suprisingly this behaves super werid, which runs fzf everytime a shell is open
+    # alias fgco="git checkout `git branch | fzf`"
+    git checkout `git branch | fzf`
   }
+
+  # # fgco - checkout git branch/tag
+  # fgco() {
+  #   local tags branches target
+  #   tags=$(
+  #     git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}'
+  #   ) || return
+  #   branches=$(
+  #     git branch --all | grep -v HEAD |
+  #       sed "s/.* //" | sed "s#remotes/[^/]*/##" |
+  #       sort -u | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}'
+  #   ) || return
+  #   target=$(
+  #     (
+  #       echo "$tags"
+  #       echo "$branches"
+  #     ) |
+  #       # fzf-tmux -l30 -- --no-hscroll --ansi +m -d "\t" -n 2
+  #       fzf +m
+  #   ) || return
+  #   git checkout $(echo "$target" | awk '{print $2}')
+  # }
 
   # fgcoc - checkout git commit
   fgcoc() {
@@ -589,6 +636,16 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 # }}}
+# Other Conf ------------------------------------------------------------- {{{
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+
+# }}}
 # Custom stuff ------------------------------------------------------------- {{{
 
 function switchToMac
@@ -612,30 +669,35 @@ function switchToDocker
 
 # w3m -cols 99999 -dump http://en.wikipedia.org/wiki/$(date +%B_%d) | less | sed -n '/Events/, /Births/ p' | sed -n 's/^.*• //p' | gshuf -n 1
 
+rmd () {
+  pandoc $1 | lynx -stdin
+}
+
 # }}}
 # More Custom stuff -------------------------------------------------------- {{{
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
-export LOG_LEVEL=DEBUG
-# export LOG_LEVEL=INFO
-
-
-rmd () {
-  pandoc $1 | lynx -stdin
-}
 
 oa() {
   # open up resque-web
   open -a "Google Chrome" "https://$1:81"
+  # open up resque-web for spiders
+  open -a "Google Chrome" "https://$1:82"
+  # open up kibana
+  # Gotcha, it's http instead of https
+  # open -a "Google Chrome" "http://$1:5601"
+  # open up Sidekiq
+  # Checkout Chef repo cardboard.json sidekiq
+  # Also it's http
+  # open -a "Google Chrome" "http://$1:28056"
   # open up app
   open -a "Google Chrome" "https://$1"
 }
 
-
-# openChrome()
-
 # }}}
+
+eval "$(rbenv init -)"
 
 # things needed to be at the end of this file
 . $DOTFILES_DIR/.zsh_utilities/private.sh
