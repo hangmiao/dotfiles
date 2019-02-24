@@ -1671,3 +1671,6 @@ endif
 " }}}
 nnoremap <C-k> <C-u>
 nnoremap <C-j> <C-d>
+
+
+nnoremap <space>ga :Git add %:p<CR><CR>

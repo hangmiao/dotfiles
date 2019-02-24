@@ -44,7 +44,8 @@ fi
 source ~/z.sh
 # source ~/tmuxinator.zsh # somehow this is super slow
 
-DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DOTFILES_DIR="/Users/hahn"
 # echo "dotfiles dir: $DOTFILES_DIR"
 . $DOTFILES_DIR/.zsh_utilities/youtube.sh
 . $DOTFILES_DIR/.zsh_utilities/va.sh
@@ -288,6 +289,11 @@ alias tfa="terraform apply --var-file environments/production.tfvars"
 # alias fgco="git checkout `git branch | fzf`"
 # alias fgcor="git checkout --track `git branch -r | fzf`"
 
+alias ti="terraform init"
+alias tp="terraform plan"
+alias ts="terraform show"
+alias ta="terraform apply"
+
 # Mac OS X ----------------------------------------------------------------- {{{
 
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
@@ -410,7 +416,7 @@ function gpb() {
 }
 
 # Push the current branch to origin, set upstream, open the PR page if possible.
-gpr() {
+function gpr() {
     gpb
 
     # Pushing take a little while, so let the user know we're working.
@@ -481,6 +487,8 @@ export PATH="/usr/local/opt/mysql@5.5/bin:$PATH"
 export PATH="/usr/local/opt/mysql@5.5/bin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
+
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # echo "Going to load RVM"
 

@@ -70,6 +70,7 @@ brew install caskroom/cask/brew-cask
 brew tap caskroom/versions
 brew cask install java
 brew cask install dockertoolbox
+brew cask install kitematic
 brew cask install iterm2
 brew cask install firefox
 brew cask install google-chrome
