@@ -65,3 +65,25 @@ curl -sL http://git.io/vsk46 | \
     >~/Library/LaunchAgents/com.docker.machine.default.plist && \
     launchctl load ~/Library/LaunchAgents/com.docker.machine.default.plist
 
+
+
+# npm cache clean
+# npm install npm -g
+
+npm install -g yarn
+
+npm install -g typescript
+npm install -g @angular/cli@latest
+npm install -g 'nightmare@^2.8.0'
+npm install -g 'nightmare@2.10.0'
+npm install -g 'ajv-keywords@2.1.1'
+npm install -g 'ajv@^5.0.0'
+
+npm install -g lodash
+npm install -g js-beautify
+npm install -g prettier
+npm install -g jshint
+npm install -g eslint
+
+npm install -g instant-markdown-d
+npm install -g serverless

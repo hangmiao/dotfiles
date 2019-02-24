@@ -100,7 +100,6 @@ brew cask install deluge
 # brew install pandoc
 # brew install lynx
 brew install node
-npm -g install instant-markdown-d
 
 brew cask install wiznote
 

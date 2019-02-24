@@ -719,3 +719,7 @@ eval "$(rbenv init -)"
 
 # things needed to be at the end of this file
 . $DOTFILES_DIR/.zsh_utilities/private.sh
+
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
