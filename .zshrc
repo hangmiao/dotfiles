@@ -265,16 +265,26 @@ alias cb='bin/cardboard'
 # alias ds="zsh --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'"
 alias d='docker '
 alias dm='docker-machine'
+alias dcv='docker volume prune --force'
+alias dewb='docker exec -ti $(docker-compose ps -q web) /bin/sh'
+alias di='docker image ls'
+alias dlv='docker volume ls'
+# alias dps='docker ps -a'
+alias dps='docker container ls -a'
+alias drm='docker container rm'
+alias drma='docker container ls -aq | xargs docker container stop; docker container ls -aq | xargs docker rm'
+alias drmi='docker image rm'
 
-# alias yd="youtube-dl -o '%(title)s.%(ext)s' -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "
-alias dl='docker logs -f headless-spider'
-alias db='docker rm -f `docker ps --no-trunc -aq`; docker build -t headless . ;'
-# alias ds='service headless-spider stop; service headless-spider start'
-alias dc='docker exec -it `docker ps -aqf "name=headless-spider"` /bin/bash'
-alias dps='docker ps -a'
-
-# try creating a container from the tag 'headless'
-alias dr="docker run --env HOST=host.docker.internal --env 'DEBUG=*' -v /Users/hahn/Development/Github/headless-spider/container_out:/usr/src/app/container_out --name headless-spider headless"
+alias dc=docker-compose
+alias dcbu='docker-compose build'
+alias dcki='docker-compose kill'
+alias dclean='docker container prune --force; docker image prune --force'
+alias dclw='docker-compose logs web'
+alias dcps='docker-compose ps'
+alias dcrm='docker-compose rm -f'
+alias dcrwb='docker-compose run --service-ports web /bin/sh'
+alias dcup='docker-compose up'
+alias dcupd='docker-compose up -d'
 
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 # alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
