@@ -13,7 +13,7 @@ brew tap homebrew/dupes
 brew tap homebrew/services
 brew tap homebrew/versions
 
-brew install rbenv ruby-build mongodb dynamodb-local mysql@5.5 redis28 imagemagick@6 scala sbt logstash
+brew install rbenv readline ruby-build mongodb dynamodb-local mysql@5.5 redis28 imagemagick@6 scala sbt logstash
 brew link imagemagick@6 --force
 # For mongodb
 sudo mkdir -p /data/db
