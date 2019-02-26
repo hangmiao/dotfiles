@@ -63,6 +63,7 @@ brew install fortune
 brew install ffmpeg
 brew install archey
 brew install awscli
+brew install ctop
 brew install ctags-exuberant
 brew install youtube-dl
 
