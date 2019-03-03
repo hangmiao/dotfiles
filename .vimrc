@@ -1380,9 +1380,12 @@ let g:ale_fix_on_save = 1
 noremap <leader>tb :Tabularize /
 
 " Slimux
+let g:slimux_select_from_current_window = 1
 nnoremap <Leader>sl :SlimuxREPLSendLine<CR>
 vnoremap <Leader>ss :SlimuxREPLSendSelection<CR>
 nnoremap <leader>sb :SlimuxREPLSendBuffer<CR>
+map <Leader>sa :SlimuxShellLast<CR>
+map <Leader>sk :SlimuxSendKeysLast<CR>
 
 " Vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -1491,6 +1494,50 @@ highlight GitGutterDelete ctermfg=red guifg=red
 highlight GitGutterChangeDelete ctermfg=yellow guifg=#ffdf00
 
 let g:gitgutter_map_keys = 0
+function! NextHunkAllBuffers()
+  let line = line('.')
+  GitGutterNextHunk
+  if line('.') != line
+    return
+  endif
+
+  let bufnr = bufnr('')
+  while 1
+    bnext
+    if bufnr('') == bufnr
+      return
+    endif
+    if !empty(GitGutterGetHunks())
+      normal! 1G
+      GitGutterNextHunk
+      return
+    endif
+  endwhile
+endfunction
+
+function! PrevHunkAllBuffers()
+  let line = line('.')
+  GitGutterPrevHunk
+  if line('.') != line
+    return
+  endif
+
+  let bufnr = bufnr('')
+  while 1
+    bprevious
+    if bufnr('') == bufnr
+      return
+    endif
+    if !empty(GitGutterGetHunks())
+      normal! G
+      GitGutterPrevHunk
+      return
+    endif
+  endwhile
+endfunction
+
+nmap <silent> ]c :call NextHunkAllBuffers()<CR>
+nmap <silent> [c :call PrevHunkAllBuffers()<CR>
 nmap <Leader>ga <Plug>GitGutterStageHunk
 nmap <Leader>gu <Plug>GitGutterRevertHunk
 nmap <Leader>gv <Plug>GitGutterPreviewHunk
