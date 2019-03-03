@@ -504,6 +504,14 @@ augroup line_return
         \     execute 'normal! g`"zvzz' |
         \ endif
 augroup END
+
+
+augroup git_stuff
+  autocmd!
+  " autocmd BufEnter * nmap <buffer> gap :w<CR>:silent :!git add %<CR>:redraw!<CR>
+  nnoremap gc :!git commit -m ''<left>
+augroup END
+
 " }}}
 " My Remappings ------------------------------------------------------------ {{{
 
