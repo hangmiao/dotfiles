@@ -718,7 +718,6 @@ oa() {
 eval "$(rbenv init -)"
 
 # things needed to be at the end of this file
-#/Users/hahn/Development/Github/dotfiles/.zshrc
 . $DOTFILES_DIR/.zsh_utilities/private.sh
 
 # tabtab source for slss package
