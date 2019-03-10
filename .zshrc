@@ -124,6 +124,9 @@ setopt NO_CASE_GLOB
 # hows about arrays be awesome?  (that is, frew${cool}frew has frew surrounding all the variables, not just first and last
 setopt RC_EXPAND_PARAM
 
+setopt nocorrectall
+setopt correct
+
 # Make home and end the way they should be.
 bindkey '\e[1~' beginning-of-line
 bindkey '\e[4~' end-of-line
