@@ -9,17 +9,13 @@ echo "Installing homebrew packages..."
 
 
 brew update
-brew tap homebrew/dupes
 brew tap homebrew/services
-brew tap homebrew/versions
 
 brew install rbenv readline ruby-build mongodb dynamodb-local mysql@5.5 redis28 imagemagick@6 scala sbt logstash
 brew link imagemagick@6 --force
 # For mongodb
 sudo mkdir -p /data/db
 sudo chown -R `id -u` /data/db
-
-
 
 # cli tools
 brew install ack
@@ -110,5 +106,3 @@ brew install --HEAD gwerbin/tap/neovim-qt
 
 brew cask cleanup
 brew services start --all
-
-

@@ -1212,7 +1212,7 @@ let g:UltiSnipsNoMap=1
 " Neocomplete ----------------------- {{{
 
 " Use deoplete.
-" set runtimepath+=~/.vim/bundle/deoplete.nvim
+set runtimepath+=~/.vim/bundle/deoplete.nvim
 let g:deoplete#enable_at_startup = 1
 
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
