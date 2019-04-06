@@ -35,8 +35,9 @@ brew install colordiff
 # brew linkapps macvim
 
 brew tap neovim/neovim
-brew install --HEAD neovim
+brew tap gemfury/tap
 
+brew install --HEAD neovim
 brew install reattach-to-user-namespace
 brew install tmux
 brew install zsh
@@ -62,6 +63,7 @@ brew install awscli
 brew install ctop
 brew install ctags-exuberant
 brew install youtube-dl
+brew install gemfury
 
 brew install caskroom/cask/brew-cask
 brew tap caskroom/versions

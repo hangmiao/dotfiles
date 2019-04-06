@@ -38,6 +38,7 @@ set shiftwidth=2
 " set clipboard+=unnamed
 set clipboard=unnamed
 set ignorecase
+set wildignorecase " Enable case insensitive in cmd mode
 set smartcase
 " set gdefault
 set incsearch
@@ -604,7 +605,6 @@ endif
  map <leader><Tab> :set hls<CR>/\n.*\n/<CR>
 
  map! <C-v>co ⌘
-
 " }}}
 " FileTypes ---------------------------------------------------------------- {{{
 
