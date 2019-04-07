@@ -84,6 +84,7 @@ brew cask install sql-tabs
 brew cask install sourcetree
 brew cask install virtualbox
 brew cask install quiver
+brew cask install vimr
 brew cask install macvim
 brew cask install libreoffice
 brew cask install adobe-reader
