@@ -19,6 +19,7 @@ sudo chown -R `id -u` /data/db
 
 # cli tools
 brew install ack
+brew install fzf
 brew install tree
 brew install wget
 brew install terraform
