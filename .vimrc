@@ -545,7 +545,7 @@ nnoremap * * <c-o>
 imap ,fn <c-r>=expand('%:t')<cr>
 " imap ,fn <c-r>=expand('%:t:r')<cr>
 " Copy the full path
-:nmap cp :let @+ = expand("%:p")<cr>
+nmap cp :let @+ = expand("%:p")<cr>
 
 " " Underline the current line with '='
 " nmap <silent> ,u= :t.\|s/./=/g\|:nohls<cr>
@@ -1573,7 +1573,7 @@ let test#strategy = "tslime"
 
 let test#ruby#minitest#file_pattern = '.rb' " the default is '_test\.rb'
 " let g:test#preserve_screen = 1
-let g:test#runner_commands = ['Minitest', 'Mocha']
+let g:test#runner_commands = ['Minitest', 'Mocha', 'Rails']
 let test#filename_modifier = ':p'
 let g:test#ruby#minitest#executable = 'bundle exec rake'
 " let test#javascript#mocha#file_pattern = '.spec\.js'

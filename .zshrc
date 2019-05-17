@@ -50,6 +50,7 @@ DOTFILES_DIR="/Users/hahn"
 . $DOTFILES_DIR/.zsh_utilities/youtube.sh
 . $DOTFILES_DIR/.zsh_utilities/va.sh
 . $DOTFILES_DIR/.zsh_utilities/http_proxy.sh
+. $DOTFILES_DIR/.zsh_utilities/aliases.sh
 
 
 source /usr/local/share/zsh/site-functions/_aws
