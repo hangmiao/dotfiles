@@ -9,9 +9,7 @@ echo "Installing homebrew packages..."
 
 
 brew update
-brew tap homebrew/dupes
 brew tap homebrew/services
-brew tap homebrew/versions
 
 brew install rbenv readline ruby-build mongodb dynamodb-local mysql@5.5 redis28 imagemagick@6 scala sbt logstash
 brew link imagemagick@6 --force
@@ -19,10 +17,9 @@ brew link imagemagick@6 --force
 sudo mkdir -p /data/db
 sudo chown -R `id -u` /data/db
 
-
-
 # cli tools
 brew install ack
+brew install fzf
 brew install tree
 brew install wget
 brew install terraform
@@ -87,6 +84,7 @@ brew cask install sql-tabs
 brew cask install sourcetree
 brew cask install virtualbox
 brew cask install quiver
+brew cask install vimr
 brew cask install macvim
 brew cask install libreoffice
 brew cask install adobe-reader
@@ -112,5 +110,3 @@ brew install --HEAD gwerbin/tap/neovim-qt
 
 brew cask cleanup
 brew services start --all
-
-

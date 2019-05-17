@@ -45,13 +45,13 @@ source ~/z.sh
 # source ~/tmuxinator.zsh # somehow this is super slow
 
 # DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-DOTFILES_DIR="/Users/hahn"
+DOTFILES_DIR='/Users/hahn/'
 # echo "dotfiles dir: $DOTFILES_DIR"
+. $DOTFILES_DIR/.zsh_utilities/aliases.sh
 . $DOTFILES_DIR/.zsh_utilities/youtube.sh
 . $DOTFILES_DIR/.zsh_utilities/va.sh
 . $DOTFILES_DIR/.zsh_utilities/http_proxy.sh
 . $DOTFILES_DIR/.zsh_utilities/aliases.sh
-
 
 source /usr/local/share/zsh/site-functions/_aws
 
