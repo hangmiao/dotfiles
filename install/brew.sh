@@ -11,7 +11,18 @@ echo "Installing homebrew packages..."
 brew update
 brew tap homebrew/services
 
-brew install rbenv readline ruby-build mongodb dynamodb-local mysql@5.5 redis28 imagemagick@6 scala sbt logstash
+brew install rbenv
+brew install readline
+brew install ruby-build
+brew install mongodb
+brew install dynamodb-local
+brew install mysql@5.5
+brew install redis28
+brew install imagemagick@6
+brew install scala
+brew install sbt
+brew install logstash
+
 brew link imagemagick@6 --force
 # For mongodb
 sudo mkdir -p /data/db
@@ -96,7 +107,6 @@ brew cask install seil
 brew cask install utc-menu-clock
 brew cask install caffeine
 brew cask install dash
-brew cask install deluge
 
 # brew install pandoc
 # brew install lynx
