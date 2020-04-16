@@ -29,8 +29,7 @@ alias rake='noglob rake'
 
 alias be='bundle exec'
 alias bi='bundle install'
-#alias rt='RAILS_ENV=test bundle exec rake minitest --trace'
-alias rt='RAILS_ENV=test bundle exec rake test:all'
+alias brc='bundle exec rubocop -a'
 
 # IP addresses
 alias publicip="dig +short myip.opendns.com @resolver1.opendns.com"

@@ -1329,8 +1329,11 @@ let g:syntastic_style_error_symbol = '⚡'
 
 noremap <leader>st :SyntasticToggleMode<CR>
 
+
+" let g:syntastic_ruby_checkers = ['bundle exec reek', 'rubocop']
+
 let g:syntastic_mode_map = { "mode": "active",
-                           \ "active_filetypes": [],
+                           \ "active_filetypes": ['ruby'],
                            \ "passive_filetypes": ['sass', 'scss','html', 'scala'] }
 
 map <Leader>e :lnext<CR>
