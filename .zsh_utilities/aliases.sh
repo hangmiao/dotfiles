@@ -98,8 +98,11 @@ alias tfa="terraform apply --var-file environments/production.tfvars"
 
 alias ti="terraform init"
 alias tp="terraform plan"
+alias tpl="terraform plan | landscape"
 alias ts="terraform show"
 alias ta="terraform apply"
+alias tal="terraform apply | landscape"
+
 
 # Mac OS X ----------------------------------------------------------------- {{{
 

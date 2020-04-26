@@ -187,6 +187,7 @@ ex () {
 }
 
 unalias rm
+unsetopt rm_star_silent
 
 # }}}
 # Better settings ---------------------------------------------------------- {{{
@@ -478,3 +479,7 @@ eval "$(rbenv init -)"
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
 export PATH="/usr/local/opt/libiconv/bin:$PATH"
+
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
