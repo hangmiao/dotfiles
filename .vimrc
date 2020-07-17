@@ -214,6 +214,9 @@ nmap <silent> ,md :!mkdir -p %:p:h<CR>
 " map <leader>re :call RenameFile()<cr>
 map <leader>re :Rename<space>
 
+" delete emtpy lines
+map <leader>de :g/^$/d<CR>
+
 " scroll the viewport faster
 nnoremap <C-e> 10<C-e>
 nnoremap <C-y> 10<C-y>
@@ -958,7 +961,7 @@ NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'wojtekmach/vim-rename'
 NeoBundle 'janko-m/vim-test'
 NeoBundle 'kassio/neoterm'
-
+NeoBundle 'hashivim/vim-terraform'
 
 " NeoBundle 'xolox/vim-misc'
 " NeoBundle 'xolox/vim-notes'
@@ -1671,7 +1674,7 @@ if has('gui_running')
     let macvim_skip_colorscheme=1 " respect color settings in .vimrc
 
     " set guifont=Source\ Code\ Pro\ for\ Powerline:h16
-    set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h14
+    " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h14
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types:h19
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Regular:h19
     " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono:h15
@@ -1692,7 +1695,7 @@ if has('gui_running')
     " set guicursor+=v:block-vCursor-blinkon0
     " set guicursor+=i-ci:ver20-iCursor
 
-    let g:deoplete#enable_at_startup = 0
+    let g:deoplete#enable_at_startup = 1
     " nnoremap <D-e> :tabnew<cr>
 
     " cmd indention
@@ -1708,7 +1711,7 @@ endif
 
 if has("gui_vimr")
   " VimR specific settings like
-  set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h18
+  " set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ Plus\ Pomicons:h18
 
   " Remove all the UI cruft
   set guioptions-=T " Removes top toolbar
@@ -1734,3 +1737,5 @@ nnoremap <C-j> <C-d>
 
 
 nnoremap <space>ga :Git add %:p<CR><CR>
+
+let g:terraform_align=1
