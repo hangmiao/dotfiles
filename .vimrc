@@ -439,9 +439,9 @@ endfunction
 
 function! RubocopAutoFormatAndSave()
   :w
-  !rubocop -a %
-  :e!
-  :w
+  :silent !rubocop -a %
+  " :sleep 2000m
+  :silent w<Esc><CR>
 endfunction
 
 function! FindGitDirOrRoot()
